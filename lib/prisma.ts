@@ -6,11 +6,11 @@ import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 const { PrismaClient } = require('@prisma/client')
 
 // Validate DATABASE_URL exists
-const databaseUrl = process.env.DATABASE_URL
-if (!databaseUrl) {
-    console.error('❌ DATABASE_URL environment variable is not set!')
-    console.error('Please create a .env.local file with:')
-    console.error('DATABASE_URL="mysql://username:password@hostname:port/database_name"')
+// Validate DATABASE_URL exists, use fallback for build time
+const databaseUrl = process.env.DATABASE_URL || "mysql://build:build@localhost:3306/build"
+
+if (!process.env.DATABASE_URL) {
+    console.warn('⚠️ DATABASE_URL environment variable is not set! Using fallback for build.')
 }
 
 // Parse DATABASE_URL to extract connection details
