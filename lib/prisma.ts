@@ -14,23 +14,26 @@ if (!databaseUrl) {
 }
 
 // Parse DATABASE_URL to extract connection details
-const parseDbUrl = (url: string) => {
-    if (!url) {
+// Parse DATABASE_URL to extract connection details using URL object
+const parseDbUrl = (urlStr: string) => {
+    if (!urlStr) {
         throw new Error('DATABASE_URL is not defined. Please set it in your .env.local file.')
     }
-    const regex = /mysql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/
-    const match = url.match(regex)
-    if (!match) {
+
+    try {
+        const url = new URL(urlStr)
+
+        return {
+            user: url.username,
+            password: url.password,
+            host: url.hostname,
+            port: parseInt(url.port) || 3306,
+            database: url.pathname.split('/')[1]
+        }
+    } catch (error) {
         throw new Error(
-            'Invalid DATABASE_URL format. Expected: mysql://username:password@hostname:port/database_name'
+            `Invalid DATABASE_URL format: ${urlStr}. Expected format: mysql://username:password@hostname:port/database_name`
         )
-    }
-    return {
-        user: match[1],
-        password: match[2],
-        host: match[3],
-        port: parseInt(match[4]),
-        database: match[5]
     }
 }
 
