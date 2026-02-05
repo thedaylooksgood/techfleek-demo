@@ -1,0 +1,15 @@
+<svg viewBox="0 0 40 40" x="0" y="0" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><filter id="filter5_d_1655_2824" x="243.8" y="-12.199999999999989" width="60.4" height="60.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB" xmlns="http://www.w3.org/2000/svg">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-1"/>
+<feGaussianBlur stdDeviation="5.1"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.235294 0 0 0 0 0.556863 0 0 0 0 0.796078 0 0 0 1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1655_2824"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1655_2824" result="shape"/>
+</filter></defs><g id="Arrow" filter="url(#filter5_d_1655_2824)" xmlns="http://www.w3.org/2000/svg">
+<rect id="background" x="254" y="-1" width="40" height="40" rx="12" fill="#F5F5F5"/>
+<g id="v6-icon (free)_6">
+<path id="icon_6" d="M276,25c-0.281,0 -0.531,-0.094 -0.719,-0.281l-5,-5c-0.406,-0.375 -0.406,-1.031 0,-1.407l5,-5c0.375,-0.406 1.031,-0.406 1.407,0c0.406,0.376 0.406,1.032 0,1.407l-4.282,4.281l4.282,4.312c0.406,0.376 0.406,1.032 0,1.407c-0.188,0.187 -0.438,0.281 -0.688,0.281z" fill="#3E3232" fill-opacity="0.5"/>
+</g>
+</g></svg>
