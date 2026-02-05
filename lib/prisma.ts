@@ -47,7 +47,6 @@ const adapter = new PrismaMariaDb({
     acquireTimeout: 10000,        // Reduced to 10 seconds for faster feedback
     connectTimeout: 5000,         // 5 second connection timeout
     idleTimeout: 30000,           // 30 second idle timeout - release faster
-    waitForConnections: true,     // Wait for available connection instead of erroring immediately
 })
 
 const prismaClientSingleton = () => {

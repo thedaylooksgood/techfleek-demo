@@ -100,7 +100,7 @@ export default function IndustriesTargeted() {
         visible: {
             y: 0,
             opacity: 1,
-            transition: { duration: 0.8, ease: "easeOut" }
+            transition: { duration: 0.8, ease: "easeOut" as const }
         }
     };
 
@@ -110,7 +110,7 @@ export default function IndustriesTargeted() {
             y: 0,
             opacity: 1,
             scale: 1,
-            transition: { duration: 0.6, ease: "easeOut" }
+            transition: { duration: 0.6, ease: "easeOut" as const }
         }
     };
 

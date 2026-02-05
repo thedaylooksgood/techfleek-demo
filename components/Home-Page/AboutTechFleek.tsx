@@ -37,7 +37,7 @@ const AboutTechFleek = () => {
         visible: {
             y: 0,
             opacity: 1,
-            transition: { duration: 0.8, ease: "easeOut" }
+            transition: { duration: 0.8, ease: "easeOut" as const }
         }
     };
 
@@ -47,7 +47,7 @@ const AboutTechFleek = () => {
             y: 0,
             opacity: 1,
             scale: 1,
-            transition: { duration: 0.6, ease: "easeOut" }
+            transition: { duration: 0.6, ease: "easeOut" as const }
         }
     };
 
@@ -56,7 +56,7 @@ const AboutTechFleek = () => {
         visible: {
             scale: 1,
             opacity: 1,
-            transition: { duration: 0.8, ease: "easeOut", delay: 0.2 }
+            transition: { duration: 0.8, ease: "easeOut" as const, delay: 0.2 }
         }
     };
 
@@ -67,7 +67,7 @@ const AboutTechFleek = () => {
     const floatTransition = {
         duration: 3,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
     };
 
     const pulseAnimation = {
