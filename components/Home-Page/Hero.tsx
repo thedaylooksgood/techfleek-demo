@@ -6,12 +6,18 @@ import Link from "next/link";
 import {
     ArrowRight,
     Smartphone,
-    Palette,
-    BarChart,
-    Globe,
+    Layers,
+    TrendingUp,
+    Layout,
     Zap,
     CheckCircle,
-    User
+    User,
+    Cloud,
+    Brain,
+    Code2,
+    ShieldCheck,
+    Database,
+    Terminal
 } from "lucide-react";
 
 // --- MAIN HERO COMPONENT ---
@@ -131,13 +137,13 @@ function NetworkDiagram() {
             >
                 {/* --- ORBITAL RINGS --- */}
                 <motion.div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-300/30 border-dashed z-0"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-sky-300/30 border-dashed z-0"
                     style={{ width: '380px', height: '380px', transformStyle: "preserve-3d" }}
                     animate={{ rotateZ: 360 }}
                     transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                 />
                 <motion.div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-indigo-300/20 border-dotted z-0"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-300/20 border-dotted z-0"
                     style={{ width: '550px', height: '550px', transformStyle: "preserve-3d" }}
                     animate={{ rotateZ: -360 }}
                     transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
@@ -148,7 +154,7 @@ function NetworkDiagram() {
                     <defs>
                         <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="#cbd5e1" stopOpacity="0.2" />
-                            <stop offset="50%" stopColor="#a855f7" stopOpacity="0.8" />
+                            <stop offset="50%" stopColor="#3C8ECB" stopOpacity="0.8" />
                             <stop offset="100%" stopColor="#cbd5e1" stopOpacity="0.2" />
                         </linearGradient>
                     </defs>
@@ -171,16 +177,16 @@ function NetworkDiagram() {
                     style={{ transformStyle: "preserve-3d" }}
                 >
                     {/* Ripple Effect (Flat on floor) */}
-                    <div className="absolute inset-0 rounded-3xl bg-purple-500/20 animate-ping-slow" style={{ transform: "translateZ(-20px)" }} />
+                    <div className="absolute inset-0 rounded-3xl bg-[#3C8ECB]/20 animate-ping-slow" style={{ transform: "translateZ(-20px)" }} />
 
                     {/* Core Box (Floating) */}
                     <motion.div
                         animate={{ z: [0, 20, 0] }} // Float in Z instead of Y for 3D effect
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className="relative w-32 h-32 bg-white rounded-3xl shadow-[0_20px_50px_rgba(124,58,237,0.25)] flex items-center justify-center p-2.5 z-20"
+                        className="relative w-32 h-32 bg-white rounded-3xl shadow-[0_20px_50px_rgba(60,142,203,0.3)] flex items-center justify-center p-2.5 z-20"
                         style={{ transformStyle: "preserve-3d" }}
                     >
-                        <div className="w-full h-full bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-inner relative overflow-hidden group border border-white/20">
+                        <div className="w-full h-full bg-gradient-to-br from-[#3C8ECB] to-[#2563EB] rounded-2xl flex items-center justify-center shadow-inner relative overflow-hidden group border border-white/20">
                             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent translate-x-[-150%] transition-transform duration-1000 group-hover:translate-x-[150%]" />
                             <Zap className="text-white w-12 h-12 relative z-10 drop-shadow-lg" fill="currentColor" />
                         </div>
@@ -201,28 +207,28 @@ function NetworkDiagram() {
                 {/* --- NODES (With Billboard Text) --- */}
 
                 {/* 1. Top Right: WEB */}
-                <FloatingNode top="20%" left="75%" delay={0.2} icon={<Globe className="text-blue-500" />} label="Web Platforms" sub="Scalable Next.js" />
+                <FloatingNode top="20%" left="75%" delay={0.2} icon={<Layout className="text-blue-500" />} label="Web Platforms" sub="Scalable Next.js" />
 
                 {/* 2. Bottom Right: MOBILE */}
                 <FloatingNode top="70%" left="65%" delay={0.4} icon={<Smartphone className="text-purple-500" />} label="Mobile Apps" sub="iOS & Android" />
 
                 {/* 3. Bottom Left: UI/UX */}
-                <FloatingNode top="65%" left="20%" delay={0.6} icon={<Palette className="text-pink-500" />} label="UI/UX Design" sub="Premium Aesthetics" />
+                <FloatingNode top="65%" left="20%" delay={0.6} icon={<Layers className="text-pink-500" />} label="UI/UX Design" sub="Premium Aesthetics" />
 
                 {/* 4. Top Left: STRATEGY */}
-                <FloatingNode top="25%" left="15%" delay={0.8} icon={<BarChart className="text-emerald-500" />} label="Growth Strategy" sub="Data Driven" />
+                <FloatingNode top="25%" left="15%" delay={0.8} icon={<TrendingUp className="text-emerald-500" />} label="Growth Strategy" sub="Data Driven" />
 
-                {/* 5. Top Center: CLOUD (New) */}
-                <FloatingNode top="10%" left="45%" delay={1.0} icon={<div className="text-sky-500 font-bold">CLI</div>} label="Cloud Infra" sub="AWS & Azure" />
+                {/* 5. Top Center: CLOUD */}
+                <FloatingNode top="10%" left="45%" delay={1.0} icon={<Cloud className="text-sky-500" />} label="Cloud Infra" sub="AWS & Azure" />
 
-                {/* 6. Bottom Center: AI (New) */}
-                <FloatingNode top="80%" left="45%" delay={1.2} icon={<div className="text-orange-500 font-bold">AI</div>} label="AI Solutions" sub="ML & GenAI" />
+                {/* 6. Bottom Center: AI */}
+                <FloatingNode top="80%" left="45%" delay={1.2} icon={<Brain className="text-violet-500" />} label="AI Solutions" sub="ML & GenAI" />
 
-                {/* Extra: Floating Avatars */}
-                <FloatingAvatar top="45%" left="12%" color="bg-orange-100" text="JS" delay={1.5} />
-                <FloatingAvatar top="15%" left="55%" color="bg-cyan-100" text="AK" delay={2.5} />
-                <FloatingAvatar top="85%" left="55%" color="bg-rose-100" text="M" delay={0.5} />
-                <FloatingAvatar top="35%" left="85%" color="bg-purple-100" text="TS" delay={2.0} />
+                {/* Extra: Floating Tech Icons */}
+                <FloatingTechIcon top="45%" left="12%" color="bg-orange-50 text-orange-500" icon={<Code2 size={20} />} delay={1.5} />
+                <FloatingTechIcon top="15%" left="55%" color="bg-cyan-50 text-cyan-500" icon={<ShieldCheck size={20} />} delay={2.5} />
+                <FloatingTechIcon top="85%" left="55%" color="bg-rose-50 text-rose-500" icon={<Database size={20} />} delay={0.5} />
+                <FloatingTechIcon top="35%" left="85%" color="bg-purple-50 text-purple-500" icon={<Terminal size={20} />} delay={2.0} />
 
             </motion.div>
         </div>
@@ -302,7 +308,7 @@ function FloatingNode({ top, left, delay, icon, label, sub }: any) {
     )
 }
 
-function FloatingAvatar({ top, left, color, text, delay }: any) {
+function FloatingTechIcon({ top, left, color, icon, delay }: any) {
     return (
         <motion.div
             className="absolute z-10"
@@ -312,10 +318,10 @@ function FloatingAvatar({ top, left, color, text, delay }: any) {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
         >
             <div
-                className={`w-10 h-10 rounded-full border-2 border-white shadow-lg ${color} flex items-center justify-center text-xs font-bold text-slate-600 cursor-pointer hover:scale-110 transition-transform`}
+                className={`w-12 h-12 rounded-full border border-white/60 backdrop-blur-md shadow-lg ${color} flex items-center justify-center cursor-pointer hover:scale-110 transition-transform`}
                 style={{ transform: "rotateX(-20deg) rotateY(20deg) rotateZ(-5deg)" }}
             >
-                {text}
+                {icon}
             </div>
         </motion.div>
     )
