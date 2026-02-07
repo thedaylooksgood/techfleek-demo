@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion';
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { homeStyles } from './styles';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '700'] });
 
@@ -110,14 +111,16 @@ function Card({ item, index }: { item: { title: string; desc: string }, index: n
 export default function FeaturesCards() {
     return (
         <section
-            className="relative z-30 w-full mb-4 sm:mb-6 md:mb-8 lg:mb-10
-                px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12"
+            className={`${homeStyles.section} mb-4 sm:mb-6 md:mb-8 lg:mb-10 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12`}
         >
+            {/* Grid Background */}
+            <div className="absolute inset-0 pointer-events-none"
+                style={homeStyles.gridBackgroundStyle}>
+            </div>
             {/* CONTAINER - Reduced negative margin to position cards lower */}
             <div
-                className="w-full mx-auto 
-                    -mt-[40px] sm:-mt-[60px] md:-mt-[80px] lg:-mt-[120px] xl:-mt-[140px]
-                    max-w-[400px] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1188px]"
+                className={`${homeStyles.container} 
+                    -mt-[40px] sm:-mt-[60px] md:-mt-[80px] lg:-mt-[120px] xl:-mt-[140px]`}
             >
                 {/* GRID */}
                 <div

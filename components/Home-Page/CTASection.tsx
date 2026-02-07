@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Outfit } from 'next/font/google';
 import Link from 'next/link';
+import { homeStyles } from './styles';
 
 const outfit = Outfit({
     subsets: ['latin'],
@@ -13,12 +14,13 @@ const outfit = Outfit({
 
 const CTASection = () => {
     return (
-        <div className={`flex justify-center w-full bg-gray-900 ${outfit.className}`}>
+        <div className={`flex justify-center w-full bg-white`}>
             {/* Main Container */}
             <div
-                className="relative w-full max-w-[1440px] min-h-[300px] md:h-[384px] overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 py-12 md:py-0"
+                className={`${homeStyles.container} min-h-[300px] md:h-[384px] overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 py-12 md:py-0 rounded-2xl md:rounded-3xl lg:rounded-[32px] my-10 md:my-16 lg:my-20`}
                 style={{
-                    background: 'linear-gradient(164.07deg, #000000 2.76%, #3C8ECB 90.37%)'
+                    background: 'linear-gradient(164.07deg, #000000 2.76%, #3C8ECB 90.37%)',
+                    boxShadow: '0 20px 50px rgba(60, 142, 203, 0.25)'
                 }}
             >
                 {/* Decorative Circle - Top Right */}
@@ -51,12 +53,12 @@ const CTASection = () => {
                 >
 
                     {/* Heading */}
-                    <h2 className="text-white text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] leading-[1.1] font-normal mb-4 md:mb-6 max-w-[905px]">
+                    <h2 className="text-white text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] leading-[1.1] font-black mb-4 md:mb-6 max-w-[905px] font-[family-name:var(--font-red-hat)]">
                         Let's Build Your Next Software Experience
                     </h2>
 
                     {/* Subtext */}
-                    <p className="text-[#E5E7EB] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[1.5] font-normal mb-6 md:mb-9 max-w-[617px]">
+                    <p className="text-[#E5E7EB] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[1.5] font-medium mb-6 md:mb-9 max-w-[617px] font-[family-name:var(--font-red-hat)]">
                         Ready to transform your ideas into powerful software solutions? Let's discuss your project and create something amazing together.
                     </p>
 

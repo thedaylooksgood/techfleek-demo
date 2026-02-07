@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import { homeStyles } from './styles';
 
-// All industries with unique colors
 const industries = [
     {
         id: 1,
@@ -65,7 +65,6 @@ const industries = [
 ];
 
 export default function IndustriesTargeted() {
-    const fontRedHat = "font-[family-name:var(--font-red-hat)]";
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
 
@@ -124,141 +123,77 @@ export default function IndustriesTargeted() {
     return (
         <section
             ref={sectionRef}
-            className={`w-full bg-gradient-to-b from-white via-gray-50/30 to-white overflow-hidden relative ${fontRedHat}`}
+            className={homeStyles.section}
             style={{
-                padding: isMobile ? '50px 16px' : isTablet ? '70px 24px' : 'clamp(80px, 10vh, 120px) 32px'
+                paddingTop: '30px',
+                paddingBottom: '30px'
             }}
         >
-            {/* Animated background elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <motion.div
-                    className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-30"
-                    style={{ background: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%)' }}
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-20"
-                    style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)' }}
-                    animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                />
-
-                {/* Floating shapes */}
-                <motion.div
-                    className="absolute top-32 right-20 w-4 h-4 rounded-full"
-                    style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
-                    animate={{ y: [0, -15, 0], rotate: [0, 180, 360] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="absolute top-48 right-40 w-3 h-3 rounded"
-                    style={{ background: 'linear-gradient(135deg, #ec4899, #f472b6)' }}
-                    animate={{ y: [0, -10, 0], scale: [1, 1.2, 1] }}
-                    transition={{ duration: 3.5, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="absolute bottom-32 left-20 w-5 h-5 rounded-full"
-                    style={{ background: 'linear-gradient(135deg, #10b981, #34d399)' }}
-                    animate={{ y: [0, -12, 0], x: [0, 5, 0] }}
-                    transition={{ duration: 5, delay: 1, repeat: Infinity, ease: "easeInOut" }}
-                />
+            {/* Grid Background */}
+            <div className="absolute inset-0 pointer-events-none"
+                style={homeStyles.gridBackgroundStyle}>
             </div>
 
             <motion.div
-                className="w-full mx-auto relative z-10"
-                style={{ maxWidth: '1250px' }}
+                className={homeStyles.container}
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
             >
-                {/* Two Column Header - matching AboutUs */}
-                <div className={`flex ${isMobile ? 'flex-col gap-6' : 'flex-row justify-between items-start'} mb-10 lg:mb-14`}>
-                    {/* Left - Headline */}
-                    <motion.div
-                        className={isMobile ? 'w-full' : 'w-[48%]'}
-                        variants={headerVariants}
-                    >
-                        {/* Label with shimmer */}
-                        <motion.span
-                            className="inline-flex items-center gap-2 text-gray-400 font-medium tracking-wider uppercase"
-                            style={{ fontSize: labelSize, marginBottom: '8px' }}
-                            animate={{ opacity: [0.7, 1, 0.7] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        >
-                            <Sparkles className="w-4 h-4 text-indigo-400" />
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5 lg:mb-6 border-b border-slate-100 pb-3">
+                    <div className="flex flex-col gap-1 max-w-3xl">
+                        <span className={homeStyles.label}>
                             Industries We Serve
-                        </motion.span>
-
-                        {/* Main Headline with gradient */}
-                        <h2
-                            className="font-bold"
-                            style={{
-                                fontSize: headlineSize,
-                                lineHeight: '1.1',
-                                marginTop: '8px',
-                                background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text'
-                            }}
-                        >
-                            What you'll get<br />from hiring us
-                        </h2>
-                    </motion.div>
-
-                    {/* Right - Description + CTA */}
-                    <motion.div
-                        className={isMobile ? 'w-full' : 'w-[45%]'}
-                        variants={headerVariants}
-                    >
-                        <p
-                            className="text-gray-500"
-                            style={{ fontSize: subtitleSize, lineHeight: '1.6', marginBottom: '20px' }}
-                        >
-                            We immerse ourselves in our customer's business, understand their objectives, and take a holistic approach on every project. Therefore, we have been working with most of our clients for years.
-                        </p>
-
-                        {/* CTA Buttons matching AboutUs */}
-                        <div className="flex items-center gap-3 flex-wrap">
-                            <motion.button
-                                className="font-semibold text-white rounded-full relative overflow-hidden group"
-                                style={{
-                                    padding: isMobile ? '10px 20px' : 'clamp(10px, 1.2vh, 14px) clamp(20px, 2.5vw, 32px)',
-                                    fontSize: isMobile ? '12px' : 'clamp(12px, 1vw, 15px)',
-                                    background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%)',
-                                    boxShadow: '0 4px 20px rgba(26, 26, 46, 0.3)'
-                                }}
-                                whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(26, 26, 46, 0.4)' }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <span className="relative z-10 flex items-center gap-2">
-                                    Become a Client
-                                    <ArrowRight className="w-4 h-4" />
-                                </span>
-                                <motion.div
-                                    className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                />
-                            </motion.button>
-
-                            <motion.button
-                                className="font-semibold text-gray-700 rounded-full border-2 border-gray-200 bg-white/80 backdrop-blur-sm hover:border-indigo-300 hover:text-indigo-700 transition-all duration-300"
-                                style={{
-                                    padding: isMobile ? '10px 20px' : 'clamp(10px, 1.2vh, 14px) clamp(20px, 2.5vw, 32px)',
-                                    fontSize: isMobile ? '12px' : 'clamp(12px, 1vw, 15px)'
-                                }}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                View Case Studies
-                            </motion.button>
+                        </span>
+                        <div className="flex flex-col gap-1">
+                            <h2 className={homeStyles.title}>
+                                What you'll get <span className={homeStyles.gradientText}>from hiring us</span>
+                            </h2>
+                            <p className={homeStyles.description}>
+                                We immerse ourselves in our customer's business, understand their objectives, and take a holistic approach on every project. Therefore, we have been working with most of our clients for years.
+                            </p>
                         </div>
-                    </motion.div>
+                    </div>
+
+                    {/* CTA Buttons */}
+                    <div className="flex items-center gap-3 flex-wrap shrink-0 mt-4 lg:mt-0">
+                        <motion.button
+                            className="font-semibold text-white rounded-full relative overflow-hidden group"
+                            style={{
+                                padding: isMobile ? '8px 16px' : '10px 24px',
+                                fontSize: isMobile ? '12px' : '13px',
+                                background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%)',
+                                boxShadow: '0 4px 20px rgba(26, 26, 46, 0.3)'
+                            }}
+                            whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(26, 26, 46, 0.4)' }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <span className="relative z-10 flex items-center gap-2">
+                                Become a Client
+                                <ArrowRight className="w-4 h-4" />
+                            </span>
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            />
+                        </motion.button>
+
+                        <motion.button
+                            className="font-semibold text-gray-700 rounded-full border-2 border-gray-200 bg-white/80 backdrop-blur-sm hover:border-indigo-300 hover:text-indigo-700 transition-all duration-300"
+                            style={{
+                                padding: isMobile ? '8px 16px' : '10px 24px',
+                                fontSize: isMobile ? '12px' : '13px'
+                            }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            View Case Studies
+                        </motion.button>
+                    </div>
                 </div>
 
                 {/* Industry Cards Grid */}
                 <motion.div
-                    className="grid gap-4 lg:gap-5"
+                    className="grid gap-3 lg:gap-4"
                     style={{
                         gridTemplateColumns: isMobile
                             ? 'repeat(1, 1fr)'
@@ -275,10 +210,10 @@ export default function IndustriesTargeted() {
                                 key={industry.id}
                                 className="relative cursor-pointer overflow-hidden group"
                                 style={{
-                                    borderRadius: isMobile ? '16px' : '20px',
+                                    borderRadius: isMobile ? '14px' : '16px',
                                     background: isHovered ? industry.color : 'white',
-                                    padding: isMobile ? '18px' : isTablet ? '22px' : 'clamp(20px, 2vw, 28px)',
-                                    minHeight: isMobile ? '140px' : '160px',
+                                    padding: isMobile ? '14px' : isTablet ? '18px' : 'clamp(18px, 1.5vw, 24px)',
+                                    minHeight: isMobile ? '130px' : '150px',
                                     border: isHovered ? 'none' : '1px solid rgba(229, 231, 235, 0.8)',
                                     boxShadow: isHovered
                                         ? `0 25px 50px ${industry.color}50`

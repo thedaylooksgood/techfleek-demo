@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Building2, Users, GraduationCap, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
+import { homeStyles } from './styles';
 
 const AboutTechFleek = () => {
     const fontRedHat = "font-[family-name:var(--font-red-hat)]";
@@ -178,93 +179,47 @@ const AboutTechFleek = () => {
 
     return (
         <section
-            className={`w-full bg-gradient-to-b from-white via-gray-50/30 to-white overflow-hidden relative ${fontRedHat}`}
+            className={homeStyles.section}
             style={{
-                height: isMobile ? 'auto' : '100vh',
-                minHeight: isMobile ? '700px' : '600px',
-                maxHeight: isMobile ? 'none' : '950px',
-                paddingTop: isMobile ? '40px' : '0',
-                paddingBottom: isMobile ? '40px' : '0'
+                paddingTop: '60px',
+                paddingBottom: '60px'
             }}
         >
-            {/* Animated background elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <motion.div
-                    className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-30"
-                    style={{ background: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%)' }}
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-20"
-                    style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)' }}
-                    animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                />
+            {/* Grid Background */}
+            <div className="absolute inset-0 pointer-events-none"
+                style={homeStyles.gridBackgroundStyle}>
             </div>
 
             <motion.div
-                className="w-full h-full flex flex-col items-center justify-center relative z-10"
-                style={{
-                    maxWidth: '1250px',
-                    margin: '0 auto',
-                    padding: isMobile ? '0 16px' : isTablet ? '0 24px' : '0 32px'
-                }}
+                className={`${homeStyles.container} h-full flex flex-col items-center justify-center`}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
             >
 
-                {/* Header Section */}
-                <motion.div
-                    className="text-center w-full"
-                    style={{ marginBottom: isMobile ? '24px' : isTablet ? '28px' : 'clamp(28px, 4vh, 48px)' }}
-                    variants={headerVariants}
-                >
-                    {/* Label with shimmer effect */}
-                    <motion.span
-                        className="inline-block text-gray-400 font-medium tracking-wider uppercase"
-                        style={{ fontSize: isMobile ? '10px' : 'clamp(11px, 1vw, 13px)', marginBottom: '8px' }}
-                        animate={{ opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                    >
-                        About Us
-                    </motion.span>
+                {/* Header Section with Actions */}
+                <div className={`${homeStyles.headerWrapper} lg:flex-row lg:items-end lg:justify-between`}>
+                    <div className="flex flex-col gap-2 flex-1">
+                        <span className={homeStyles.label}>
+                            About Us
+                        </span>
+                        <h2 className={homeStyles.title}>
+                            Globally Recruitment and <span className={homeStyles.gradientText}>Solutions.</span>
+                        </h2>
+                        <p className={homeStyles.description}>
+                            At the intersection of cutting-edge technology and deep industry knowledge,
+                            we revolutionize the way companies and candidates connect.
+                        </p>
+                    </div>
 
-                    {/* Main Headline with gradient */}
-                    <h2
-                        className="font-bold"
-                        style={{
-                            fontSize: isMobile ? '26px' : isTablet ? '32px' : 'clamp(32px, 4vw, 48px)',
-                            lineHeight: '1.1',
-                            marginBottom: isMobile ? '10px' : 'clamp(10px, 1.5vh, 18px)',
-                            background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text'
-                        }}
-                    >
-                        Globally Recruitment and<br />
-                        Consultation Solutions.
-                    </h2>
-
-                    {/* Subtext */}
-                    <p
-                        className="text-gray-500 max-w-[550px] mx-auto"
-                        style={{
-                            fontSize: isMobile ? '13px' : isTablet ? '14px' : 'clamp(13px, 1.2vw, 16px)',
-                            lineHeight: '1.6'
-                        }}
-                    >
-                        At the intersection of cutting-edge technology and deep industry knowledge,
-                        we revolutionize the way companies and candidates connect.
-                    </p>
-
-                    {/* CTA Buttons with hover effects */}
+                    {/* CTA Buttons - Moved here */}
                     <motion.div
-                        className="flex items-center justify-center flex-wrap gap-3"
-                        style={{ marginTop: isMobile ? '16px' : 'clamp(16px, 2.5vh, 28px)' }}
+                        className="flex items-center gap-3 shrink-0"
+                        style={{
+                            marginTop: isMobile ? '16px' : '0',
+                            paddingBottom: isMobile ? '0' : '4px' // align with text baseline roughly or just padding
+                        }}
                     >
                         <Link href="/enquiry">
                             <motion.button
@@ -298,93 +253,94 @@ const AboutTechFleek = () => {
                             </motion.button>
                         </Link>
                     </motion.div>
-                </motion.div>
+                </div>
+            </motion.div>
 
-                {/* Main Grid with Cards and Center Image */}
+            {/* Main Grid with Cards and Center Image */}
+            <div
+                className={`${homeStyles.container} flex-1 flex items-center justify-center`}
+                style={{
+                    maxHeight: isMobile ? 'none' : isTablet ? '400px' : 'clamp(380px, 50vh, 520px)',
+                    minHeight: isMobile ? 'auto' : '300px'
+                }}
+            >
                 <div
-                    className="relative w-full flex-1 flex items-center justify-center"
+                    className="relative w-full h-full grid gap-4 lg:gap-5 items-center"
                     style={{
-                        maxHeight: isMobile ? 'none' : isTablet ? '400px' : 'clamp(380px, 50vh, 520px)',
-                        minHeight: isMobile ? 'auto' : '300px'
+                        gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '1fr 1.1fr 1fr'
                     }}
                 >
+
+                    {/* Left Column - Cards 1 & 3 */}
                     <div
-                        className="relative w-full h-full grid gap-4 lg:gap-5 items-center"
-                        style={{
-                            gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '1fr 1.1fr 1fr'
-                        }}
+                        className="flex flex-col h-full justify-center"
+                        style={{ gap: isMobile ? '12px' : isTablet ? '14px' : 'clamp(14px, 2vh, 24px)' }}
                     >
-
-                        {/* Left Column - Cards 1 & 3 */}
-                        <div
-                            className="flex flex-col h-full justify-center"
-                            style={{ gap: isMobile ? '12px' : isTablet ? '14px' : 'clamp(14px, 2vh, 24px)' }}
-                        >
-                            <FeatureCard
-                                number="01"
-                                Icon={Building2}
-                                title="Corporate Programs"
-                                description="With TechFleek, hiring becomes effortless. Embrace the future of recruitment today."
-                                delay={0.1}
-                            />
-                            <FeatureCard
-                                number="03"
-                                Icon={GraduationCap}
-                                title="Leadership Training"
-                                description="Empowering Tomorrow's Leaders Today. With TechFleek, delve into training modules."
-                                delay={0.3}
-                            />
-                        </div>
-
-                        {/* Center Column - People Image (Hidden on mobile & tablet) */}
-                        <motion.div
-                            className="hidden lg:flex items-center justify-center h-full"
-                            variants={imageVariants}
-                        >
-                            <motion.div
-                                className="relative w-full h-full flex items-end justify-center"
-                                animate={floatAnimation}
-                                transition={floatTransition}
-                            >
-                                <img
-                                    src="/home-page/about-techfleek-illustration.svg"
-                                    alt="Professional Team"
-                                    className="w-full h-auto object-contain drop-shadow-2xl"
-                                    style={{ maxHeight: '100%' }}
-                                />
-                                {/* Glow effect under image */}
-                                <div
-                                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 rounded-full blur-2xl opacity-30"
-                                    style={{ background: 'linear-gradient(90deg, #6366f1, #8b5cf6)' }}
-                                />
-                            </motion.div>
-                        </motion.div>
-
-                        {/* Right Column - Cards 2 & 4 */}
-                        <div
-                            className="flex flex-col h-full justify-center"
-                            style={{ gap: isMobile ? '12px' : isTablet ? '14px' : 'clamp(14px, 2vh, 24px)' }}
-                        >
-                            <FeatureCard
-                                number="02"
-                                Icon={Users}
-                                title="Recruitment Solutions"
-                                description="Finding the perfect fit for every role, with TechFleek's expert recruitment solutions."
-                                delay={0.15}
-                            />
-                            <FeatureCard
-                                number="04"
-                                Icon={TrendingUp}
-                                title="Improving Resource"
-                                description="Optimizing Assets for Peak Productivity. TechFleek transforms resources, enhancing efficiency."
-                                delay={0.35}
-                            />
-                        </div>
-
+                        <FeatureCard
+                            number="01"
+                            Icon={Building2}
+                            title="Corporate Programs"
+                            description="With TechFleek, hiring becomes effortless. Embrace the future of recruitment today."
+                            delay={0.1}
+                        />
+                        <FeatureCard
+                            number="03"
+                            Icon={GraduationCap}
+                            title="Leadership Training"
+                            description="Empowering Tomorrow's Leaders Today. With TechFleek, delve into training modules."
+                            delay={0.3}
+                        />
                     </div>
-                </div>
 
-            </motion.div>
+                    {/* Center Column - People Image (Hidden on mobile & tablet) */}
+                    <motion.div
+                        className="hidden lg:flex items-center justify-center h-full"
+                        variants={imageVariants}
+                    >
+                        <motion.div
+                            className="relative w-full h-full flex items-end justify-center"
+                            animate={floatAnimation}
+                            transition={floatTransition}
+                        >
+                            <img
+                                src="/home-page/about-techfleek-illustration.svg"
+                                alt="Professional Team"
+                                className="w-full h-auto object-contain drop-shadow-2xl"
+                                style={{ maxHeight: '100%' }}
+                            />
+                            {/* Glow effect under image */}
+                            <div
+                                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 rounded-full blur-2xl opacity-30"
+                                style={{ background: 'linear-gradient(90deg, #6366f1, #8b5cf6)' }}
+                            />
+                        </motion.div>
+                    </motion.div>
+
+                    {/* Right Column - Cards 2 & 4 */}
+                    <div
+                        className="flex flex-col h-full justify-center"
+                        style={{ gap: isMobile ? '12px' : isTablet ? '14px' : 'clamp(14px, 2vh, 24px)' }}
+                    >
+                        <FeatureCard
+                            number="02"
+                            Icon={Users}
+                            title="Recruitment Solutions"
+                            description="Finding the perfect fit for every role, with TechFleek's expert recruitment solutions."
+                            delay={0.15}
+                        />
+                        <FeatureCard
+                            number="04"
+                            Icon={TrendingUp}
+                            title="Improving Resource"
+                            description="Optimizing Assets for Peak Productivity. TechFleek transforms resources, enhancing efficiency."
+                            delay={0.35}
+                        />
+                    </div>
+
+                </div>
+            </div>
+
+
         </section >
     );
 };

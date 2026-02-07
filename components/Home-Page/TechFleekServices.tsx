@@ -1,394 +1,139 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Palette, Component, PenTool, Box, Code, Cpu } from 'lucide-react';
+import { homeStyles } from './styles';
 
-// Services data
+// Services data - optimized for uniform 3-2 Grid Layout
 const services = [
   {
     number: '01',
     title: 'UI/UX Design',
-    description: 'Crafting intuitive interfaces and seamless user experiences that delight and engage your customers.',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop',
-    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    link: '/services/ui-ux'
+    description: 'Crafting intuitive interfaces and seamless user experiences.',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
+    link: '/services/ui-ux',
+    icon: Palette
   },
   {
     number: '02',
     title: 'Product Development',
-    description: 'Building scalable, high-performance products that solve real business problems and drive growth.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop',
-    gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    link: '/services/product-development'
+    description: 'Building scalable, high-performance products that drive growth.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    link: '/services/product-development',
+    icon: Component
   },
   {
     number: '03',
     title: 'Brand Design',
-    description: 'Creative design solutions that communicate your brand story and captivate your target audience.',
-    image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop',
-    gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    link: '/services/design'
+    description: 'Creative design solutions that communicate your brand story.',
+    image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80',
+    link: '/services/design',
+    icon: PenTool
   },
   {
     number: '04',
     title: '3D & Motion',
-    description: 'Immersive 3D experiences and stunning motion graphics that bring your concepts to life.',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop',
-    gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    link: '/services/3d-design'
+    description: 'Immersive 3D experiences and stunning motion graphics.',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80',
+    link: '/services/3d-design',
+    icon: Box
   },
   {
     number: '05',
     title: 'Web Development',
-    description: 'Full-stack development using cutting-edge technologies for blazing-fast web applications.',
-    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=300&fit=crop',
-    gradient: 'linear-gradient(135deg, #4fd1c5 0%, #38b2ac 100%)',
-    link: '/services/development'
+    description: 'Full-stack development using cutting-edge technologies.',
+    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80',
+    link: '/services/development',
+    icon: Code
+  },
+  {
+    number: '06',
+    title: 'Custom Software',
+    description: 'Tailored software solutions designed to meet your specific business needs.',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
+    link: '/services/custom-software',
+    icon: Cpu
   }
 ];
 
-const TechFleekServices = () => {
-  const fontRedHat = "font-[family-name:var(--font-red-hat)]";
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
-
-  useEffect(() => {
-    const checkScreen = () => {
-      setIsMobile(window.innerWidth < 640);
-      setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
-    };
-    checkScreen();
-    window.addEventListener('resize', checkScreen);
-    return () => window.removeEventListener('resize', checkScreen);
-  }, []);
+const ServiceCard = ({ service, index }: { service: any, index: number }) => {
+  const Icon = service.icon;
 
   return (
-    <section
-      className={`w-full bg-gradient-to-b from-white via-gray-50/40 to-white overflow-hidden relative ${fontRedHat}`}
-      style={{
-        padding: isMobile ? '50px 16px' : isTablet ? '60px 28px' : 'clamp(70px, 10vh, 100px) clamp(40px, 5vw, 80px)'
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
+      className="relative group overflow-hidden rounded-2xl bg-[#E3F2FD] border border-blue-200/60 shadow-sm hover:shadow-2xl transition-all duration-300 cursor-pointer h-[200px] lg:h-[240px] flex flex-col justify-between p-6 w-full md:w-[calc(50%-12px)] lg:w-[calc(32%-12px)]"
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-32 right-20 w-96 h-96 rounded-full opacity-40"
-          style={{ background: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.5, 0.4] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      <Link href={service.link} className="absolute inset-0 z-20" />
+
+      {/* Background Image Reveal */}
+      <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
+        <div className="absolute inset-0 bg-cover bg-center transform scale-105 group-hover:scale-100 transition-transform duration-700"
+          style={{ backgroundImage: `url(${service.image})` }}
         />
-        <motion.div
-          className="absolute bottom-32 left-20 w-[500px] h-[500px] rounded-full opacity-30"
-          style={{ background: 'radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%)' }}
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.3, 0.4, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
       </div>
 
-      <motion.div
-        className="w-full mx-auto relative z-10"
-        style={{ maxWidth: '1250px' }}
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-      >
-        {/* Header with staggered animation */}
-        <motion.div
-          className="text-center w-full"
-          style={{ marginBottom: isMobile ? '32px' : isTablet ? '40px' : 'clamp(40px, 6vh, 60px)' }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 mb-3"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Sparkles className="w-4 h-4 text-indigo-400" />
-            </motion.div>
-            <span
-              className="text-gray-400 font-medium tracking-wider uppercase"
-              style={{ fontSize: isMobile ? '11px' : '12px' }}
-            >
-              Our Services
-            </span>
-          </motion.div>
+      {/* Top Row: Number & Arrow */}
+      <div className="relative z-10 flex justify-between items-start">
+        <span className="font-bold text-[11px] lg:text-[13px] text-slate-400 group-hover:text-white/80 transition-colors duration-300">
+          {service.number}
+        </span>
+        <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-white flex items-center justify-center group-hover:bg-white/20 group-hover:backdrop-blur-md transition-all duration-300 group-hover:rotate-45 shadow-sm">
+          <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors duration-300" />
+        </div>
+      </div>
 
-          <motion.h2
-            className="font-bold"
-            style={{
-              fontSize: isMobile ? '28px' : isTablet ? '34px' : 'clamp(36px, 4vw, 48px)',
-              lineHeight: '1.1',
-              marginBottom: isMobile ? '12px' : '16px',
-              background: 'linear-gradient(135deg, #1a1a2e 0%, #3d3d5c 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            What We Do Best
-          </motion.h2>
+      {/* Bottom Row: Content with Icon */}
+      <div className="relative z-10 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+        <div className="mb-2 opacity-80 group-hover:opacity-100 group-hover:text-white transition-all duration-300 transform group-hover:-translate-y-1">
+          <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-blue-500/80 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+        </div>
+        <h3 className="text-[15px] lg:text-[18px] font-bold text-slate-900 group-hover:text-white mb-1.5 transition-colors duration-300 leading-tight">
+          {service.title}
+        </h3>
+        <p className="text-[12px] lg:text-[14px] text-slate-500 group-hover:text-white/90 leading-relaxed transition-colors duration-300 line-clamp-2">
+          {service.description}
+        </p>
+      </div>
+    </motion.div>
+  );
+};
 
-          <motion.p
-            className="text-gray-500 max-w-[550px] mx-auto"
-            style={{
-              fontSize: isMobile ? '14px' : isTablet ? '15px' : '16px',
-              lineHeight: '1.6'
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-          >
-            A comprehensive suite of digital services designed to transform your ideas into exceptional experiences.
-          </motion.p>
-        </motion.div>
+const TechFleekServices = () => {
+  return (
+    <section className="w-full relative bg-white overflow-hidden flex flex-col justify-center min-h-[100dvh] py-8 lg:py-0">
+      {/* Grid Background */}
+      <div className="absolute inset-0 pointer-events-none" style={homeStyles.gridBackgroundStyle}></div>
 
-        {/* Unified Card Container */}
-        <motion.div
-          className="rounded-2xl lg:rounded-3xl overflow-visible relative"
-          style={{
-            background: 'rgba(255, 255, 255, 0.9)',
-            backdropFilter: 'blur(16px)',
-            border: '1px solid rgba(229, 231, 235, 0.7)',
-            boxShadow: '0 8px 40px rgba(0, 0, 0, 0.06)'
-          }}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-        >
-          {services.map((service, index) => {
-            const isActive = activeIndex === index;
-            const isLast = index === services.length - 1;
+      <div className={`${homeStyles.container} h-full flex flex-col justify-center`}>
+        {/* Header - Compact & Consistent */}
+        <div className={homeStyles.headerWrapper}>
+          <span className={homeStyles.label}>
+            Our Services
+          </span>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <h2 className={homeStyles.title}>
+              What We <span className={homeStyles.gradientText}>Do Best</span>
+            </h2>
+            <p className={`${homeStyles.description} hidden sm:block`} style={{ maxWidth: '400px' }}>
+              Comprehensive digital services designed to transform your ideas into exceptional experiences.
+            </p>
+          </div>
+        </div>
 
-            return (
-              <div
-                key={service.number}
-                onMouseEnter={() => setActiveIndex(index)}
-                className="service-item relative"
-                style={{
-                  borderBottom: isLast ? 'none' : '1px solid rgba(229, 231, 235, 0.6)',
-                  zIndex: isActive ? 10 : 1
-                }}
-              >
-                <Link href={service.link}>
-                  <motion.div
-                    className="relative overflow-visible cursor-pointer"
-                    initial={false}
-                    animate={{
-                      backgroundColor: isActive ? '#0f0f0f' : 'transparent'
-                    }}
-                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                  >
-                    {/* Glow effect on hover */}
-                    <motion.div
-                      className="absolute inset-0 pointer-events-none"
-                      initial={false}
-                      animate={{
-                        boxShadow: isActive
-                          ? 'inset 0 0 60px rgba(99, 102, 241, 0.1)'
-                          : 'inset 0 0 0px transparent'
-                      }}
-                      transition={{ duration: 0.4 }}
-                    />
-
-                    <div
-                      className="flex items-center gap-6 lg:gap-10 relative"
-                      style={{
-                        padding: isMobile ? '20px 16px' : isTablet ? '24px 28px' : 'clamp(26px, 3.5vh, 36px) clamp(32px, 4vw, 48px)'
-                      }}
-                    >
-                      {/* Number with pulse animation */}
-                      <motion.span
-                        className="font-medium flex-shrink-0"
-                        style={{
-                          fontSize: isMobile ? '14px' : '16px',
-                          width: isMobile ? '32px' : '40px'
-                        }}
-                        animate={{
-                          color: isActive ? '#a5b4fc' : '#d1d5db',
-                          scale: isActive ? 1.1 : 1
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {service.number}
-                      </motion.span>
-
-                      {/* Title with slide animation */}
-                      <motion.h3
-                        className="font-bold flex-shrink-0"
-                        style={{
-                          fontSize: isMobile ? '18px' : isTablet ? '22px' : 'clamp(24px, 2.2vw, 30px)',
-                          letterSpacing: '-0.01em',
-                          minWidth: isMobile ? 'auto' : isTablet ? '180px' : '220px'
-                        }}
-                        animate={{
-                          color: isActive ? '#ffffff' : '#1a1a2e',
-                          x: isActive ? 8 : 0
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {service.title}
-                      </motion.h3>
-
-                      {/* Description with fade */}
-                      <motion.p
-                        className="hidden md:block flex-1"
-                        style={{
-                          fontSize: isTablet ? '13px' : '14px',
-                          lineHeight: '1.6',
-                          maxWidth: '380px'
-                        }}
-                        animate={{
-                          color: isActive ? 'rgba(255,255,255,0.7)' : '#6b7280',
-                          opacity: isActive ? 1 : 0.8
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {service.description}
-                      </motion.p>
-
-                      {/* Right side - Arrow (Image is now absolutely positioned) */}
-                      <div className="flex items-center gap-4 lg:gap-6 flex-shrink-0 ml-auto">
-                        {/* Arrow with rotation */}
-                        <motion.div
-                          className="flex items-center justify-center rounded-full border-2 flex-shrink-0"
-                          style={{
-                            width: isMobile ? '44px' : isTablet ? '50px' : '56px',
-                            height: isMobile ? '44px' : isTablet ? '50px' : '56px'
-                          }}
-                          animate={{
-                            borderColor: isActive ? '#ffffff' : 'rgba(209, 213, 219, 0.5)',
-                            backgroundColor: isActive ? '#ffffff' : 'transparent',
-                            scale: isActive ? 1.05 : 1
-                          }}
-                          transition={{ duration: 0.3 }}
-                          whileHover={{ scale: 1.1 }}
-                        >
-                          <motion.div
-                            animate={{
-                              color: isActive ? '#0f0f0f' : '#9ca3af',
-                              rotate: isActive ? 45 : 0
-                            }}
-                            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                          >
-                            <ArrowUpRight
-                              style={{
-                                width: isMobile ? '20px' : '24px',
-                                height: isMobile ? '20px' : '24px'
-                              }}
-                            />
-                          </motion.div>
-                        </motion.div>
-                      </div>
-
-                      {/* Floating Pop-up Image - Absolutely positioned */}
-                      <AnimatePresence mode="popLayout">
-                        {isActive && !isMobile && (
-                          <motion.div
-                            className="absolute overflow-hidden rounded-2xl"
-                            style={{
-                              right: isTablet ? '120px' : '140px',
-                              top: '50%',
-                              width: isTablet ? '180px' : '220px',
-                              height: isTablet ? '120px' : '150px',
-                              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4), 0 10px 20px rgba(0, 0, 0, 0.2)',
-                              zIndex: 20
-                            }}
-                            initial={{
-                              opacity: 0,
-                              scale: 0.6,
-                              y: '-50%',
-                              rotate: -8
-                            }}
-                            animate={{
-                              opacity: 1,
-                              scale: 1,
-                              y: '-50%',
-                              rotate: -4
-                            }}
-                            exit={{
-                              opacity: 0,
-                              scale: 0.6,
-                              y: '-50%',
-                              rotate: -8
-                            }}
-                            transition={{
-                              duration: 0.35,
-                              ease: [0.4, 0, 0.2, 1]
-                            }}
-                          >
-                            {/* Gradient overlay */}
-                            <div
-                              className="absolute inset-0 z-10 opacity-20"
-                              style={{ background: service.gradient }}
-                            />
-                            <img
-                              src={service.image}
-                              alt={service.title}
-                              className="w-full h-full object-cover"
-                            />
-                            {/* Shine effect */}
-                            <motion.div
-                              className="absolute inset-0 z-20"
-                              style={{
-                                background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, transparent 100%)'
-                              }}
-                              animate={{
-                                opacity: [0.5, 0.8, 0.5]
-                              }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                            />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    {/* Mobile description */}
-                    {isMobile && (
-                      <motion.p
-                        className="px-4 pb-5 -mt-2"
-                        style={{ fontSize: '13px', lineHeight: '1.5' }}
-                        animate={{
-                          color: isActive ? 'rgba(255,255,255,0.55)' : '#6b7280'
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {service.description}
-                      </motion.p>
-                    )}
-
-                    {/* Left accent line */}
-                    <motion.div
-                      className="absolute left-0 top-0 bottom-0 w-1"
-                      style={{ background: service.gradient }}
-                      initial={false}
-                      animate={{
-                        scaleY: isActive ? 1 : 0,
-                        opacity: isActive ? 1 : 0
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.div>
-                </Link>
-              </div>
-            );
-          })}
-        </motion.div>
-      </motion.div>
+        {/* Services Flex Container - Centered Last Row */}
+        <div className="flex flex-wrap justify-center gap-4 lg:gap-6 w-full">
+          {services.map((service, index) => (
+            <ServiceCard key={service.number} service={service} index={index} />
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

@@ -1,37 +1,27 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { homeStyles } from './styles';
 
-// All 8 client logos (7 PNG + 1 SVG)
+// All 8 client logos with brand colors
 const clientLogos = [
-    { src: '/home-page/clients/2.png', name: 'Greysell' },
-    { src: '/home-page/clients/3.png', name: 'MergerDomo' },
-    { src: '/home-page/clients/4.png', name: 'Wingman' },
-    { src: '/home-page/clients/5.png', name: 'Skybound' },
-    { src: '/home-page/clients/8.png', name: 'DYGO' },
-    { src: '/home-page/clients/div.png', name: 'Bolko' },
-    { src: '/home-page/clients/logo-white.png', name: 'Hoblix' },
-    { src: '/home-page/clients/Rectangle 4239.svg', name: 'Partner' },
+    { src: '/home-page/clients/2.png', name: 'Greysell', color: '#f97316' }, // Orange
+    { src: '/home-page/clients/3.png', name: 'MergerDomo', color: '#3b82f6' }, // Blue
+    { src: '/home-page/clients/4.png', name: 'Wingman', color: '#14b8a6' }, // Teal
+    { src: '/home-page/clients/5.png', name: 'Skybound', color: '#0ea5e9' }, // Sky Blue
+    { src: '/home-page/clients/8.png', name: 'DYGO', color: '#8b5cf6' }, // Purple
+    { src: '/home-page/clients/div.png', name: 'Bolko', color: '#ef4444' }, // Red
+    { src: '/home-page/clients/logo-white.png', name: 'Hoblix', color: '#6366f1' }, // Indigo
+    { src: '/home-page/clients/Rectangle 4239.svg', name: 'Partner', color: '#6b7280' }, // Gray
 ];
 
 export default function ClientSectionAnimated() {
-    const fontRedHat = "font-[family-name:var(--font-red-hat)]";
-    const sectionRef = useRef<HTMLElement>(null);
     const [isMobile, setIsMobile] = useState(false);
     const [isTablet, setIsTablet] = useState(false);
-    const [hoveredLogo, setHoveredLogo] = useState<number | null>(null);
-
-    // Scroll progress for infinite loop effect
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"]
-    });
-
-    // Transform for row movement - creates loop effect
-    const row1Y = useTransform(scrollYProgress, [0, 0.5, 1], [0, -100, -200]);
+    // Removed hoveredLogo state to prevent re-renders
 
     useEffect(() => {
         const checkScreen = () => {
@@ -43,54 +33,53 @@ export default function ClientSectionAnimated() {
         return () => window.removeEventListener('resize', checkScreen);
     }, []);
 
-    // CONSISTENT Typography - Only 3 sizes from AboutUs
-    // Label: small uppercase text
-    const labelSize = isMobile ? '10px' : 'clamp(11px, 1vw, 13px)';
-    // Heading: main title
-    const headingSize = isMobile ? '26px' : isTablet ? '32px' : 'clamp(32px, 4vw, 48px)';
-    // Content: body text and descriptions
+    // Typography sizes to match AboutUs/Design System
     const contentSize = isMobile ? '13px' : isTablet ? '14px' : 'clamp(13px, 1.2vw, 16px)';
 
-    // Split into 4 logos per row (4x2 grid visible)
-    const row1 = clientLogos.slice(0, 4);
-    const row2 = clientLogos.slice(4, 8);
+    // Split logos into two rows
+    const row1Logos = clientLogos.slice(0, 4);
+    const row2Logos = clientLogos.slice(4, 8);
 
-    const LogoCard = ({ logo, index, rowOffset = 0 }: { logo: typeof clientLogos[0], index: number, rowOffset?: number }) => {
-        const globalIndex = rowOffset + index;
-        const isHovered = hoveredLogo === globalIndex;
+    // Card dimensions - Scaled up for better presence
+    const cardWidth = isMobile ? 150 : isTablet ? 190 : 230;
+    const cardHeight = isMobile ? 85 : isTablet ? 110 : 130;
+    const gap = isMobile ? 16 : 24;
+
+    const LogoCard = ({ logo }: { logo: typeof clientLogos[0] }) => {
         const isSvg = logo.src.endsWith('.svg');
-
-        // Card sizes
-        const cardWidth = isMobile ? 85 : isTablet ? 115 : 145;
-        const cardHeight = isMobile ? 58 : isTablet ? 68 : 78;
-        const logoWidth = isMobile ? 60 : isTablet ? 80 : 100;
-        const logoHeight = isMobile ? 38 : isTablet ? 45 : 52;
+        // Logos scaled up to fill the card almost entirely
+        const logoWidth = isMobile ? 120 : isTablet ? 160 : 200;
+        const logoHeight = isMobile ? 70 : isTablet ? 90 : 110;
 
         return (
-            <div
-                className="relative flex items-center justify-center cursor-pointer"
+            <motion.div
+                className="relative flex items-center justify-center shrink-0 cursor-pointer overflow-hidden backdrop-blur-md"
                 style={{
                     width: `${cardWidth}px`,
                     height: `${cardHeight}px`,
-                    background: isHovered
-                        ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)'
-                        : 'white',
-                    borderRadius: '16px',
-                    border: isHovered
-                        ? '1.5px solid rgba(99, 102, 241, 0.35)'
-                        : '1px solid rgba(229, 231, 235, 0.7)',
-                    boxShadow: isHovered
-                        ? '0 12px 35px rgba(99, 102, 241, 0.18)'
-                        : '0 3px 12px rgba(0, 0, 0, 0.04)',
-                    transform: isHovered ? 'translateY(-6px) scale(1.04)' : 'translateY(0) scale(1)',
-                    transition: 'all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    willChange: 'transform, box-shadow, background, border'
+                    borderRadius: '20px',
+                    border: '1px solid rgba(229, 231, 235, 0.4)',
+                    background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.6) 0%, rgba(240, 246, 255, 0.4) 100%)',
                 }}
-                onMouseEnter={() => setHoveredLogo(globalIndex)}
-                onMouseLeave={() => setHoveredLogo(null)}
+                whileHover={{
+                    scale: 1.08,
+                    y: -5,
+                    zIndex: 10,
+                    borderColor: `${logo.color}50`,
+                    boxShadow: `0 20px 40px ${logo.color}25, 0 10px 20px ${logo.color}15`,
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(230, 230, 255, 0.9) 100%)',
+                    transition: { duration: 0.3, ease: "easeOut" }
+                }}
             >
+                {/* Subtle internal glow effect on hover */}
+                <motion.div
+                    className="absolute inset-0 opacity-0"
+                    style={{ background: `linear-gradient(to top right, ${logo.color}05, ${logo.color}10)` }}
+                    whileHover={{ opacity: 1, transition: { duration: 0.3 } }}
+                />
+
                 {isSvg ? (
-                    <img
+                    <motion.img
                         src={logo.src}
                         alt={logo.name}
                         style={{
@@ -98,11 +87,9 @@ export default function ClientSectionAnimated() {
                             height: 'auto',
                             maxHeight: `${logoHeight}px`,
                             objectFit: 'contain',
-                            filter: isHovered ? 'grayscale(0%)' : 'grayscale(100%)',
-                            opacity: isHovered ? 1 : 0.5,
-                            transform: isHovered ? 'scale(1.08)' : 'scale(1)',
-                            transition: 'all 0.35s ease'
+                            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.05))',
                         }}
+                        whileHover={{ scale: 1.1, filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.1))' }}
                     />
                 ) : (
                     <div
@@ -110,151 +97,110 @@ export default function ClientSectionAnimated() {
                             position: 'relative',
                             width: `${logoWidth}px`,
                             height: `${logoHeight}px`,
-                            transform: isHovered ? 'scale(1.08)' : 'scale(1)',
-                            transition: 'transform 0.35s ease'
                         }}
                     >
-                        <Image
-                            src={logo.src}
-                            alt={logo.name}
-                            fill
-                            sizes={`${logoWidth}px`}
-                            className="object-contain"
+                        <motion.div
                             style={{
-                                filter: isHovered ? 'grayscale(0%)' : 'grayscale(100%)',
-                                opacity: isHovered ? 1 : 0.5,
-                                transition: 'filter 0.35s ease, opacity 0.35s ease'
+                                width: '100%',
+                                height: '100%',
+                                position: 'relative'
                             }}
-                        />
+                            whileHover={{ scale: 1.1 }}
+                        >
+                            <Image
+                                src={logo.src}
+                                alt={logo.name}
+                                fill
+                                sizes={`${logoWidth}px`}
+                                className="object-contain"
+                                style={{
+                                    filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.05))',
+                                }}
+                            />
+                        </motion.div>
                     </div>
                 )}
+            </motion.div>
+        );
+    };
 
-                {/* Tooltip */}
-                <div
-                    className="absolute -bottom-7 left-1/2 px-3 py-1.5 rounded-lg whitespace-nowrap pointer-events-none"
+    const MarqueeRow = ({ logos, direction = 'left', speed = 20 }: { logos: typeof clientLogos, direction?: 'left' | 'right', speed?: number }) => {
+        // Duplicate logos enough times to ensure smooth looping
+        const duplicatedLogos = [...logos, ...logos, ...logos, ...logos];
+
+        return (
+            <div
+                className="flex w-full overflow-hidden py-14 -my-8"
+                style={{
+                    maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+                    WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)'
+                }}
+            >
+                <motion.div
+                    className="flex gap-4 lg:gap-6"
                     style={{
-                        background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%)',
-                        color: 'white',
-                        fontSize: '11px',
-                        fontWeight: '500',
-                        boxShadow: '0 4px 14px rgba(26, 26, 46, 0.35)',
-                        opacity: isHovered ? 1 : 0,
-                        transform: `translateX(-50%) translateY(${isHovered ? '0' : '-4px'})`,
-                        transition: 'all 0.25s ease'
+                        paddingLeft: direction === 'right' ? 0 : '0px',
+                    }}
+                    animate={{
+                        x: direction === 'left' ? ['0%', '-50%'] : ['-50%', '0%'],
+                    }}
+                    transition={{
+                        x: {
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            duration: speed,
+                            ease: "linear",
+                        },
                     }}
                 >
-                    {logo.name}
-                    <div
-                        className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45"
-                        style={{ background: '#1a1a2e' }}
-                    />
-                </div>
+                    {duplicatedLogos.map((logo, idx) => (
+                        <LogoCard key={`${logo.name}-${idx}`} logo={logo} />
+                    ))}
+                </motion.div>
             </div>
         );
     };
 
     return (
         <section
-            ref={sectionRef}
-            className={`w-full bg-gradient-to-b from-gray-50/40 via-white to-gray-50/30 relative overflow-hidden ${fontRedHat}`}
-            style={{
-                padding: isMobile ? '50px 16px' : isTablet ? '65px 24px' : 'clamp(75px, 9vh, 110px) 32px'
-            }}
+            className={homeStyles.section}
+            style={{ paddingTop: '60px', paddingBottom: '60px' }}
         >
-            {/* Grid background pattern */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    backgroundImage: `
-                        linear-gradient(to right, rgba(229, 231, 235, 0.4) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(229, 231, 235, 0.4) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '40px 40px'
-                }}
-            />
-
-            {/* Background decoration */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <motion.div
-                    className="absolute top-20 right-16 w-72 h-72 rounded-full"
-                    style={{
-                        background: 'radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%)',
-                        opacity: 0.6
-                    }}
-                    animate={{ scale: [1, 1.15, 1] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                />
+            {/* Grid Background */}
+            <div className="absolute inset-0 pointer-events-none"
+                style={homeStyles.gridBackgroundStyle}>
             </div>
 
             <motion.div
-                className="w-full mx-auto relative z-10"
-                style={{ maxWidth: '1200px' }}
-                initial={{ opacity: 0, y: 30 }}
+                className={homeStyles.container}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
             >
-                {/* Two Column Layout */}
-                <div className={`flex ${isMobile ? 'flex-col gap-10' : 'flex-row items-center justify-between gap-12'}`}>
+                <div className={`flex ${isMobile ? 'flex-col gap-8' : 'flex-row items-center justify-between gap-12'}`}>
 
-                    {/* Left Column - Text Content */}
-                    <div className={isMobile ? 'w-full text-center' : 'w-[38%]'}>
-                        {/* Label */}
-                        <motion.div
-                            className="inline-flex items-center gap-2 mb-3"
-                            animate={{ opacity: [0.6, 1, 0.6] }}
-                            transition={{ duration: 2.5, repeat: Infinity }}
-                        >
-                            <Sparkles className="w-4 h-4 text-indigo-400" />
-                            <span
-                                className="text-gray-400 font-medium tracking-wider uppercase"
-                                style={{ fontSize: labelSize }}
-                            >
+                    {/* Left Side: Text */}
+                    <div className={isMobile ? 'w-full text-center' : 'w-[40%] flex-shrink-0'}>
+                        <div className={homeStyles.headerWrapper}>
+                            <span className={homeStyles.label}>
                                 Our Clients
                             </span>
-                        </motion.div>
+                            <h2 className={homeStyles.title}>
+                                We are <span className={homeStyles.gradientText}>trusted</span>
+                            </h2>
+                        </div>
 
-                        {/* Heading */}
-                        <h2
-                            className="font-bold"
-                            style={{
-                                fontSize: headingSize,
-                                lineHeight: '1.1',
-                                marginBottom: isMobile ? '16px' : '20px'
-                            }}
-                        >
-                            <span style={{
-                                background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text'
-                            }}>
-                                We are{' '}
-                            </span>
-                            <span style={{
-                                background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text'
-                            }}>
-                                trusted
-                            </span>
-                        </h2>
-
-                        {/* Content text */}
                         <p
-                            className="text-gray-500"
+                            className={homeStyles.description}
                             style={{
-                                fontSize: contentSize,
-                                lineHeight: '1.65',
-                                maxWidth: isMobile ? '100%' : '380px',
+                                maxWidth: isMobile ? '100%' : '400px',
                                 marginBottom: '24px'
                             }}
                         >
                             TechFleek is the preferred development partner for many, from startups and SMEs across the globe to Fortune 500 companies.
                         </p>
 
-                        {/* CTA Button */}
                         <motion.button
                             className="font-semibold text-white rounded-full flex items-center gap-2 overflow-hidden group relative"
                             style={{
@@ -264,10 +210,7 @@ export default function ClientSectionAnimated() {
                                 boxShadow: '0 6px 25px rgba(26, 26, 46, 0.3)',
                                 margin: isMobile ? '0 auto' : '0'
                             }}
-                            whileHover={{
-                                scale: 1.04,
-                                boxShadow: '0 10px 35px rgba(26, 26, 46, 0.4)'
-                            }}
+                            whileHover={{ scale: 1.04, boxShadow: '0 10px 35px rgba(26, 26, 46, 0.4)' }}
                             whileTap={{ scale: 0.97 }}
                         >
                             <span className="relative z-10">Become a Client</span>
@@ -276,53 +219,10 @@ export default function ClientSectionAnimated() {
                         </motion.button>
                     </div>
 
-                    {/* Right Column - Logo Grid with Infinite Loop */}
-                    <div className={isMobile ? 'w-full' : 'w-[58%]'}>
-                        {/* Visible container - taller to show all logos initially */}
-                        <div
-                            className="relative overflow-hidden"
-                            style={{
-                                height: isMobile ? '165px' : isTablet ? '185px' : '210px',
-                                maskImage: 'linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)'
-                            }}
-                        >
-                            {/* Scrolling rows container */}
-                            <motion.div
-                                className="flex flex-col gap-5"
-                                style={{
-                                    y: row1Y,
-                                    paddingTop: '8px'
-                                }}
-                            >
-                                {/* Row 1 */}
-                                <div className="flex items-center justify-center gap-3 lg:gap-5">
-                                    {row1.map((logo, index) => (
-                                        <LogoCard key={`r1-${index}`} logo={logo} index={index} rowOffset={0} />
-                                    ))}
-                                </div>
-
-                                {/* Row 2 */}
-                                <div className="flex items-center justify-center gap-3 lg:gap-5">
-                                    {row2.map((logo, index) => (
-                                        <LogoCard key={`r2-${index}`} logo={logo} index={index} rowOffset={4} />
-                                    ))}
-                                </div>
-
-                                {/* Row 1 repeated (loop effect) */}
-                                <div className="flex items-center justify-center gap-3 lg:gap-5">
-                                    {row1.map((logo, index) => (
-                                        <LogoCard key={`r1-loop-${index}`} logo={logo} index={index} rowOffset={8} />
-                                    ))}
-                                </div>
-
-                                {/* Row 2 repeated (loop effect) */}
-                                <div className="flex items-center justify-center gap-3 lg:gap-5">
-                                    {row2.map((logo, index) => (
-                                        <LogoCard key={`r2-loop-${index}`} logo={logo} index={index} rowOffset={12} />
-                                    ))}
-                                </div>
-                            </motion.div>
-                        </div>
+                    {/* Right Side: Marquee Rows */}
+                    <div className={`${isMobile ? 'w-full' : 'w-[55%]'} flex flex-col gap-2`}>
+                        <MarqueeRow logos={row1Logos} direction="left" speed={25} />
+                        <MarqueeRow logos={row2Logos} direction="right" speed={25} />
                     </div>
                 </div>
             </motion.div>

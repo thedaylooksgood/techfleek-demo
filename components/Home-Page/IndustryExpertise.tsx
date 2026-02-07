@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Sparkles, MessageCircleQuestion, Rocket, Clock, Code2, Headphones } from 'lucide-react';
+import { homeStyles } from './styles';
 
 // FAQ/Expertise data with icons
 const expertiseItems = [
@@ -11,35 +12,35 @@ const expertiseItems = [
         title: 'How do you approach new projects?',
         description: 'We start with a deep-dive discovery session to understand your business goals, target audience, and technical requirements. Our team crafts a custom roadmap that aligns with your vision and delivers measurable results within your timeline and budget.',
         icon: Rocket,
-        color: '#6366f1'
+        color: '#43baffff'
     },
     {
         number: '02',
         title: 'What industries do you specialize in?',
         description: 'Our expertise spans across E-Commerce, CRM Systems, SaaS Platforms, Healthcare, FinTech, Real Estate, and Rental Management. We bring domain-specific knowledge that accelerates development and ensures industry best practices.',
         icon: MessageCircleQuestion,
-        color: '#8b5cf6'
+        color: '#43d1fcff'
     },
     {
         number: '03',
         title: 'How soon can you start a project?',
         description: 'It depends on several factors such as our current capacity, particular product\'s needs, or your responsiveness. Our experience shows that we can kick off the project within 1 or 2 weeks from receiving an inquiry. Having 250+ team members on board allows us to form and scale the team quickly while ensuring a short lead time.',
         icon: Clock,
-        color: '#ec4899'
+        color: '#43baffff'
     },
     {
         number: '04',
         title: 'What technologies do you work with?',
         description: 'We work with modern tech stacks including React, Next.js, Node.js, Python, Flutter, and cloud platforms like AWS and Azure. Our team stays updated with the latest technologies to deliver cutting-edge solutions.',
         icon: Code2,
-        color: '#10b981'
+        color: '#43baffff'
     },
     {
         number: '05',
         title: 'Do you provide ongoing support?',
         description: 'Absolutely. We offer comprehensive maintenance packages including bug fixes, performance optimization, security updates, and feature enhancements. Our support team ensures your product remains robust and up-to-date.',
         icon: Headphones,
-        color: '#f59e0b'
+        color: '#43baffff'
     },
 ];
 
@@ -131,10 +132,8 @@ export default function IndustryExpertise() {
 
             {/* Main Headline */}
             <h2
-                className="font-bold"
+                className={homeStyles.title}
                 style={{
-                    fontSize: headlineSize,
-                    lineHeight: '1.1',
                     marginBottom: isMobile ? '12px' : 'clamp(12px, 2vh, 20px)'
                 }}
             >
@@ -155,7 +154,7 @@ export default function IndustryExpertise() {
                         transition={{ duration: 2, repeat: Infinity }}
                     >
                         <ArrowUpRight
-                            className="text-indigo-500"
+                            className="text-blue-300"
                             style={{
                                 width: isMobile ? '22px' : '30px',
                                 height: isMobile ? '22px' : '30px'
@@ -164,7 +163,7 @@ export default function IndustryExpertise() {
                     </motion.div>
                     <span
                         style={{
-                            background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                            background: 'linear-gradient(135deg, #43baffff 0%, #43baffff 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             backgroundClip: 'text'
@@ -198,19 +197,14 @@ export default function IndustryExpertise() {
 
             {/* Animated dot */}
             <motion.div
-                className="w-2 h-2 rounded-full bg-indigo-500 mb-4"
+                className="w-2 h-2 rounded-full bg-blue-300 mb-4"
                 animate={{ scale: [1, 1.5, 1], opacity: [0.6, 1, 0.6] }}
                 transition={{ duration: 2, repeat: Infinity }}
             />
 
             {/* Subtext */}
             <p
-                className="text-gray-500"
-                style={{
-                    fontSize: contentSize,
-                    lineHeight: '1.6',
-                    maxWidth: '380px'
-                }}
+                className={homeStyles.description}
             >
                 On your path to greater velocity and flexibility, we've got you covered every step of the way.
             </p>
@@ -263,57 +257,20 @@ export default function IndustryExpertise() {
     return (
         <section
             ref={sectionRef}
-            className={`w-full bg-gradient-to-b from-white via-gray-50/30 to-white relative ${fontRedHat}`}
+            className={homeStyles.section}
             style={{
-                padding: isMobile ? '40px 16px' : isTablet ? '60px 24px' : 'clamp(80px, 10vh, 120px) 32px'
+                paddingTop: '60px',
+                paddingBottom: '60px'
             }}
         >
             {/* Animated background elements */}
-            <div className="absolute inset-0 pointer-events-none" style={{ overflow: 'hidden' }}>
-                {/* Gradient orbs */}
-                <motion.div
-                    className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-30"
-                    style={{ background: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%)' }}
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-20"
-                    style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)' }}
-                    animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                />
-
-                {/* Floating geometric shapes */}
-                <FloatingShape
-                    className="absolute top-32 right-20 w-4 h-4 rounded-full"
-                    style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
-                    delay={0}
-                    duration={4}
-                />
-                <FloatingShape
-                    className="absolute top-48 right-40 w-3 h-3 rounded"
-                    style={{ background: 'linear-gradient(135deg, #ec4899, #f472b6)', transform: 'rotate(45deg)' }}
-                    delay={0.5}
-                    duration={3.5}
-                />
-                <FloatingShape
-                    className="absolute bottom-32 left-20 w-5 h-5 rounded-full"
-                    style={{ background: 'linear-gradient(135deg, #10b981, #34d399)' }}
-                    delay={1}
-                    duration={5}
-                />
-                <FloatingShape
-                    className="absolute top-60 left-1/3 w-2 h-2 rounded"
-                    style={{ background: 'linear-gradient(135deg, #f59e0b, #fbbf24)' }}
-                    delay={1.5}
-                    duration={3}
-                />
+            {/* Grid Background */}
+            <div className="absolute inset-0 pointer-events-none"
+                style={homeStyles.gridBackgroundStyle}>
             </div>
 
             <div
-                className="w-full mx-auto relative z-10"
-                style={{ maxWidth: '1250px' }}
+                className={homeStyles.container}
             >
                 {/* Two Column Layout */}
                 <div className={`flex ${isMobile ? 'flex-col gap-10' : 'flex-row'}`}>

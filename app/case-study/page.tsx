@@ -24,7 +24,6 @@ export default function CaseStudyPage() {
             <StatsGrid />
             <TestimonialSlider />
             <TechStackCarousel />
-            <CTASection />
         </main>
     );
 }

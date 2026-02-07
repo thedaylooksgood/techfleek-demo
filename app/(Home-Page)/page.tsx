@@ -8,6 +8,7 @@ import IndustryExpertise from "../../components/Home-Page/IndustryExpertise";
 import IndustriesTargeted from "../../components/Home-Page/IndustriesTargeted";
 import ClientSectionAnimated from "../../components/Home-Page/ClientSectionAnimated";
 import CaseStudies from "../../components/Home-Page/CaseStudies";
+import ProjectsSection from "../../components/Home-Page/ProjectsSection";
 import TestimonialSlider from "../../components/Home-Page/TestimonialSlider";
 import CTASection from "../../components/Home-Page/CTASection";
 
@@ -25,9 +26,6 @@ export default function Home() {
             {/* 5. Tech Stack Section */}
             <TechStack />
 
-            {/* 5b. Tech Stack Carousel Section */}
-            <TechStackCarousel />
-
             {/* 6. Industry Expertise Section */}
             <IndustryExpertise />
 
@@ -40,15 +38,11 @@ export default function Home() {
             {/* 8. Case Studies Section */}
             <CaseStudies />
 
-            {/* 9. Testimonial Slider */}
+            {/* 10. Testimonial Slider */}
             <TestimonialSlider />
 
-            {/* 10. CTA Section */}
-            <CTASection />
-
-
-
-
+            {/* 5b. Tech Stack Carousel Section */}
+            <TechStackCarousel />
 
         </main>
     );
