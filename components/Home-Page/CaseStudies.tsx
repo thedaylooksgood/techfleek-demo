@@ -60,7 +60,7 @@ export default function CaseStudies() {
 
     // Silky Smooth Spring Physics
     const springAnim = {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 200,
         damping: 25,
         mass: 1
