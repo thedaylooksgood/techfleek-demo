@@ -257,7 +257,7 @@ export default function IndustryExpertise() {
     return (
         <section
             ref={sectionRef}
-            className={homeStyles.section}
+            className={`${homeStyles.section.replace('overflow-hidden', '')} overflow-x-clip`}
             style={{
                 paddingTop: '60px',
                 paddingBottom: '60px'
