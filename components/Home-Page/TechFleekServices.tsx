@@ -129,7 +129,7 @@ const TechFleekServices = () => {
   };
 
   return (
-    <section className="w-full relative bg-white overflow-hidden flex flex-col justify-center min-h-[100dvh] py-8 lg:py-0">
+    <section className="w-full relative bg-white overflow-hidden flex flex-col justify-start lg:justify-center py-16 lg:py-20">
       {/* Grid Background */}
       <div className="absolute inset-0 pointer-events-none" style={homeStyles.gridBackgroundStyle}></div>
 
@@ -151,13 +151,22 @@ const TechFleekServices = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="flex flex-col gap-4">
             <h2 className={homeStyles.title}>
               What We <span className={homeStyles.gradientText}>Do Best</span>
             </h2>
-            <p className={`${homeStyles.description} hidden sm:block`} style={{ maxWidth: '400px' }}>
-              Comprehensive digital services designed to transform your ideas into exceptional experiences.
-            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <p className={homeStyles.description} style={{ maxWidth: '500px' }}>
+                Comprehensive digital services designed to transform your ideas into exceptional experiences.
+              </p>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap"
+              >
+                View All Services
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
 

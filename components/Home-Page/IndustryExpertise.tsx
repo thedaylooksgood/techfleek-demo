@@ -73,6 +73,152 @@ const FloatingShape = ({
     />
 );
 
+// Memoized left content component - defined OUTSIDE to prevent recreation
+const StickyLeftContent = React.memo(({ labelSize, isMobile }: {
+    labelSize: string;
+    isMobile: boolean;
+}) => (
+    <div>
+        {/* Label */}
+        <div className="inline-flex items-center gap-2 mb-3">
+            <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <Sparkles className="w-4 h-4 text-indigo-400" />
+            </motion.div>
+            <span
+                className="text-gray-400 font-medium tracking-wider uppercase"
+                style={{ fontSize: labelSize }}
+            >
+                Frequently Asked
+            </span>
+        </div>
+
+        {/* Main Headline */}
+        <h2
+            className={homeStyles.title}
+            style={{
+                marginBottom: isMobile ? '12px' : 'clamp(12px, 2vh, 20px)'
+            }}
+        >
+            <span
+                style={{
+                    background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                }}
+            >
+                Outsourcing is
+            </span>
+            <br />
+            <span className="inline-flex items-center gap-2 my-1">
+                <motion.div
+                    animate={{ rotate: [0, 5, 0], y: [0, -3, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                >
+                    <ArrowUpRight
+                        className="text-blue-300"
+                        style={{
+                            width: isMobile ? '22px' : '30px',
+                            height: isMobile ? '22px' : '30px'
+                        }}
+                    />
+                </motion.div>
+                <span
+                    style={{
+                        background: 'linear-gradient(135deg, #43baffff 0%, #43baffff 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text'
+                    }}
+                >
+                    a big leap
+                </span>
+            </span>
+            <span
+                style={{
+                    background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                }}
+            >
+                {' '}for your
+            </span>
+            <br />
+            <span
+                style={{
+                    background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                }}
+            >
+                development projects
+            </span>
+        </h2>
+
+        {/* Animated dot */}
+        <motion.div
+            className="w-2 h-2 rounded-full bg-blue-300 mb-4"
+            animate={{ scale: [1, 1.5, 1], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity }}
+        />
+
+        {/* Subtext */}
+        <p className={homeStyles.description}>
+            On your path to greater velocity and flexibility, we've got you covered every step of the way.
+        </p>
+
+        {/* Animated decorative elements */}
+        <div className="mt-8 relative h-20 hidden lg:block">
+            {/* Floating badges */}
+            <motion.div
+                className="absolute left-0 top-0 px-3 py-1.5 rounded-full text-xs font-medium"
+                style={{
+                    background: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)',
+                    color: '#6366f1',
+                    boxShadow: '0 4px 12px rgba(99, 102, 241, 0.15)'
+                }}
+                animate={{ y: [0, -8, 0], x: [0, 3, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+                🚀 Fast Delivery
+            </motion.div>
+
+            <motion.div
+                className="absolute left-24 top-8 px-3 py-1.5 rounded-full text-xs font-medium"
+                style={{
+                    background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
+                    color: '#d97706',
+                    boxShadow: '0 4px 12px rgba(245, 158, 11, 0.15)'
+                }}
+                animate={{ y: [0, -6, 0], x: [0, -3, 0] }}
+                transition={{ duration: 2.5, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+                ⭐ 5-Star Reviews
+            </motion.div>
+
+            <motion.div
+                className="absolute left-4 top-14 px-3 py-1.5 rounded-full text-xs font-medium"
+                style={{
+                    background: 'linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)',
+                    color: '#059669',
+                    boxShadow: '0 4px 12px rgba(16, 185, 129, 0.15)'
+                }}
+                animate={{ y: [0, -5, 0], x: [0, 2, 0] }}
+                transition={{ duration: 3.5, delay: 1, repeat: Infinity, ease: "easeInOut" }}
+            >
+                💯 Quality First
+            </motion.div>
+        </div>
+    </div>
+));
+
+StickyLeftContent.displayName = 'StickyLeftContent';
+
 export default function IndustryExpertise() {
     const fontRedHat = "font-[family-name:var(--font-red-hat)]";
     const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -101,158 +247,6 @@ export default function IndustryExpertise() {
     const labelSize = isMobile ? '10px' : 'clamp(11px, 1vw, 13px)';
     const headlineSize = isMobile ? '26px' : isTablet ? '32px' : 'clamp(32px, 4vw, 48px)';
     const contentSize = isMobile ? '11px' : isTablet ? '12px' : 'clamp(11px, 1vw, 14px)';
-
-    const StickyLeftContent = () => (
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            style={{ opacity: isMobile ? 1 : leftOpacity }}
-        >
-            {/* Label */}
-            <motion.div
-                className="inline-flex items-center gap-2 mb-3"
-                animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 2, repeat: Infinity }}
-            >
-                <motion.div
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    <Sparkles className="w-4 h-4 text-indigo-400" />
-                </motion.div>
-                <span
-                    className="text-gray-400 font-medium tracking-wider uppercase"
-                    style={{ fontSize: labelSize }}
-                >
-                    Frequently Asked
-                </span>
-            </motion.div>
-
-            {/* Main Headline */}
-            <h2
-                className={homeStyles.title}
-                style={{
-                    marginBottom: isMobile ? '12px' : 'clamp(12px, 2vh, 20px)'
-                }}
-            >
-                <span
-                    style={{
-                        background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text'
-                    }}
-                >
-                    Outsourcing is
-                </span>
-                <br />
-                <span className="inline-flex items-center gap-2 my-1">
-                    <motion.div
-                        animate={{ rotate: [0, 5, 0], y: [0, -3, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                    >
-                        <ArrowUpRight
-                            className="text-blue-300"
-                            style={{
-                                width: isMobile ? '22px' : '30px',
-                                height: isMobile ? '22px' : '30px'
-                            }}
-                        />
-                    </motion.div>
-                    <span
-                        style={{
-                            background: 'linear-gradient(135deg, #43baffff 0%, #43baffff 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text'
-                        }}
-                    >
-                        a big leap
-                    </span>
-                </span>
-                <span
-                    style={{
-                        background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text'
-                    }}
-                >
-                    {' '}for your
-                </span>
-                <br />
-                <span
-                    style={{
-                        background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text'
-                    }}
-                >
-                    development projects
-                </span>
-            </h2>
-
-            {/* Animated dot */}
-            <motion.div
-                className="w-2 h-2 rounded-full bg-blue-300 mb-4"
-                animate={{ scale: [1, 1.5, 1], opacity: [0.6, 1, 0.6] }}
-                transition={{ duration: 2, repeat: Infinity }}
-            />
-
-            {/* Subtext */}
-            <p
-                className={homeStyles.description}
-            >
-                On your path to greater velocity and flexibility, we've got you covered every step of the way.
-            </p>
-
-            {/* Animated decorative elements */}
-            <div className="mt-8 relative h-20 hidden lg:block">
-                {/* Floating badges */}
-                <motion.div
-                    className="absolute left-0 top-0 px-3 py-1.5 rounded-full text-xs font-medium"
-                    style={{
-                        background: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)',
-                        color: '#6366f1',
-                        boxShadow: '0 4px 12px rgba(99, 102, 241, 0.15)'
-                    }}
-                    animate={{ y: [0, -8, 0], x: [0, 3, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    🚀 Fast Delivery
-                </motion.div>
-
-                <motion.div
-                    className="absolute left-24 top-8 px-3 py-1.5 rounded-full text-xs font-medium"
-                    style={{
-                        background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
-                        color: '#d97706',
-                        boxShadow: '0 4px 12px rgba(245, 158, 11, 0.15)'
-                    }}
-                    animate={{ y: [0, -6, 0], x: [0, -3, 0] }}
-                    transition={{ duration: 2.5, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    ⭐ 5-Star Reviews
-                </motion.div>
-
-                <motion.div
-                    className="absolute left-4 top-14 px-3 py-1.5 rounded-full text-xs font-medium"
-                    style={{
-                        background: 'linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)',
-                        color: '#059669',
-                        boxShadow: '0 4px 12px rgba(16, 185, 129, 0.15)'
-                    }}
-                    animate={{ y: [0, -5, 0], x: [0, 2, 0] }}
-                    transition={{ duration: 3.5, delay: 1, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    💯 Quality First
-                </motion.div>
-            </div>
-        </motion.div>
-    );
 
     return (
         <section
@@ -286,13 +280,13 @@ export default function IndustryExpertise() {
                                 alignSelf: 'start'
                             }}
                         >
-                            <StickyLeftContent />
+                            <StickyLeftContent labelSize={labelSize} isMobile={isMobile} />
                         </div>
                     )}
 
                     {isMobile && (
                         <div className="w-full">
-                            <StickyLeftContent />
+                            <StickyLeftContent labelSize={labelSize} isMobile={isMobile} />
                         </div>
                     )}
 

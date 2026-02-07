@@ -160,33 +160,57 @@ export default function IndustriesTargeted() {
                         <motion.button
                             className="font-semibold text-white rounded-full relative overflow-hidden group"
                             style={{
-                                padding: isMobile ? '8px 16px' : '10px 24px',
-                                fontSize: isMobile ? '12px' : '13px',
-                                background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%)',
-                                boxShadow: '0 4px 20px rgba(26, 26, 46, 0.3)'
+                                padding: isMobile ? '12px 20px' : '12px 28px',
+                                fontSize: isMobile ? '13px' : '14px',
+                                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                                boxShadow: '0 4px 20px rgba(59, 130, 246, 0.35)'
                             }}
-                            whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(26, 26, 46, 0.4)' }}
+                            whileHover={{
+                                scale: 1.05,
+                                y: -2,
+                                boxShadow: '0 12px 35px rgba(59, 130, 246, 0.45)'
+                            }}
                             whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         >
                             <span className="relative z-10 flex items-center gap-2">
                                 Become a Client
-                                <ArrowRight className="w-4 h-4" />
+                                <motion.div
+                                    whileHover={{ x: 3 }}
+                                    transition={{ type: "spring", stiffness: 400 }}
+                                >
+                                    <ArrowRight className="w-4 h-4" />
+                                </motion.div>
                             </span>
                             <motion.div
-                                className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                             />
                         </motion.button>
 
                         <motion.button
-                            className="font-semibold text-gray-700 rounded-full border-2 border-gray-200 bg-white/80 backdrop-blur-sm hover:border-indigo-300 hover:text-indigo-700 transition-all duration-300"
+                            className="font-semibold text-blue-600 rounded-full border-2 border-blue-200 bg-white/90 backdrop-blur-sm hover:border-blue-400 hover:bg-blue-50 transition-all duration-300"
                             style={{
-                                padding: isMobile ? '8px 16px' : '10px 24px',
-                                fontSize: isMobile ? '12px' : '13px'
+                                padding: isMobile ? '12px 20px' : '12px 28px',
+                                fontSize: isMobile ? '13px' : '14px'
                             }}
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{
+                                scale: 1.05,
+                                y: -2,
+                                boxShadow: '0 8px 25px rgba(59, 130, 246, 0.15)'
+                            }}
                             whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         >
-                            View Case Studies
+                            <span className="flex items-center gap-2">
+                                View Case Studies
+                                <motion.span
+                                    className="inline-block"
+                                    whileHover={{ x: 3 }}
+                                    transition={{ type: "spring", stiffness: 400 }}
+                                >
+                                    →
+                                </motion.span>
+                            </span>
                         </motion.button>
                     </div>
                 </div>

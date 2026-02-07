@@ -144,23 +144,6 @@ const TechStack = () => {
                                 <p className="text-slate-600 text-lg md:text-xl font-medium leading-relaxed max-w-lg">
                                     Techfleek uses a premium stack to connect users with seamless experiences. Choose from modern frameworks, robust backends, and scalable cloud solutions.
                                 </p>
-
-                                {/* CTA Button */}
-                                <div className="mt-4">
-                                    <button
-                                        className="flex items-center gap-3 px-6 py-3 rounded-xl text-white font-medium transition-transform hover:scale-105 active:scale-95"
-                                        style={{
-                                            background: '#E43D29', // Requested Color
-                                            boxShadow: '2px 4px 15px rgba(228, 61, 41, 0.25)',
-                                        }}
-                                    >
-                                        <span>See all technologies</span>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M5 12h14" />
-                                            <path d="M12 5l7 7-7 7" />
-                                        </svg>
-                                    </button>
-                                </div>
                             </div>
                         </div>
 

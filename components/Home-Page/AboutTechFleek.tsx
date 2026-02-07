@@ -225,31 +225,59 @@ const AboutTechFleek = () => {
                             <motion.button
                                 className="font-semibold text-white rounded-full relative overflow-hidden group"
                                 style={{
-                                    padding: isMobile ? '10px 20px' : 'clamp(10px, 1.2vh, 14px) clamp(20px, 2.5vw, 32px)',
-                                    fontSize: isMobile ? '12px' : 'clamp(12px, 1vw, 15px)',
-                                    background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%)',
-                                    boxShadow: '0 4px 20px rgba(26, 26, 46, 0.3)'
+                                    padding: isMobile ? '12px 24px' : 'clamp(12px, 1.2vh, 16px) clamp(24px, 2.5vw, 36px)',
+                                    fontSize: isMobile ? '13px' : 'clamp(13px, 1vw, 15px)',
+                                    background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                                    boxShadow: '0 4px 20px rgba(59, 130, 246, 0.35)'
                                 }}
-                                whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(26, 26, 46, 0.4)' }}
+                                whileHover={{
+                                    scale: 1.05,
+                                    y: -2,
+                                    boxShadow: '0 12px 35px rgba(59, 130, 246, 0.45)'
+                                }}
                                 whileTap={{ scale: 0.95 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
                             >
-                                <span className="relative z-10">Get Quotes</span>
+                                <span className="relative z-10 flex items-center gap-2">
+                                    Get Quotes
+                                    <motion.span
+                                        className="inline-block"
+                                        whileHover={{ x: 3 }}
+                                        transition={{ type: "spring", stiffness: 400 }}
+                                    >
+                                        →
+                                    </motion.span>
+                                </span>
                                 <motion.div
-                                    className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                 />
                             </motion.button>
                         </Link>
                         <Link href="/contact">
                             <motion.button
-                                className="font-semibold text-gray-700 rounded-full border-2 border-gray-200 bg-white/80 backdrop-blur-sm hover:border-indigo-300 hover:text-indigo-700 transition-all duration-300"
+                                className="font-semibold text-blue-600 rounded-full border-2 border-blue-200 bg-white/90 backdrop-blur-sm hover:border-blue-400 hover:bg-blue-50 transition-all duration-300"
                                 style={{
-                                    padding: isMobile ? '10px 20px' : 'clamp(10px, 1.2vh, 14px) clamp(20px, 2.5vw, 32px)',
-                                    fontSize: isMobile ? '12px' : 'clamp(12px, 1vw, 15px)'
+                                    padding: isMobile ? '12px 24px' : 'clamp(12px, 1.2vh, 16px) clamp(24px, 2.5vw, 36px)',
+                                    fontSize: isMobile ? '13px' : 'clamp(13px, 1vw, 15px)'
                                 }}
-                                whileHover={{ scale: 1.05 }}
+                                whileHover={{
+                                    scale: 1.05,
+                                    y: -2,
+                                    boxShadow: '0 8px 25px rgba(59, 130, 246, 0.15)'
+                                }}
                                 whileTap={{ scale: 0.95 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
                             >
-                                Connect Us
+                                <span className="flex items-center gap-2">
+                                    Connect Us
+                                    <motion.span
+                                        className="inline-block"
+                                        whileHover={{ rotate: 45 }}
+                                        transition={{ type: "spring", stiffness: 400 }}
+                                    >
+                                        ↗
+                                    </motion.span>
+                                </span>
                             </motion.button>
                         </Link>
                     </motion.div>
