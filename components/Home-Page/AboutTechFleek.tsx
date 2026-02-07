@@ -253,7 +253,7 @@ const AboutTechFleek = () => {
                                 />
                             </motion.button>
                         </Link>
-                        <Link href="/contact">
+                        <Link href="/enquiry">
                             <motion.button
                                 className="font-semibold text-blue-600 rounded-full border-2 border-blue-200 bg-white/90 backdrop-blur-sm hover:border-blue-400 hover:bg-blue-50 transition-all duration-300"
                                 style={{
@@ -331,7 +331,7 @@ const AboutTechFleek = () => {
                             transition={floatTransition}
                         >
                             <img
-                                src="/home-page/about-techfleek-illustration.svg"
+                                src="/Home-Page/about-techfleek-illustration.svg"
                                 alt="Professional Team"
                                 className="w-full h-auto object-contain drop-shadow-2xl"
                                 style={{ maxHeight: '100%' }}

@@ -85,22 +85,22 @@ const SERVICES = {
 
 const CASE_STUDIES = [
   {
-    title: "NeoBank Revolution",
+    title: "MergerDomo Platform",
     category: "Fintech",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
-    href: "/case-study/neobank",
+    href: "/case-study/mergerdomo",
   },
   {
-    title: "Aura Healthcare",
+    title: "Dygo Diagnostics",
     category: "MedTech",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
-    href: "/case-study/aura",
+    href: "/case-study/dygo-diagnostics",
   },
   {
-    title: "Luxe Commerce",
-    category: "E-Commerce",
+    title: "Bollco Solutions",
+    category: "Logistics",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6b2f3?auto=format&fit=crop&w=800&q=80",
-    href: "/case-study/luxe",
+    href: "/case-study/bollco",
   },
 ];
 
@@ -110,14 +110,14 @@ const BLOG_POSTS = [
     excerpt: "How we're integrating intelligence into every product.",
     date: "Oct 2025",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80",
-    href: "/blogs/ai-era",
+    href: "#", // blogs folder missing in app directory
   },
   {
     title: "Design Systems at Scale",
     excerpt: "Lessons from building component libraries.",
     date: "Nov 2025",
     image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=400&q=80",
-    href: "/blogs/design-systems",
+    href: "#", // blogs folder missing in app directory
   },
 ];
 
@@ -199,7 +199,7 @@ export default function Header() {
                 id="insights"
                 label="Insights"
                 isOpen={activeMenu === "insights"}
-                isActive={isActive("/blogs")}
+                isActive={false}
                 onMouseEnter={() => handleMouseEnter("insights")}
                 onMouseLeave={handleMouseLeave}
               />
@@ -372,7 +372,7 @@ export default function Header() {
                         {["Engineering", "Design", "Product", "Company News", "Careers"].map((topic, i) => (
                           <li key={i}>
                             <Link
-                              href="/blogs"
+                              href="#"
                               className="group flex items-center justify-between py-2 text-base font-medium text-gray-700 hover:text-[#3C8ECB] transition-colors"
                             >
                               {topic}
@@ -441,7 +441,7 @@ export default function Header() {
                 </div>
 
                 <MobileLink href="/case-study" label="Case Studies" onClick={() => setIsMobileOpen(false)} />
-                <MobileLink href="/blogs" label="Insights" onClick={() => setIsMobileOpen(false)} />
+                <MobileLink href="#" label="Insights" onClick={() => setIsMobileOpen(false)} />
                 <MobileLink href="/job-posting" label="Careers" onClick={() => setIsMobileOpen(false)} />
               </nav>
             </div>

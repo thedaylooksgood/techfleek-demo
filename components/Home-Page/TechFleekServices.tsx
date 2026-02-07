@@ -13,47 +13,47 @@ const services = [
     title: 'UI/UX Design',
     description: 'Crafting intuitive interfaces and seamless user experiences.',
     image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
-    link: '/services/ui-ux',
+    link: '/services/ui-ux-design',
     icon: Palette
   },
   {
     number: '02',
-    title: 'Product Development',
-    description: 'Building scalable, high-performance products that drive growth.',
+    title: 'Cloud Services',
+    description: 'Scalable cloud infrastructure and deployment solutions.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-    link: '/services/product-development',
+    link: '/services/cloud-services',
     icon: Component
   },
   {
     number: '03',
-    title: 'Brand Design',
-    description: 'Creative design solutions that communicate your brand story.',
+    title: 'Mobile Apps',
+    description: 'Native and cross-platform mobile application development.',
     image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80',
-    link: '/services/design',
+    link: '/services/mobile-app-development',
     icon: PenTool
   },
   {
     number: '04',
-    title: '3D & Motion',
-    description: 'Immersive 3D experiences and stunning motion graphics.',
+    title: 'Custom Software',
+    description: 'Tailored software solutions for complex business needs.',
     image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80',
-    link: '/services/3d-design',
+    link: '/services/custom-software',
     icon: Box
   },
   {
     number: '05',
     title: 'Web Development',
-    description: 'Full-stack development using cutting-edge technologies.',
+    description: 'Modern, high-performance web applications and platforms.',
     image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80',
-    link: '/services/development',
+    link: '/services/web-development',
     icon: Code
   },
   {
     number: '06',
-    title: 'Custom Software',
-    description: 'Tailored software solutions designed to meet your specific business needs.',
+    title: 'Digital Strategy',
+    description: 'Strategic planning for digital transformation and growth.',
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
-    link: '/services/custom-software',
+    link: '/services',
     icon: Cpu
   }
 ];

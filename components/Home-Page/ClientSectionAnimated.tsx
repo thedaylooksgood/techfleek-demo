@@ -8,14 +8,14 @@ import { homeStyles } from './styles';
 
 // All 8 client logos with brand colors
 const clientLogos = [
-    { src: '/home-page/clients/2.png', name: 'Greysell', color: '#f97316' }, // Orange
-    { src: '/home-page/clients/3.png', name: 'MergerDomo', color: '#3b82f6' }, // Blue
-    { src: '/home-page/clients/4.png', name: 'Wingman', color: '#14b8a6' }, // Teal
-    { src: '/home-page/clients/5.png', name: 'Skybound', color: '#0ea5e9' }, // Sky Blue
-    { src: '/home-page/clients/8.png', name: 'DYGO', color: '#8b5cf6' }, // Purple
-    { src: '/home-page/clients/div.png', name: 'Bolko', color: '#ef4444' }, // Red
-    { src: '/home-page/clients/logo-white.png', name: 'Hoblix', color: '#6366f1' }, // Indigo
-    { src: '/home-page/clients/Rectangle 4239.svg', name: 'Partner', color: '#6b7280' }, // Gray
+    { src: '/Home-Page/clients/2.png', name: 'Greysell', color: '#f97316' }, // Orange
+    { src: '/Home-Page/clients/3.png', name: 'MergerDomo', color: '#3b82f6' }, // Blue
+    { src: '/Home-Page/clients/4.png', name: 'Wingman', color: '#14b8a6' }, // Teal
+    { src: '/Home-Page/clients/5.png', name: 'Skybound', color: '#0ea5e9' }, // Sky Blue
+    { src: '/Home-Page/clients/8.png', name: 'DYGO', color: '#8b5cf6' }, // Purple
+    { src: '/Home-Page/clients/div.png', name: 'Bolko', color: '#ef4444' }, // Red
+    { src: '/Home-Page/clients/logo-white.png', name: 'Hoblix', color: '#6366f1' }, // Indigo
+    { src: '/Home-Page/clients/Rectangle 4239.svg', name: 'Partner', color: '#6b7280' }, // Gray
 ];
 
 export default function ClientSectionAnimated() {
