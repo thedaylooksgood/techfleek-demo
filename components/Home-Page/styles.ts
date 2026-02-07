@@ -8,9 +8,10 @@ export const homeStyles = {
 
     // Background Grid Pattern (style object)
     gridBackgroundStyle: {
-        backgroundImage: 'radial-gradient(#e2e8f0 1px, transparent 1px)',
-        backgroundSize: '24px 24px',
-        opacity: 0.4
+        backgroundImage: `linear-gradient(to right, #e2e8f0 1px, transparent 1px), 
+                          linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)`,
+        backgroundSize: '40px 40px',
+        opacity: 0.35
     },
 
     // Header Components

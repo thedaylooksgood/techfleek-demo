@@ -70,11 +70,20 @@ const TestimonialSlider: React.FC = () => {
     // --- MOBILE RENDER ---
     if (isMobile) {
         return (
-            <div className="w-full py-8 px-4 relative overflow-hidden bg-slate-50">
-                <div className="relative z-10 bg-white rounded-xl shadow-lg p-6">
-                    <div className="mb-4">
-                        <div className="w-10 h-1 mb-2 rounded-full bg-emerald-600"></div>
-                        <h2 className="text-xl font-bold text-slate-800">Customer Reviews</h2>
+            <div className="w-full py-12 px-4 relative overflow-hidden bg-white">
+                {/* Grid Background */}
+                <div className="absolute inset-0 pointer-events-none"
+                    style={homeStyles.gridBackgroundStyle}>
+                </div>
+
+                <div className="relative z-10 p-0">
+                    <div className="mb-6">
+                        <span className={homeStyles.label}>
+                            Testimonials
+                        </span>
+                        <h2 className={`${homeStyles.title} mt-2`}>
+                            Customer <span className={homeStyles.gradientText}>Reviews</span>
+                        </h2>
                     </div>
 
                     <AnimatePresence mode="wait">
@@ -86,7 +95,7 @@ const TestimonialSlider: React.FC = () => {
                             transition={{ duration: 0.2 }}
                         >
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-emerald-100 shrink-0">
+                                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-blue-100 shrink-0">
                                     <Image
                                         src={testimonials[currentIndex].userImage}
                                         alt={testimonials[currentIndex].name}
@@ -97,8 +106,8 @@ const TestimonialSlider: React.FC = () => {
                                 <div>
                                     <h4 className="font-bold text-slate-900 leading-tight">{testimonials[currentIndex].name}</h4>
                                     <div className="flex items-center gap-1.5 mt-1">
-                                        <Star className="w-3 h-3 fill-current text-emerald-600" />
-                                        <span className="text-xs font-bold text-emerald-700">{testimonials[currentIndex].rating}</span>
+                                        <Star className="w-3 h-3 fill-current text-[#3C8ECB]" />
+                                        <span className="text-xs font-bold text-blue-700">{testimonials[currentIndex].rating}</span>
                                         <span className="text-[10px] text-slate-400">on {testimonials[currentIndex].date}</span>
                                     </div>
                                 </div>
@@ -114,7 +123,7 @@ const TestimonialSlider: React.FC = () => {
                             <button
                                 key={i}
                                 onClick={() => setCurrentIndex(i)}
-                                className={`h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-6 bg-emerald-600' : 'w-1.5 bg-slate-200'
+                                className={`h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-6 bg-[#3C8ECB]' : 'w-1.5 bg-slate-200'
                                     }`}
                             />
                         ))}
@@ -126,152 +135,144 @@ const TestimonialSlider: React.FC = () => {
 
     // --- DESKTOP RENDER ---
     return (
-        <div className="w-full py-16 relative flex justify-center items-center overflow-hidden bg-[#F0F4F8]">
+        <section className="w-full py-20 relative flex justify-center items-center overflow-hidden bg-white">
             {/* Grid Background */}
             <div className="absolute inset-0 pointer-events-none"
                 style={homeStyles.gridBackgroundStyle}>
             </div>
 
-            {/* Main Floating Card */}
-            <div className="relative z-10 w-full max-w-[1000px] bg-white/80 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-white/50 overflow-hidden h-[480px] flex mx-6">
+            <div className={homeStyles.container}>
+                {/* Header Section */}
+                <div className={homeStyles.headerWrapper}>
+                    <span className={homeStyles.label}>
+                        Testimonials
+                    </span>
+                    <h2 className={homeStyles.title}>
+                        Customer <span className={homeStyles.gradientText}>Reviews</span>
+                    </h2>
+                </div>
 
-                {/* Inner Container */}
-                <div className="w-full h-full p-12 relative flex flex-col justify-center">
+                <div className="flex relative items-center gap-12 mt-8">
 
-                    {/* Header Section */}
-                    <div className="absolute top-10 left-12 w-[calc(100%-6rem)] border-b border-slate-100 pb-4">
-                        <div className={homeStyles.headerWrapper.replace('mb-8', '')}>
-                            <span className={homeStyles.label}>
-                                Testimonials
-                            </span>
-                            <h2 className={homeStyles.title}>
-                                Customer <span className={homeStyles.gradientText}>Reviews</span>
-                            </h2>
-                        </div>
+                    {/* Interactive Reviewer List with Arc */}
+                    <div className="w-[350px] relative h-[300px] flex-shrink-0 select-none">
+
+                        {/* The Connecting Arc SVG */}
+                        <svg
+                            className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
+                            style={{ transform: 'translateX(28px)' }}
+                        >
+                            <path
+                                d="M 20 45 C 80 100, 80 200, 20 255"
+                                stroke="#E2E8F0"
+                                strokeWidth="1.5"
+                                fill="none"
+                            />
+                        </svg>
+
+                        {testimonials.map((item, index) => {
+                            const posIndex = getPositionIndex(index);
+                            const isSelected = posIndex === 1;
+
+                            return (
+                                <motion.div
+                                    key={item.id}
+                                    className="absolute cursor-pointer flex items-center gap-4"
+                                    initial={false}
+                                    animate={variants[posIndex as keyof typeof variants]}
+                                    transition={{
+                                        type: "spring",
+                                        stiffness: 250,
+                                        damping: 25
+                                    }}
+                                    onClick={() => handleAvatarClick(index)}
+                                >
+                                    {/* Avatar Container */}
+                                    <div
+                                        className={`relative rounded-full overflow-hidden border-2 transition-all duration-300 ${isSelected
+                                            ? 'w-[80px] h-[80px] border-[#3C8ECB] shadow-xl grayscale-0'
+                                            : 'w-[56px] h-[56px] border-transparent shadow-sm grayscale hover:grayscale-0'
+                                            }`}
+                                    >
+                                        <Image
+                                            src={item.userImage}
+                                            alt={item.name}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+
+                                    {/* Labels */}
+                                    <motion.div
+                                        className="origin-left"
+                                        animate={{
+                                            opacity: isSelected ? 1 : 0.6,
+                                            scale: isSelected ? 1 : 0.9,
+                                            x: isSelected ? 0 : -10
+                                        }}
+                                    >
+                                        <h4 className={`font-bold text-slate-800 leading-tight ${isSelected ? 'text-[18px]' : 'text-[14px]'}`}>
+                                            {item.name}
+                                        </h4>
+
+                                        <AnimatePresence>
+                                            {isSelected && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, height: 0 }}
+                                                    animate={{ opacity: 1, height: 'auto' }}
+                                                    exit={{ opacity: 0, height: 0 }}
+                                                    className="flex items-center gap-2 mt-1 overflow-hidden"
+                                                >
+                                                    <div className="flex items-center gap-1 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
+                                                        <Star className="w-3.5 h-3.5 fill-[#3C8ECB] text-[#3C8ECB]" />
+                                                        <span className="text-xs font-bold text-blue-700">{item.rating}</span>
+                                                    </div>
+                                                    <span className="text-[11px] text-slate-400 font-medium">
+                                                        {item.date}
+                                                    </span>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
 
-                    <div className="flex relative h-[320px] mt-16 items-center">
+                    {/* Right Content: The Quote */}
+                    <div className="flex-1 pl-6 pr-8 relative">
+                        {/* Decorative Quote Mark */}
+                        <div className="absolute -top-10 -left-4 text-[120px] leading-none text-slate-200 font-serif select-none pointer-events-none">
+                            “
+                        </div>
 
-                        {/* Interactive Reviewer List with Arc */}
-                        <div className="w-[350px] relative h-[300px] flex-shrink-0 select-none">
-
-                            {/* The Connecting Arc SVG */}
-                            <svg
-                                className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
-                                style={{ transform: 'translateX(28px)' }}
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentIndex}
+                                initial={{ opacity: 0, x: 30, filter: 'blur(4px)' }}
+                                animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                                exit={{ opacity: 0, x: -30, filter: 'blur(4px)' }}
+                                transition={{ duration: 0.4, ease: "easeOut" }}
+                                className="relative z-10 pt-4"
                             >
-                                <path
-                                    d="M 20 45 C 80 100, 80 200, 20 255"
-                                    stroke="#CBD5E1"
-                                    strokeWidth="1.5"
-                                    fill="none"
-                                />
-                            </svg>
+                                <p className="text-[20px] lg:text-[24px] leading-[1.8] text-slate-700 font-serif italic tracking-wide">
+                                    <span className="text-[72px] float-left mr-4 mt-[-18px] leading-[0.8] font-serif italic text-blue-800/80">O</span>
+                                    {testimonials[currentIndex].text.substring(1)}
+                                </p>
 
-                            {testimonials.map((item, index) => {
-                                const posIndex = getPositionIndex(index);
-                                const isSelected = posIndex === 1;
-
-                                return (
-                                    <motion.div
-                                        key={item.id}
-                                        className="absolute cursor-pointer flex items-center gap-4"
-                                        initial={false}
-                                        animate={variants[posIndex as keyof typeof variants]}
-                                        transition={{
-                                            type: "spring",
-                                            stiffness: 250,
-                                            damping: 25
-                                        }}
-                                        onClick={() => handleAvatarClick(index)}
-                                    >
-                                        {/* Avatar Container */}
-                                        <div
-                                            className={`relative rounded-full overflow-hidden border-2 transition-all duration-300 ${isSelected
-                                                ? 'w-[80px] h-[80px] border-emerald-500 shadow-xl grayscale-0'
-                                                : 'w-[56px] h-[56px] border-transparent shadow-sm grayscale hover:grayscale-0'
-                                                }`}
-                                        >
-                                            <Image
-                                                src={item.userImage}
-                                                alt={item.name}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        </div>
-
-                                        {/* Labels */}
-                                        <motion.div
-                                            className="origin-left"
-                                            animate={{
-                                                opacity: isSelected ? 1 : 0.6,
-                                                scale: isSelected ? 1 : 0.9,
-                                                x: isSelected ? 0 : -10
-                                            }}
-                                        >
-                                            <h4 className={`font-bold text-slate-800 leading-tight ${isSelected ? 'text-[18px]' : 'text-[14px]'}`}>
-                                                {item.name}
-                                            </h4>
-
-                                            <AnimatePresence>
-                                                {isSelected && (
-                                                    <motion.div
-                                                        initial={{ opacity: 0, height: 0 }}
-                                                        animate={{ opacity: 1, height: 'auto' }}
-                                                        exit={{ opacity: 0, height: 0 }}
-                                                        className="flex items-center gap-2 mt-1 overflow-hidden"
-                                                    >
-                                                        <div className="flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
-                                                            <Star className="w-3.5 h-3.5 fill-emerald-600 text-emerald-600" />
-                                                            <span className="text-xs font-bold text-emerald-700">{item.rating}</span>
-                                                        </div>
-                                                        <span className="text-[11px] text-slate-400 font-medium">
-                                                            {item.date}
-                                                        </span>
-                                                    </motion.div>
-                                                )}
-                                            </AnimatePresence>
-                                        </motion.div>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
-
-                        {/* Right Content: The Quote */}
-                        <div className="flex-1 pl-6 pr-8 relative">
-                            {/* Decorative Quote Mark */}
-                            <div className="absolute -top-10 -left-4 text-[120px] leading-none text-slate-200 font-serif select-none pointer-events-none">
-                                “
-                            </div>
-
-                            <AnimatePresence mode="wait">
+                                {/* Small signature line */}
                                 <motion.div
-                                    key={currentIndex}
-                                    initial={{ opacity: 0, x: 30, filter: 'blur(4px)' }}
-                                    animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                                    exit={{ opacity: 0, x: -30, filter: 'blur(4px)' }}
-                                    transition={{ duration: 0.4, ease: "easeOut" }}
-                                    className="relative z-10 pt-4"
-                                >
-                                    <p className="text-[20px] leading-[1.8] text-slate-700 font-serif italic tracking-wide">
-                                        <span className="text-[64px] float-left mr-3 mt-[-16px] leading-[0.8] font-serif italic text-emerald-800/80">O</span>
-                                        {testimonials[currentIndex].text.substring(1)}
-                                    </p>
-
-                                    {/* Small signature line */}
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        animate={{ width: 80 }}
-                                        transition={{ delay: 0.3 }}
-                                        className="mt-8 h-1 bg-gradient-to-r from-emerald-500 to-transparent rounded-full opacity-50"
-                                    />
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
+                                    initial={{ width: 0 }}
+                                    animate={{ width: 80 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="mt-8 h-1 bg-gradient-to-r from-[#3C8ECB] to-transparent rounded-full opacity-50"
+                                />
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

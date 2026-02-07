@@ -204,9 +204,9 @@ const StickyLeftContent = React.memo(({ labelSize, isMobile }: {
             <motion.div
                 className="absolute left-4 top-14 px-3 py-1.5 rounded-full text-xs font-medium"
                 style={{
-                    background: 'linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)',
-                    color: '#059669',
-                    boxShadow: '0 4px 12px rgba(16, 185, 129, 0.15)'
+                    background: 'linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%)',
+                    color: '#3C8ECB',
+                    boxShadow: '0 4px 12px rgba(60, 142, 203, 0.15)'
                 }}
                 animate={{ y: [0, -5, 0], x: [0, 2, 0] }}
                 transition={{ duration: 3.5, delay: 1, repeat: Infinity, ease: "easeInOut" }}

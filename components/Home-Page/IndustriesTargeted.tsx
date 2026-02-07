@@ -24,8 +24,8 @@ const industries = [
         id: 3,
         title: 'FinTech & Banking',
         description: 'Secure payment gateways, digital banking apps with PCI-DSS compliance.',
-        color: '#10b981',
-        gradient: 'from-emerald-500 to-teal-400',
+        color: '#0ea5e9',
+        gradient: 'from-sky-500 to-blue-400',
     },
     {
         id: 4,

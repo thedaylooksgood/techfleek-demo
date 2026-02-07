@@ -124,6 +124,10 @@ const TechStack = () => {
             className="w-full overflow-hidden relative font-[family-name:var(--font-red-hat)]"
             style={{ backgroundColor: '#FAF9F7' }} // Requested BG
         >
+            {/* Grid Background */}
+            <div className="absolute inset-0 pointer-events-none"
+                style={homeStyles.gridBackgroundStyle}>
+            </div>
             <div className={homeStyles.sectionPadding}>
                 <div className={`${homeStyles.container} max-w-[1300px]`}>
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">

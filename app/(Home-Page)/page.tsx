@@ -26,9 +26,6 @@ export default function Home() {
             {/* 5. Tech Stack Section */}
             <TechStack />
 
-            {/* 6. Industry Expertise Section */}
-            <IndustryExpertise />
-
             {/* 6b. Industries Targeted Section - Card Deck */}
             <IndustriesTargeted />
 
@@ -43,6 +40,9 @@ export default function Home() {
 
             {/* 5b. Tech Stack Carousel Section */}
             <TechStackCarousel />
+
+            {/* 6. Industry Expertise Section */}
+            <IndustryExpertise />
 
         </main>
     );
