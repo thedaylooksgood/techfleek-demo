@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
+import SmoothScroll from "@/components/SmoothScroll";
+
 export default function LayoutContent({
     children,
 }: {
@@ -20,6 +22,7 @@ export default function LayoutContent({
 
     return (
         <>
+            <SmoothScroll />
             <Header />
             <main className="flex-grow">
                 {children}

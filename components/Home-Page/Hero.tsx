@@ -129,7 +129,7 @@ function NetworkDiagram() {
 
             {/* Iso Container */}
             <motion.div
-                className="relative w-full h-full"
+                className="relative w-full h-full scale-90 sm:scale-100 transition-transform duration-500"
                 style={{
                     transformStyle: "preserve-3d",
                     transform: "rotateX(20deg) rotateY(-20deg) rotateZ(5deg)" // Isometric Tilt matching the reference
@@ -137,14 +137,14 @@ function NetworkDiagram() {
             >
                 {/* --- ORBITAL RINGS --- */}
                 <motion.div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-sky-300/30 border-dashed z-0"
-                    style={{ width: '380px', height: '380px', transformStyle: "preserve-3d" }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-sky-300/30 border-dashed z-0 w-[260px] h-[260px] sm:w-[380px] sm:h-[380px]"
+                    style={{ transformStyle: "preserve-3d" }}
                     animate={{ rotateZ: 360 }}
                     transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                 />
                 <motion.div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-300/20 border-dotted z-0"
-                    style={{ width: '550px', height: '550px', transformStyle: "preserve-3d" }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-300/20 border-dotted z-0 w-[350px] h-[350px] sm:w-[550px] sm:h-[550px]"
+                    style={{ transformStyle: "preserve-3d" }}
                     animate={{ rotateZ: -360 }}
                     transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
                 />
@@ -183,12 +183,12 @@ function NetworkDiagram() {
                     <motion.div
                         animate={{ z: [0, 20, 0] }} // Float in Z instead of Y for 3D effect
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className="relative w-32 h-32 bg-white rounded-3xl shadow-[0_20px_50px_rgba(60,142,203,0.3)] flex items-center justify-center p-2.5 z-20"
+                        className="relative w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-3xl shadow-[0_20px_50px_rgba(60,142,203,0.3)] flex items-center justify-center p-2.5 z-20"
                         style={{ transformStyle: "preserve-3d" }}
                     >
                         <div className="w-full h-full bg-gradient-to-br from-[#3C8ECB] to-[#2563EB] rounded-2xl flex items-center justify-center shadow-inner relative overflow-hidden group border border-white/20">
                             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent translate-x-[-150%] transition-transform duration-1000 group-hover:translate-x-[150%]" />
-                            <Zap className="text-white w-12 h-12 relative z-10 drop-shadow-lg" fill="currentColor" />
+                            <Zap className="text-white w-8 h-8 sm:w-12 sm:h-12 relative z-10 drop-shadow-lg" fill="currentColor" />
                         </div>
 
                         {/* Billboard Badge */}
@@ -283,22 +283,22 @@ function FloatingNode({ top, left, delay, icon, label, sub }: any) {
             <motion.div
                 animate={{ z: [0, 20, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: delay * 2 }}
-                className="relative group min-w-[180px]"
+                className="relative group min-w-[120px] sm:min-w-[180px]"
                 // Counter-rotate the card so text is readable
                 style={{ transform: "rotateX(-20deg) rotateY(20deg) rotateZ(-5deg)" }}
             >
                 <div className="absolute inset-0 bg-purple-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-white/50 flex items-center gap-4 transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
+                <div className="relative bg-white/80 backdrop-blur-md p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-white/50 flex items-center gap-2 sm:gap-4 transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
                     {/* Shine */}
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/40 to-transparent opacity-0 group-hover:opacity-100 pointer-events-none" />
 
-                    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-100 group-hover:bg-white group-hover:scale-110 transition-transform">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-slate-50 flex items-center justify-center border border-slate-100 group-hover:bg-white group-hover:scale-110 transition-transform">
                         {icon}
                     </div>
                     <div className="flex flex-col text-left">
-                        <span className="text-sm font-bold text-slate-800">{label}</span>
-                        <span className="text-[10px] text-slate-500 font-medium">{sub}</span>
+                        <span className="text-xs sm:text-sm font-bold text-slate-800">{label}</span>
+                        <span className="text-[8px] sm:text-[10px] text-slate-500 font-medium">{sub}</span>
                     </div>
 
                     <CheckCircle size={14} className="absolute top-2 right-2 text-purple-500/50 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -318,7 +318,7 @@ function FloatingTechIcon({ top, left, color, icon, delay }: any) {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
         >
             <div
-                className={`w-12 h-12 rounded-full border border-white/60 backdrop-blur-md shadow-lg ${color} flex items-center justify-center cursor-pointer hover:scale-110 transition-transform`}
+                className={`w-9 h-9 sm:w-12 sm:h-12 rounded-full border border-white/60 backdrop-blur-md shadow-lg ${color} flex items-center justify-center cursor-pointer hover:scale-110 transition-transform`}
                 style={{ transform: "rotateX(-20deg) rotateY(20deg) rotateZ(-5deg)" }}
             >
                 {icon}

@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Palette, Component, PenTool, Box, Code, Cpu } from 'lucide-react';
+import { ArrowUpRight, Palette, Component, PenTool, Box, Code, Cpu, ChevronLeft, ChevronRight } from 'lucide-react';
 import { homeStyles } from './styles';
 
 // Services data - optimized for uniform 3-2 Grid Layout
@@ -67,7 +67,15 @@ const ServiceCard = ({ service, index }: { service: any, index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
-      className="relative group overflow-hidden rounded-2xl bg-[#E3F2FD] border border-blue-200/60 shadow-sm hover:shadow-2xl transition-all duration-300 cursor-pointer h-[200px] lg:h-[240px] flex flex-col justify-between p-6 w-full md:w-[calc(50%-12px)] lg:w-[calc(32%-12px)]"
+      className="
+        relative group overflow-hidden rounded-2xl bg-[#E3F2FD] border border-blue-200/60 shadow-sm transition-all duration-300 cursor-pointer 
+        flex-shrink-0 snap-center
+        w-[85vw] sm:w-[320px] md:w-[calc(50%-12px)] lg:w-[calc(32%-12px)]
+        h-[180px] lg:h-[240px]
+        flex flex-col justify-between 
+        p-5 lg:p-6
+        hover:shadow-2xl
+      "
     >
       <Link href={service.link} className="absolute inset-0 z-20" />
 
@@ -106,6 +114,20 @@ const ServiceCard = ({ service, index }: { service: any, index: number }) => {
 };
 
 const TechFleekServices = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="w-full relative bg-white overflow-hidden flex flex-col justify-center min-h-[100dvh] py-8 lg:py-0">
       {/* Grid Background */}
@@ -114,9 +136,21 @@ const TechFleekServices = () => {
       <div className={`${homeStyles.container} h-full flex flex-col justify-center`}>
         {/* Header - Compact & Consistent */}
         <div className={homeStyles.headerWrapper}>
-          <span className={homeStyles.label}>
-            Our Services
-          </span>
+          <div className="flex justify-between items-start w-full">
+            <span className={homeStyles.label}>
+              Our Services
+            </span>
+            {/* Mobile Navigation Buttons */}
+            <div className="flex gap-2 lg:hidden">
+              <button onClick={scrollLeft} className="p-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 shadow-sm active:scale-95 transition-all">
+                <ChevronLeft size={16} />
+              </button>
+              <button onClick={scrollRight} className="p-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 shadow-sm active:scale-95 transition-all">
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <h2 className={homeStyles.title}>
               What We <span className={homeStyles.gradientText}>Do Best</span>
@@ -127,8 +161,19 @@ const TechFleekServices = () => {
           </div>
         </div>
 
-        {/* Services Flex Container - Centered Last Row */}
-        <div className="flex flex-wrap justify-center gap-4 lg:gap-6 w-full">
+        {/* Services Flex Container - Slider on Mobile, Grid on Desktop */}
+        <div
+          ref={scrollContainerRef}
+          className="
+            flex lg:flex-wrap lg:justify-center 
+            overflow-x-auto lg:overflow-visible 
+            snap-x snap-mandatory lg:snap-none 
+            gap-4 lg:gap-6 
+            w-full 
+            pb-4 lg:pb-0 
+            scrollbar-hide
+          "
+        >
           {services.map((service, index) => (
             <ServiceCard key={service.number} service={service} index={index} />
           ))}
