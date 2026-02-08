@@ -113,7 +113,7 @@ const ServiceCard = ({ service, index }: { service: any, index: number }) => {
   );
 };
 
-const TechFleekServices = () => {
+const TechFleekServices = ({ showButton = true }: { showButton?: boolean }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
@@ -159,13 +159,15 @@ const TechFleekServices = () => {
               <p className={homeStyles.description} style={{ maxWidth: '500px' }}>
                 Comprehensive digital services designed to transform your ideas into exceptional experiences.
               </p>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap"
-              >
-                View All Services
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
+              {showButton && (
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap"
+                >
+                  View All Services
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+              )}
             </div>
           </div>
         </div>

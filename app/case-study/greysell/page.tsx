@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import PageTemplate from '@/components/Common/PageTemplate';
 import CaseStudyHero from '@/components/case-study/detail/CaseStudyHero';
 import AboutSection from '@/components/case-study/detail/AboutSection';
 import ChallengeSection from '@/components/case-study/detail/ChallengeSection';
@@ -95,7 +96,7 @@ const navigation = {
 
 export default function GreySellCaseStudy() {
     return (
-        <main className="bg-white min-h-screen w-full">
+        <PageTemplate>
             <CaseStudyHero {...heroData} />
             <AboutSection {...aboutData} />
             <ChallengeSection challenges={challenges} />
@@ -103,6 +104,6 @@ export default function GreySellCaseStudy() {
             <OutcomeSection {...outcomeData} />
             <TestimonialSection {...testimonialData} />
             <CaseStudyCTA prevStudy={navigation.prevStudy} nextStudy={navigation.nextStudy} />
-        </main>
+        </PageTemplate>
     );
 }

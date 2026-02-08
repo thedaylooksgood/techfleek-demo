@@ -2,11 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Inter, Red_Hat_Display } from 'next/font/google';
 import { CheckCircle2 } from 'lucide-react';
-
-const inter = Inter({ subsets: ['latin'], weight: ['400', '600', '700'] });
-const redHat = Red_Hat_Display({ subsets: ['latin'], weight: ['700'] });
+import { homeStyles } from '@/components/Home-Page/styles';
 
 interface SolutionStep {
     title: string;
@@ -19,68 +16,67 @@ interface SolutionSectionProps {
 
 export default function SolutionSection({ steps }: SolutionSectionProps) {
     return (
-        <section className="w-full py-7 bg-white">
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16">
-
+        <section className="w-full py-12 md:py-16 bg-white font-[family-name:var(--font-red-hat)]">
+            <div className="w-full max-w-[1250px] mx-auto px-4 sm:px-6 md:px-8">
                 {/* Header */}
                 <motion.div
-                    className="text-center mb-5 sm:mb-6"
+                    className={homeStyles.headerWrapper}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
                 >
-                    <span className={`${redHat.className} text-[14px] sm:text-[16px] font-bold bg-gradient-to-r from-[#3C8ECB] to-[#000000] bg-clip-text text-transparent mb-2 block tracking-wide uppercase`}>
-                        Our Approach
+                    <span className={homeStyles.label}>
+                        OUR APPROACH
                     </span>
-                    <h2 className={`${inter.className} text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-[#111827] leading-[1.2]`}>
-                        The Solution
+                    <h2 className={homeStyles.title}>
+                        The <span className={homeStyles.gradientText}>Solution</span>
                     </h2>
+                    <p className={homeStyles.description}>
+                        A strategic approach tailored to overcome each challenge effectively.
+                    </p>
                 </motion.div>
 
-                {/* Timeline */}
-                <div className="relative">
-                    {/* Vertical Line - Hidden on mobile */}
-                    <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#3C8ECB] via-[#3C8ECB] to-transparent transform -translate-x-1/2" />
+                {/* Solution Steps Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {steps.map((step, idx) => (
+                        <motion.div
+                            key={idx}
+                            className="group bg-slate-50 rounded-xl p-5 border border-slate-100 hover:border-[#3C8ECB]/30 hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: idx * 0.1 }}
+                            whileHover={{ y: -4 }}
+                        >
+                            {/* Step Number Background */}
+                            <div className="absolute -top-4 -right-4 text-8xl font-black text-[#3C8ECB]/5 select-none">
+                                {String(idx + 1).padStart(2, '0')}
+                            </div>
 
-                    {/* Steps */}
-                    <div className="space-y-6 lg:space-y-0">
-                        {steps.map((step, idx) => (
-                            <motion.div
-                                key={idx}
-                                className={`relative flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-0 ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                                    } will-change-transform`}
-                                initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, margin: "-80px" }}
-                                transition={{ duration: 0.4, delay: idx * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-                            >
-                                {/* Content Card */}
-                                <div className={`w-full lg:w-[45%] bg-[#F9FAFB] rounded-xl p-5 sm:p-6 border border-gray-100 ${idx % 2 === 0 ? 'lg:text-right lg:pr-8' : 'lg:text-left lg:pl-8'
-                                    }`}>
-                                    <div className={`flex items-center gap-3 mb-3 ${idx % 2 === 0 ? 'lg:flex-row-reverse' : ''}`}>
-                                        <div className="w-8 h-8 bg-[#3C8ECB] rounded-full flex items-center justify-center text-white text-[14px] font-bold flex-shrink-0">
-                                            {idx + 1}
-                                        </div>
-                                        <h3 className={`${inter.className} text-[16px] sm:text-[18px] font-semibold text-[#111827]`}>
-                                            {step.title}
-                                        </h3>
-                                    </div>
-                                    <p className={`${inter.className} text-[13px] sm:text-[14px] text-[#4B5563] leading-relaxed`}>
+                            <div className="relative flex items-start gap-4">
+                                {/* Step Number */}
+                                <div className="w-10 h-10 bg-[#3C8ECB] group-hover:bg-[#3C8ECB]/90 rounded-lg flex items-center justify-center text-white font-bold text-sm shrink-0 transition-colors">
+                                    {idx + 1}
+                                </div>
+
+                                <div className="flex-1">
+                                    {/* Title */}
+                                    <h3 className="font-bold text-slate-900 text-base mb-2 group-hover:text-[#3C8ECB] transition-colors">
+                                        {step.title}
+                                    </h3>
+
+                                    {/* Description */}
+                                    <p className="text-slate-500 text-xs leading-relaxed">
                                         {step.description}
                                     </p>
                                 </div>
 
-                                {/* Center Icon - Only on desktop */}
-                                <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-white border-2 border-[#3C8ECB] rounded-full items-center justify-center z-10">
-                                    <CheckCircle2 className="w-5 h-5 text-[#3C8ECB]" />
-                                </div>
-
-                                {/* Spacer for opposite side */}
-                                <div className="hidden lg:block w-[45%]" />
-                            </motion.div>
-                        ))}
-                    </div>
+                                {/* Check Icon */}
+                                <CheckCircle2 className="w-5 h-5 text-[#3C8ECB] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>

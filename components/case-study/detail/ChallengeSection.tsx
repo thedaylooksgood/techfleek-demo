@@ -2,11 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Inter, Red_Hat_Display } from 'next/font/google';
 import { AlertTriangle } from 'lucide-react';
-
-const inter = Inter({ subsets: ['latin'], weight: ['400', '600', '700'] });
-const redHat = Red_Hat_Display({ subsets: ['latin'], weight: ['700'] });
+import { homeStyles } from '@/components/Home-Page/styles';
 
 interface Challenge {
     title: string;
@@ -19,48 +16,51 @@ interface ChallengeSectionProps {
 
 export default function ChallengeSection({ challenges }: ChallengeSectionProps) {
     return (
-        <section className="w-full py-7 bg-[#F9FAFB]">
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16">
-
+        <section className="w-full py-12 md:py-16 bg-slate-50 font-[family-name:var(--font-red-hat)]">
+            <div className="w-full max-w-[1250px] mx-auto px-4 sm:px-6 md:px-8">
                 {/* Header */}
                 <motion.div
-                    className="text-center mb-5 sm:mb-6"
+                    className={homeStyles.headerWrapper}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
                 >
-                    <span className={`${redHat.className} text-[14px] sm:text-[16px] font-bold bg-gradient-to-r from-[#3C8ECB] to-[#000000] bg-clip-text text-transparent mb-2 block tracking-wide uppercase`}>
-                        The Problem
+                    <span className={homeStyles.label}>
+                        THE PROBLEM
                     </span>
-                    <h2 className={`${inter.className} text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-[#111827] leading-[1.2]`}>
-                        Challenges Faced
+                    <h2 className={homeStyles.title}>
+                        Challenges <span className={homeStyles.gradientText}>Faced</span>
                     </h2>
+                    <p className={homeStyles.description}>
+                        Understanding the obstacles that needed to be overcome to deliver success.
+                    </p>
                 </motion.div>
 
                 {/* Challenge Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {challenges.map((challenge, idx) => (
                         <motion.div
                             key={idx}
-                            className="bg-white rounded-xl p-5 sm:p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 will-change-transform"
+                            className="group bg-white rounded-xl p-5 border border-slate-100 hover:border-red-200 hover:shadow-lg transition-all duration-300"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.4, delay: idx * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: idx * 0.1 }}
+                            whileHover={{ y: -4 }}
                         >
                             {/* Icon */}
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-50 rounded-lg flex items-center justify-center mb-4">
-                                <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" />
+                            <div className="w-10 h-10 bg-red-50 group-hover:bg-red-100 rounded-lg flex items-center justify-center mb-4 transition-colors">
+                                <AlertTriangle className="w-5 h-5 text-red-500" />
                             </div>
 
                             {/* Title */}
-                            <h3 className={`${inter.className} text-[16px] sm:text-[18px] font-semibold text-[#111827] mb-2`}>
+                            <h3 className="font-bold text-slate-900 text-base mb-2 group-hover:text-red-600 transition-colors">
                                 {challenge.title}
                             </h3>
 
                             {/* Description */}
-                            <p className={`${inter.className} text-[13px] sm:text-[14px] text-[#4B5563] leading-relaxed`}>
+                            <p className="text-slate-500 text-xs leading-relaxed">
                                 {challenge.description}
                             </p>
                         </motion.div>

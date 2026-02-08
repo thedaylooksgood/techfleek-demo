@@ -210,14 +210,14 @@ export default function Header() {
             <div className="flex items-center gap-4">
               <Link href="/enquiry" className="hidden lg:block">
                 <motion.button
-                  whileHover={{ scale: 1.03 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.97 }}
-                  className="relative overflow-hidden group px-6 py-2.5 rounded-full bg-[#1a1a1a] text-white text-sm font-semibold"
+                  className="relative overflow-hidden group px-7 py-3 rounded-full bg-gradient-to-r from-[#3C8ECB] to-[#6366f1] text-white text-sm font-bold shadow-lg shadow-[#3C8ECB]/25 hover:shadow-xl hover:shadow-[#3C8ECB]/30 transition-all duration-300"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    Let's Talk <ArrowRight size={14} />
+                    Let's Talk <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#3C8ECB] to-[#6366f1] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#3C8ECB] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.button>
               </Link>
 
