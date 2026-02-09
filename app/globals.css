@@ -288,9 +288,10 @@ html {
    PREMIUM SMOOTH SCROLLING
    ======================================== */
 
-/* Enable smooth scroll for the whole page */
+/* Enable smooth scroll for the whole page - DISABLED for Lenis compatibility */
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
+  scroll-behavior: auto;
 }
 
 /* Lenis smooth scroll overrides */

@@ -54,7 +54,7 @@ export default function Footer() {
 
                     {/* LEFT: BRAND INTRO (Col 4) */}
                     <div className="lg:col-span-4 flex flex-col items-start">
-                        <Link href="/" className="inline-block mb-4">
+                        <Link href="/" scroll={true} onClick={() => window.scrollTo(0, 0)} className="inline-block mb-4">
                             <img src="/logo.svg" alt="TechFleek" className="h-8 w-auto" />
                         </Link>
 
@@ -103,7 +103,7 @@ export default function Footer() {
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3C8ECB] to-[#2563EB]">future</span> together.
                         </h2>
 
-                        <Link href="/enquiry" className="group inline-flex items-center gap-2 pl-5 pr-4 py-2.5 bg-[#3C8ECB] text-white rounded-full text-sm font-bold shadow-lg shadow-[#3C8ECB]/20 hover:shadow-[#3C8ECB]/40 hover:-translate-y-0.5 transition-all duration-300">
+                        <Link href="/enquiry" scroll={true} onClick={() => window.scrollTo(0, 0)} className="group inline-flex items-center gap-2 pl-5 pr-4 py-2.5 bg-[#3C8ECB] text-white rounded-full text-sm font-bold shadow-lg shadow-[#3C8ECB]/20 hover:shadow-[#3C8ECB]/40 hover:-translate-y-0.5 transition-all duration-300">
                             Book Consultation
                             <span className="bg-white/20 p-1 rounded-full group-hover:bg-white/30 transition-colors">
                                 <ArrowRight className="w-3.5 h-3.5" />
@@ -123,10 +123,10 @@ export default function Footer() {
                         ]} />
 
                         <FooterColumn title="Services" links={[
-                            { name: 'Web Development', href: '/services' },
-                            { name: 'App Development', href: '/services' },
-                            { name: 'UI/UX Design', href: '/services' },
-                            { name: 'Cloud Solutions', href: '/services' }
+                            { name: 'Web Development', href: '/services/web-development' },
+                            { name: 'App Development', href: '/services/mobile-app-development' },
+                            { name: 'UI/UX Design', href: '/services/ui-ux-design' },
+                            { name: 'Cloud Solutions', href: '/services/cloud-services' }
                         ]} />
 
                         <FooterColumn title="Resources" links={[
@@ -187,7 +187,7 @@ function FooterColumn({ title, links }: { title: string, links: any[] }) {
             <ul className="space-y-2">
                 {links.map((link, i) => (
                     <li key={i}>
-                        <Link href={link.href} className="text-slate-500 hover:text-[#3C8ECB] transition-colors text-[13px] font-medium flex items-center gap-1 hover:translate-x-1 duration-200">
+                        <Link href={link.href} scroll={true} onClick={() => window.scrollTo(0, 0)} className="text-slate-500 hover:text-[#3C8ECB] transition-colors text-[13px] font-medium flex items-center gap-1 hover:translate-x-1 duration-200">
                             {link.name}
                         </Link>
                     </li>

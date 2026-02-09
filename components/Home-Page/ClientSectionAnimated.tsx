@@ -215,7 +215,7 @@ export default function ClientSectionAnimated() {
                         >
                             <span className="relative z-10">Become a Client</span>
                             <ArrowRight className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1" />
-                            <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)' }} />
                         </motion.button>
                     </div>
 

@@ -31,7 +31,7 @@ const SERVICES = {
       name: "UI/UX Design",
       desc: "Research-driven interfaces that delight users.",
       icon: <Palette className="w-5 h-5" />,
-      href: "/services?s=ui-ux",
+      href: "/services/ui-ux-design",
       color: "text-pink-500 bg-pink-50",
     },
     {
@@ -47,21 +47,21 @@ const SERVICES = {
       name: "Web Development",
       desc: "High-performance Next.js & React applications.",
       icon: <Code2 className="w-5 h-5" />,
-      href: "/services?s=web",
+      href: "/services/web-development",
       color: "text-blue-500 bg-blue-50",
     },
     {
       name: "Mobile Apps",
       desc: "Native iOS & Android experiences.",
       icon: <Smartphone className="w-5 h-5" />,
-      href: "/services?s=mobile",
+      href: "/services/mobile-app-development",
       color: "text-orange-500 bg-orange-50",
     },
     {
       name: "Cloud & DevOps",
       desc: "Scalable infrastructure and CI/CD pipelines.",
       icon: <Server className="w-5 h-5" />,
-      href: "/services?s=cloud",
+      href: "/services/cloud-services",
       color: "text-cyan-500 bg-cyan-50",
     },
   ],
@@ -80,6 +80,13 @@ const SERVICES = {
       href: "/services?s=ai",
       color: "text-yellow-500 bg-yellow-50",
     },
+    {
+      name: "Custom Software",
+      desc: "Tailored solutions for unique business needs.",
+      icon: <Code2 className="w-5 h-5" />,
+      href: "/services/custom-software",
+      color: "text-indigo-500 bg-indigo-50",
+    }
   ],
 };
 
@@ -169,7 +176,7 @@ export default function Header() {
         <div className={homeStyles.container}>
           <div className="flex items-center justify-between h-[72px]">
             {/* LOGO */}
-            <Link href="/" className="relative z-50 flex-shrink-0">
+            <Link href="/" scroll={true} onClick={() => window.scrollTo(0, 0)} className="relative z-50 flex-shrink-0">
               <img src="/logo.svg" alt="TechFleek" className="h-8 w-auto" />
             </Link>
 
@@ -290,6 +297,8 @@ export default function Header() {
                       </div>
                       <Link
                         href="/services"
+                        scroll={true}
+                        onClick={() => window.scrollTo(0, 0)}
                         className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#3C8ECB] hover:gap-3 transition-all"
                       >
                         Explore all services <ArrowRight size={14} />
@@ -309,6 +318,8 @@ export default function Header() {
                       </p>
                       <Link
                         href="/case-study"
+                        scroll={true}
+                        onClick={() => window.scrollTo(0, 0)}
                         className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-gray-900 text-white text-sm font-semibold hover:bg-[#3C8ECB] transition-colors"
                       >
                         View All <ArrowRight size={14} />
@@ -472,6 +483,8 @@ function NavItem({ href, label, isActive }: { href: string; label: string; isAct
   return (
     <Link
       href={href}
+      scroll={true}
+      onClick={() => window.scrollTo(0, 0)}
       className={`relative px-5 h-[72px] flex items-center text-sm font-medium transition-colors ${isActive ? "text-[#3C8ECB]" : "text-gray-700 hover:text-gray-900"
         }`}
     >
@@ -532,6 +545,8 @@ function ServiceItem({ item }: { item: (typeof SERVICES.design)[0] }) {
     <li>
       <Link
         href={item.href}
+        scroll={true}
+        onClick={() => window.scrollTo(0, 0)}
         className="group flex items-start gap-4 p-3 -m-3 rounded-xl hover:bg-gray-50 transition-colors"
       >
         <div className={`mt-1 p-2 rounded-lg ${item.color} transition-transform group-hover:scale-110`}>
@@ -550,7 +565,7 @@ function ServiceItem({ item }: { item: (typeof SERVICES.design)[0] }) {
 
 function MobileLink({ href, label, onClick }: { href: string; label: string; onClick: () => void }) {
   return (
-    <Link href={href} onClick={onClick} className="text-2xl font-bold text-gray-900 tracking-tight">
+    <Link href={href} scroll={true} onClick={() => { onClick(); window.scrollTo(0, 0); }} className="text-2xl font-bold text-gray-900 tracking-tight">
       {label}
     </Link>
   );

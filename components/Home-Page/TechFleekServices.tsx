@@ -1,194 +1,352 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Palette, Component, PenTool, Box, Code, Cpu, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ArrowUpRight, Palette, Cloud, Smartphone, Code, Globe, Cpu,
+  Layers, Sparkles, Zap, Shield, Rocket, LineChart,
+  Server, Database, Terminal, Layout, PenTool, Monitor,
+  Workflow, BrainCircuit, Settings, ChevronLeft, ChevronRight
+} from 'lucide-react';
 import { homeStyles } from './styles';
 
-// Services data - optimized for uniform 3-2 Grid Layout
-const services = [
+// Service Categories with descriptions
+const serviceCategories = [
   {
-    number: '01',
-    title: 'UI/UX Design',
-    description: 'Crafting intuitive interfaces and seamless user experiences.',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
-    link: '/services/ui-ux-design',
-    icon: Palette
+    category: "UI/UX Design",
+    tagline: "Creating intuitive interfaces that users love",
+    description: "We craft user-centered designs that blend aesthetics with seamless functionality, turning visitors into loyal customers.",
+    color: "#3C8ECB",
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
+    href: "/services/ui-ux-design",
+    services: ["Visual Design", "Wireframing", "Prototyping", "Design Systems", "Responsive Design"]
   },
   {
-    number: '02',
-    title: 'Cloud Services',
-    description: 'Scalable cloud infrastructure and deployment solutions.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-    link: '/services/cloud-services',
-    icon: Component
+    category: "Web Development",
+    tagline: "Building high-performance web applications",
+    description: "From landing pages to complex platforms, we build fast, secure, and scalable web solutions using modern technologies.",
+    color: "#3C8ECB",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    href: "/services/web-development",
+    services: ["Frontend Development", "Backend Development", "Database Design", "Performance Optimization", "Security Implementation"]
   },
   {
-    number: '03',
-    title: 'Mobile Apps',
-    description: 'Native and cross-platform mobile application development.',
-    image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80',
-    link: '/services/mobile-app-development',
-    icon: PenTool
+    category: "Mobile Apps",
+    tagline: "Native and cross-platform mobile solutions",
+    description: "We develop mobile applications that users love, ensuring exceptional performance on iOS, Android, and cross-platform.",
+    color: "#3C8ECB",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
+    href: "/services/mobile-app-development",
+    services: ["iOS Development", "Android Development", "React Native", "Flutter Apps", "App Store Launch"]
   },
   {
-    number: '04',
-    title: 'Custom Software',
-    description: 'Tailored software solutions for complex business needs.',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80',
-    link: '/services/custom-software',
-    icon: Box
+    category: "Cloud Services",
+    tagline: "Scalable infrastructure for modern businesses",
+    description: "Leverage cloud computing power with our comprehensive solutions—from migration to optimization and security.",
+    color: "#3C8ECB",
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80",
+    href: "/services/cloud-services",
+    services: ["Cloud Migration", "AWS & Azure", "Cloud Databases", "DevOps & CI/CD", "Cloud Security"]
   },
   {
-    number: '05',
-    title: 'Web Development',
-    description: 'Modern, high-performance web applications and platforms.',
-    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80',
-    link: '/services/web-development',
-    icon: Code
+    category: "Custom Software",
+    tagline: "Tailored solutions for unique business needs",
+    description: "We build custom solutions that align perfectly with your workflows, automate processes, and give you a competitive edge.",
+    color: "#3C8ECB",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+    href: "/services/custom-software",
+    services: ["Enterprise Applications", "System Integrations", "Analytics Platforms", "AI & ML Solutions", "IoT Development"]
   },
   {
-    number: '06',
-    title: 'Digital Strategy',
-    description: 'Strategic planning for digital transformation and growth.',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
-    link: '/services',
-    icon: Cpu
+    category: "Digital Strategy",
+    tagline: "Strategic planning for digital transformation",
+    description: "Navigate the digital landscape with confidence through strategic consulting and data-driven growth roadmaps.",
+    color: "#3C8ECB",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+    href: "/services",
+    services: ["Digital Roadmap", "Growth Strategy", "Tech Consulting", "Security Audit", "Performance Optimization"]
   }
 ];
 
-const ServiceCard = ({ service, index }: { service: any, index: number }) => {
-  const Icon = service.icon;
+// Compact Split Layout Component
+function ServicesShowcase({ categories }: { categories: typeof serviceCategories }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
+  const activeCategory = categories[activeIndex];
+
+  const categoryImages = [
+    activeCategory.image,
+    `https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&q=80`,
+    `https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&q=80`,
+  ];
+
+  const nextImage = () => setImageIndex((prev) => (prev + 1) % categoryImages.length);
+  const prevImage = () => setImageIndex((prev) => (prev - 1 + categoryImages.length) % categoryImages.length);
+
+  React.useEffect(() => {
+    setImageIndex(0);
+  }, [activeIndex]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
-      className="
-        relative group overflow-hidden rounded-2xl bg-[#E3F2FD] border border-blue-200/60 shadow-sm transition-all duration-300 cursor-pointer 
-        flex-shrink-0 snap-center
-        w-[85vw] sm:w-[320px] md:w-[calc(50%-12px)] lg:w-[calc(32%-12px)]
-        h-[180px] lg:h-[240px]
-        flex flex-col justify-between 
-        p-5 lg:p-6
-        hover:shadow-2xl
-      "
-    >
-      <Link href={service.link} className="absolute inset-0 z-20" />
-
-      {/* Background Image Reveal */}
-      <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
-        <div className="absolute inset-0 bg-cover bg-center transform scale-105 group-hover:scale-100 transition-transform duration-700"
-          style={{ backgroundImage: `url(${service.image})` }}
-        />
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
+    <div className="space-y-5">
+      {/* Category Tabs */}
+      <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:flex-wrap md:overflow-visible md:pb-0">
+        {categories.map((cat, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 border flex-shrink-0 whitespace-nowrap ${activeIndex === index
+              ? 'text-white border-transparent'
+              : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+              }`}
+            style={activeIndex === index ? {
+              backgroundColor: cat.color,
+              boxShadow: `0 4px 20px ${cat.color}40`
+            } : {}}
+          >
+            {cat.category}
+          </button>
+        ))}
       </div>
 
-      {/* Top Row: Number & Arrow */}
-      <div className="relative z-10 flex justify-between items-start">
-        <span className="font-bold text-[11px] lg:text-[13px] text-slate-400 group-hover:text-white/80 transition-colors duration-300">
-          {service.number}
-        </span>
-        <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-white flex items-center justify-center group-hover:bg-white/20 group-hover:backdrop-blur-md transition-all duration-300 group-hover:rotate-45 shadow-sm">
-          <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors duration-300" />
-        </div>
-      </div>
+      {/* Split Layout Content */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeIndex}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          className="rounded-2xl overflow-hidden shadow-xl"
+          style={{
+            boxShadow: `0 8px 40px ${activeCategory.color}15, 0 4px 12px rgba(0,0,0,0.06)`
+          }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* Left Side - Content */}
+            <div
+              className="p-6 lg:p-8 flex flex-col relative"
+              style={{
+                background: `linear-gradient(135deg, white 0%, ${activeCategory.color}05 100%)`
+              }}
+            >
+              {/* Decorative accent */}
+              <div
+                className="absolute top-0 left-0 w-full h-1"
+                style={{
+                  background: `linear-gradient(90deg, ${activeCategory.color}, ${activeCategory.color}60, transparent)`
+                }}
+              />
 
-      {/* Bottom Row: Content with Icon */}
-      <div className="relative z-10 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-        <div className="mb-2 opacity-80 group-hover:opacity-100 group-hover:text-white transition-all duration-300 transform group-hover:-translate-y-1">
-          <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-blue-500/80 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
-        </div>
-        <h3 className="text-[15px] lg:text-[18px] font-bold text-slate-900 group-hover:text-white mb-1.5 transition-colors duration-300 leading-tight">
-          {service.title}
-        </h3>
-        <p className="text-[12px] lg:text-[14px] text-slate-500 group-hover:text-white/90 leading-relaxed transition-colors duration-300 line-clamp-2">
-          {service.description}
-        </p>
-      </div>
-    </motion.div>
+              {/* Category Header */}
+              <div className="flex items-start gap-4 mb-5">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{
+                    background: `linear-gradient(135deg, ${activeCategory.color}, ${activeCategory.color}cc)`,
+                    boxShadow: `0 4px 12px ${activeCategory.color}40`
+                  }}
+                >
+                  <span className="text-white text-lg font-black">
+                    {activeCategory.category.charAt(0)}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-black text-slate-900 text-xl lg:text-2xl leading-tight mb-1">
+                    {activeCategory.category}
+                  </h3>
+                  <p className="text-slate-500 text-sm">
+                    {activeCategory.tagline}
+                  </p>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-slate-600 text-sm leading-relaxed mb-5 pb-4 border-b border-slate-100">
+                {activeCategory.description}
+              </p>
+
+              {/* Bullet Points - 2 columns on larger screens */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 flex-1">
+                {activeCategory.services.map((service, svcIndex) => (
+                  <motion.div
+                    key={svcIndex}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: svcIndex * 0.06, duration: 0.3 }}
+                    className="flex items-center gap-3 py-2 px-3 -mx-3 rounded-lg hover:bg-white transition-all group cursor-default"
+                  >
+                    <div
+                      className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
+                      style={{ backgroundColor: `${activeCategory.color}15` }}
+                    >
+                      <span
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: activeCategory.color }}
+                      />
+                    </div>
+                    <span className="text-slate-700 text-sm font-medium">
+                      {service}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Service Badge */}
+              <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold"
+                  style={{
+                    backgroundColor: `${activeCategory.color}12`,
+                    color: activeCategory.color
+                  }}
+                >
+                  <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: activeCategory.color }} />
+                  {activeCategory.services.length} Services
+                </div>
+                <Link
+                  href={activeCategory.href || "/services"}
+                  scroll={true}
+                  onClick={() => window.scrollTo(0, 0)}
+                  className="text-xs font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+                  style={{ color: activeCategory.color }}
+                >
+                  Learn More
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Side - Image Showcase */}
+            <div className="relative overflow-hidden min-h-[320px] lg:min-h-[380px] group">
+              {/* Main Image */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={imageIndex}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={categoryImages[imageIndex]}
+                    alt={activeCategory.category}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Gradient Overlay */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `linear-gradient(180deg, transparent 50%, ${activeCategory.color}90 100%)`
+                }}
+              />
+
+              {/* Navigation Arrows - Always visible, themed */}
+              <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between z-10">
+                <button
+                  onClick={prevImage}
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  style={{
+                    backgroundColor: activeCategory.color,
+                    boxShadow: `0 4px 16px ${activeCategory.color}50`
+                  }}
+                >
+                  <ChevronLeft className="w-5 h-5 text-white" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  style={{
+                    backgroundColor: activeCategory.color,
+                    boxShadow: `0 4px 16px ${activeCategory.color}50`
+                  }}
+                >
+                  <ChevronRight className="w-5 h-5 text-white" />
+                </button>
+              </div>
+
+              {/* Bottom Info Bar */}
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <div className="flex items-end justify-between">
+                  <div>
+                    <h4 className="text-white font-bold text-lg drop-shadow-lg">{activeCategory.category}</h4>
+                    <p className="text-white/90 text-sm">{activeCategory.services.length} Services</p>
+                  </div>
+                  {/* Image Indicators */}
+                  <div className="flex gap-2">
+                    {categoryImages.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setImageIndex(idx)}
+                        className={`rounded-full transition-all duration-300 ${idx === imageIndex
+                          ? 'bg-white w-8 h-2'
+                          : 'bg-white/50 hover:bg-white/80 w-2 h-2'
+                          }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Image Counter Badge */}
+              <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1.5 text-white text-xs font-medium">
+                {imageIndex + 1} / {categoryImages.length}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
-};
+}
 
 const TechFleekServices = ({ showButton = true }: { showButton?: boolean }) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -320, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 320, behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section className="w-full relative bg-white overflow-hidden flex flex-col justify-start lg:justify-center py-16 lg:py-20">
+    <section className="w-full relative bg-white overflow-hidden py-8 md:py-10">
       {/* Grid Background */}
       <div className="absolute inset-0 pointer-events-none" style={homeStyles.gridBackgroundStyle}></div>
 
-      <div className={`${homeStyles.container} h-full flex flex-col justify-center`}>
-        {/* Header - Compact & Consistent */}
-        <div className={homeStyles.headerWrapper}>
-          <div className="flex justify-between items-start w-full">
-            <span className={homeStyles.label}>
-              Our Services
-            </span>
-            {/* Mobile Navigation Buttons */}
-            <div className="flex gap-2 lg:hidden">
-              <button onClick={scrollLeft} className="p-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 shadow-sm active:scale-95 transition-all">
-                <ChevronLeft size={16} />
-              </button>
-              <button onClick={scrollRight} className="p-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 shadow-sm active:scale-95 transition-all">
-                <ChevronRight size={16} />
-              </button>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            <h2 className={homeStyles.title}>
-              What We <span className={homeStyles.gradientText}>Do Best</span>
-            </h2>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <p className={homeStyles.description} style={{ maxWidth: '500px' }}>
+      <div className={`${homeStyles.container}`}>
+        {/* Header - Compact */}
+        <div className="mb-5">
+          <span className={homeStyles.label}>
+            OUR SERVICES
+          </span>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+            <div>
+              <h2 className={`${homeStyles.title} !text-2xl md:!text-3xl !mb-1`}>
+                What We <span className={homeStyles.gradientText}>Do Best</span>
+              </h2>
+              <p className={`${homeStyles.description} !text-sm`} style={{ maxWidth: '450px' }}>
                 Comprehensive digital services designed to transform your ideas into exceptional experiences.
               </p>
-              {showButton && (
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap"
-                >
-                  View All Services
-                  <ArrowUpRight className="w-4 h-4" />
-                </Link>
-              )}
             </div>
+            {showButton && (
+              <Link
+                href="/services"
+                scroll={true}
+                onClick={() => window.scrollTo(0, 0)}
+                className="inline-flex items-center gap-1 px-3 py-1.5 md:px-4 md:py-2 text-white font-semibold text-xs md:text-sm rounded-full transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap self-start w-fit"
+                style={{ background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)' }}
+              >
+                <span className="hidden md:inline">View All Services</span>
+                <span className="md:hidden">View All</span>
+                <ArrowUpRight className="w-3 h-3 md:w-3.5 md:h-3.5" />
+              </Link>
+            )}
           </div>
         </div>
 
-        {/* Services Flex Container - Slider on Mobile, Grid on Desktop */}
-        <div
-          ref={scrollContainerRef}
-          className="
-            flex lg:flex-wrap lg:justify-center 
-            overflow-x-auto lg:overflow-visible 
-            snap-x snap-mandatory lg:snap-none 
-            gap-4 lg:gap-6 
-            w-full 
-            pb-4 lg:pb-0 
-            scrollbar-hide
-          "
-        >
-          {services.map((service, index) => (
-            <ServiceCard key={service.number} service={service} index={index} />
-          ))}
-        </div>
+        {/* Compact Split Layout Showcase */}
+        <ServicesShowcase categories={serviceCategories} />
       </div>
     </section>
   );

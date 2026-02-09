@@ -162,13 +162,13 @@ export default function IndustriesTargeted() {
                             style={{
                                 padding: isMobile ? '12px 20px' : '12px 28px',
                                 fontSize: isMobile ? '13px' : '14px',
-                                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-                                boxShadow: '0 4px 20px rgba(59, 130, 246, 0.35)'
+                                background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)',
+                                boxShadow: '0 4px 20px rgba(60, 142, 203, 0.35)'
                             }}
                             whileHover={{
                                 scale: 1.05,
                                 y: -2,
-                                boxShadow: '0 12px 35px rgba(59, 130, 246, 0.45)'
+                                boxShadow: '0 12px 35px rgba(60, 142, 203, 0.45)'
                             }}
                             whileTap={{ scale: 0.95 }}
                             transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -183,20 +183,22 @@ export default function IndustriesTargeted() {
                                 </motion.div>
                             </span>
                             <motion.div
-                                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                style={{ background: 'linear-gradient(135deg, #2563EB 0%, #3C8ECB 100%)' }}
                             />
                         </motion.button>
 
                         <motion.button
-                            className="font-semibold text-blue-600 rounded-full border-2 border-blue-200 bg-white/90 backdrop-blur-sm hover:border-blue-400 hover:bg-blue-50 transition-all duration-300"
+                            className="font-semibold rounded-full border-2 border-[#3C8ECB]/30 bg-white/90 backdrop-blur-sm hover:border-[#3C8ECB]/60 hover:bg-[#3C8ECB]/5 transition-all duration-300"
                             style={{
                                 padding: isMobile ? '12px 20px' : '12px 28px',
-                                fontSize: isMobile ? '13px' : '14px'
+                                fontSize: isMobile ? '13px' : '14px',
+                                color: '#3C8ECB'
                             }}
                             whileHover={{
                                 scale: 1.05,
                                 y: -2,
-                                boxShadow: '0 8px 25px rgba(59, 130, 246, 0.15)'
+                                boxShadow: '0 8px 25px rgba(60, 142, 203, 0.15)'
                             }}
                             whileTap={{ scale: 0.95 }}
                             transition={{ type: "spring", stiffness: 400, damping: 17 }}

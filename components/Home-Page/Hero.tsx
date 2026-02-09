@@ -89,7 +89,7 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <Link href="/contact">
+                        <Link href="/enquiry" scroll={true} onClick={() => window.scrollTo(0, 0)}>
                             <button className="group relative overflow-hidden flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-full font-semibold transition-all duration-300 hover:bg-slate-800 hover:shadow-xl hover:-translate-y-1">
                                 <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer-slide" />
                                 Start Your Project

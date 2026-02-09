@@ -1,7 +1,7 @@
 export const homeStyles = {
     // Section & Layout
     section: "w-full overflow-hidden relative font-[family-name:var(--font-red-hat)] bg-white",
-    sectionPadding: "py-[60px] md:py-[80px] lg:py-[100px]", // Consistent vertical spacing
+    sectionPadding: "py-[40px] md:py-[50px] lg:py-[60px]", // Consistent vertical spacing
 
     // The main constraint container
     container: "w-full max-w-[1250px] mx-auto relative z-10 px-4 sm:px-6 md:px-8",

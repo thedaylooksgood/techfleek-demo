@@ -51,13 +51,13 @@ const allTechItems = Object.values(techStackByCategory).flat();
 // Card Style based on amenities reference
 const TechCard = ({ item }: { item: { name: string; icon: string; color: string } }) => (
     <div
-        className="flex items-center gap-4 bg-white border border-white rounded-2xl p-4 shadow-sm w-[280px] h-[90px] mx-auto select-none"
+        className="flex items-center gap-3 md:gap-4 bg-white border border-white rounded-2xl p-3 md:p-4 shadow-sm w-[200px] md:w-[280px] h-[75px] md:h-[90px] mx-auto select-none"
         style={{
             boxShadow: '0 4px 15px rgba(0,0,0,0.02)'
         }}
     >
         {/* Icon Box */}
-        <div className="w-[70px] h-[60px] flex items-center justify-center bg-gray-50 rounded-xl flex-shrink-0">
+        <div className="w-[50px] md:w-[70px] h-[45px] md:h-[60px] flex items-center justify-center bg-gray-50 rounded-xl flex-shrink-0">
             <img
                 src={item.icon}
                 alt={item.name}
@@ -66,7 +66,7 @@ const TechCard = ({ item }: { item: { name: string; icon: string; color: string 
         </div>
 
         {/* Text */}
-        <span className="font-['Sansation',sans-serif] text-slate-900 text-lg font-medium leading-tight">
+        <span className="font-['Sansation',sans-serif] text-slate-900 text-sm md:text-lg font-medium leading-tight">
             {item.name}
         </span>
     </div>
@@ -86,7 +86,7 @@ const VerticalMarquee = ({
     const duplicatedItems = [...items, ...items, ...items];
 
     return (
-        <div className="relative h-[600px] overflow-hidden pointer-events-none">
+        <div className="relative h-[450px] overflow-hidden pointer-events-none">
             {/* Gradient Fade Top/Bottom */}
             <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#FAF9F7] to-transparent z-10" />
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FAF9F7] to-transparent z-10" />
@@ -128,7 +128,7 @@ const TechStack = () => {
             <div className="absolute inset-0 pointer-events-none"
                 style={homeStyles.gridBackgroundStyle}>
             </div>
-            <div className={homeStyles.sectionPadding}>
+            <div className="py-6 md:py-8 lg:py-10">
                 <div className={homeStyles.container}>
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
@@ -154,7 +154,7 @@ const TechStack = () => {
                         <div className="col-span-12 lg:col-span-7 relative">
                             {/* Rotation Wrapper */}
                             <div
-                                className="transform rotate-[-6deg] scale-95 origin-center"
+                                className="transform rotate-[-6deg] scale-[0.85] md:scale-95 origin-left md:origin-center -ml-4 md:ml-0"
                                 style={{
                                     // Optional: Add the specific matrix from provided CSS if desired, 
                                     // but rotate is cleaner for responsiveness.
