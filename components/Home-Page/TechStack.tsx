@@ -129,25 +129,24 @@ const TechStack = () => {
                 style={homeStyles.gridBackgroundStyle}>
             </div>
             <div className={homeStyles.sectionPadding}>
-                <div className={`${homeStyles.container} max-w-[1300px]`}>
+                <div className={homeStyles.container}>
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
                         {/* Left Side: Text Content */}
                         <div className="col-span-12 lg:col-span-5 relative z-20">
                             <div className="flex flex-col gap-6 text-left">
-                                <div className={homeStyles.headerWrapper + " !border-none !mb-0 !pb-0"}>
+                                <div className={homeStyles.headerWrapper}>
                                     <span className={homeStyles.label}>
                                         04 — Tech Stack
                                     </span>
-                                    <h2 className={homeStyles.title + " text-4xl md:text-5xl !leading-[1.1]"}>
+                                    <h2 className={homeStyles.title}>
                                         All the Tech <br />
                                         <span className={homeStyles.gradientText}>You Need to Build</span>
                                     </h2>
+                                    <p className={homeStyles.description}>
+                                        Techfleek uses a premium stack to connect users with seamless experiences. Choose from modern frameworks, robust backends, and scalable cloud solutions.
+                                    </p>
                                 </div>
-
-                                <p className="text-slate-600 text-lg md:text-xl font-medium leading-relaxed max-w-lg">
-                                    Techfleek uses a premium stack to connect users with seamless experiences. Choose from modern frameworks, robust backends, and scalable cloud solutions.
-                                </p>
                             </div>
                         </div>
 

@@ -530,65 +530,6 @@ export default function AboutUsPage() {
                 </div>
             </div>
 
-            {/* Why Choose Us - Dark CTA */}
-            <div className="w-full bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 relative font-[family-name:var(--font-red-hat)] py-12 md:py-16 overflow-hidden">
-                {/* Animated orbs */}
-                <motion.div
-                    variants={pulseVariants}
-                    animate="animate"
-                    className="absolute top-0 right-0 w-80 h-80 bg-[#3C8ECB]/20 rounded-full blur-3xl"
-                />
-                <motion.div
-                    variants={pulseVariants}
-                    animate="animate"
-                    style={{ animationDelay: "2s" }}
-                    className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-                />
-
-                <div className="w-full max-w-[1250px] mx-auto relative z-10 px-4 sm:px-6 md:px-8 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <span className="inline-block text-[#3C8ECB] font-bold tracking-widest uppercase text-xs mb-3">
-                            WHY TECHFLEEK
-                        </span>
-                        <h2 className="font-black text-white text-2xl md:text-3xl lg:text-[36px] leading-[1.1] mb-6">
-                            Ready to Build Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3C8ECB] to-indigo-400">Amazing?</span>
-                        </h2>
-
-                        <div className="flex flex-wrap justify-center gap-3 mb-8">
-                            {whyChooseUs.map((point, index) => (
-                                <motion.span
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm"
-                                >
-                                    <CheckCircle className="w-4 h-4 text-green-400" />
-                                    {point}
-                                </motion.span>
-                            ))}
-                        </div>
-
-                        <Link href="/enquiry">
-                            <motion.button
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="group relative overflow-hidden inline-flex items-center gap-3 px-8 py-4 bg-white text-slate-900 rounded-full font-bold transition-all duration-300 hover:shadow-2xl"
-                            >
-                                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-[#3C8ECB]/20 to-transparent -translate-x-full group-hover:animate-shimmer-slide" />
-                                Let's Talk
-                                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                            </motion.button>
-                        </Link>
-                    </motion.div>
-                </div>
-            </div>
-
         </PageTemplate>
     );
 }

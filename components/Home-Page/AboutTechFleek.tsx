@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Users, GraduationCap, TrendingUp } from 'lucide-react';
+import { Building2, Users, Lightbulb, Award, Heart, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { homeStyles } from './styles';
 
@@ -205,11 +205,11 @@ const AboutTechFleek = () => {
                             About Us
                         </span>
                         <h2 className={homeStyles.title}>
-                            Globally Recruitment and <span className={homeStyles.gradientText}>Solutions.</span>
+                            Innovating <span className={homeStyles.gradientText}>Digital Solutions.</span>
                         </h2>
                         <p className={homeStyles.description}>
-                            At the intersection of cutting-edge technology and deep industry knowledge,
-                            we revolutionize the way companies and candidates connect.
+                            With 10+ years of experience, we help entrepreneurs solve complex challenges
+                            and deliver successful products by integrating strategy with development.
                         </p>
                     </div>
 
@@ -306,16 +306,16 @@ const AboutTechFleek = () => {
                     >
                         <FeatureCard
                             number="01"
-                            Icon={Building2}
-                            title="Corporate Programs"
-                            description="With TechFleek, hiring becomes effortless. Embrace the future of recruitment today."
+                            Icon={Lightbulb}
+                            title="Innovation"
+                            description="Pushing boundaries with new technologies and methodologies to stay ahead."
                             delay={0.1}
                         />
                         <FeatureCard
                             number="03"
-                            Icon={GraduationCap}
-                            title="Leadership Training"
-                            description="Empowering Tomorrow's Leaders Today. With TechFleek, delve into training modules."
+                            Icon={Award}
+                            title="Quality"
+                            description="Ensuring excellence in every line of code, user experience, and customer service."
                             delay={0.3}
                         />
                     </div>
@@ -352,15 +352,15 @@ const AboutTechFleek = () => {
                         <FeatureCard
                             number="02"
                             Icon={Users}
-                            title="Recruitment Solutions"
-                            description="Finding the perfect fit for every role, with TechFleek's expert recruitment solutions."
+                            title="Collaboration"
+                            description="Building strong partnerships through open communication and shared success."
                             delay={0.15}
                         />
                         <FeatureCard
                             number="04"
-                            Icon={TrendingUp}
-                            title="Improving Resource"
-                            description="Optimizing Assets for Peak Productivity. TechFleek transforms resources, enhancing efficiency."
+                            Icon={Heart}
+                            title="Impact"
+                            description="Delivering meaningful results that create positive outcomes for clients and users."
                             delay={0.35}
                         />
                     </div>

@@ -17,6 +17,11 @@ interface PageHeroProps {
     description?: string;
     breadcrumbs?: BreadcrumbItem[];
     className?: string;
+    showCTA?: boolean;
+    ctaPrimaryText?: string;
+    ctaPrimaryHref?: string;
+    ctaSecondaryText?: string;
+    ctaSecondaryHref?: string;
 }
 
 // Floating animation
@@ -41,6 +46,11 @@ export default function PageHero({
     description,
     breadcrumbs = [{ label: 'Home', href: '/' }],
     className = '',
+    showCTA = false,
+    ctaPrimaryText,
+    ctaPrimaryHref,
+    ctaSecondaryText,
+    ctaSecondaryHref,
 }: PageHeroProps) {
     return (
         <section className={`relative w-full h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] flex items-center justify-center font-sans overflow-hidden ${className}`}>
@@ -166,6 +176,40 @@ export default function PageHero({
                     >
                         {description}
                     </motion.p>
+                )}
+
+                {/* CTA Buttons */}
+                {showCTA && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex flex-wrap items-center justify-center gap-3 mt-6 sm:mt-8"
+                    >
+                        {ctaPrimaryText && (
+                            <Link href={ctaPrimaryHref || '#'}>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="px-6 py-2.5 sm:px-8 sm:py-3 bg-[#3C8ECB] hover:bg-[#3C8ECB]/90 text-white rounded-full font-bold text-xs sm:text-sm transition-all shadow-md shadow-blue-200 flex items-center gap-2"
+                                >
+                                    {ctaPrimaryText}
+                                    <ArrowRight size={16} />
+                                </motion.button>
+                            </Link>
+                        )}
+                        {ctaSecondaryText && (
+                            <Link href={ctaSecondaryHref || '#'}>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="px-6 py-2.5 sm:px-8 sm:py-3 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 rounded-full font-bold text-xs sm:text-sm transition-all shadow-sm"
+                                >
+                                    {ctaSecondaryText}
+                                </motion.button>
+                            </Link>
+                        )}
+                    </motion.div>
                 )}
 
             </div>
