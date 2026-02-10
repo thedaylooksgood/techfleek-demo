@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname } from "next/navigation";
+import { Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -22,7 +23,9 @@ export default function LayoutContent({
 
     return (
         <>
-            <SmoothScroll />
+            <Suspense fallback={null}>
+                <SmoothScroll />
+            </Suspense>
             <Header />
             <main className="flex-grow">
                 {children}

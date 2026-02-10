@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import {
     Code2, Database, Globe, Server, Laptop, Monitor, Terminal,
     ShieldCheck, Settings, Workflow, Users, CheckCircle2, Rocket,
-    Puzzle, BarChart
+    Puzzle, BarChart, Headphones
 } from 'lucide-react';
 import PageTemplate from '@/components/Common/PageTemplate';
 import PageHero from '@/components/Common/PageHero';
