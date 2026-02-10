@@ -113,11 +113,21 @@ const VerticalMarquee = ({
     );
 };
 
-const TechStack = () => {
+interface TechStackProps {
+    items?: { name: string; icon: string; color: string }[];
+    title?: React.ReactNode;
+    description?: string;
+}
+
+const TechStack: React.FC<TechStackProps> = ({
+    items = allTechItems,
+    title = <>All the Tech <br /><span className={homeStyles.gradientText}>You Need to Build</span></>,
+    description = "Techfleek uses a premium stack to connect users with seamless experiences. Choose from modern frameworks, robust backends, and scalable cloud solutions."
+}) => {
     // Split items for two columns
-    const half = Math.ceil(allTechItems.length / 2);
-    const col1Items = allTechItems.slice(0, half);
-    const col2Items = allTechItems.slice(half);
+    const half = Math.ceil(items.length / 2);
+    const col1Items = items.slice(0, half);
+    const col2Items = items.slice(half);
 
     return (
         <section
@@ -140,11 +150,10 @@ const TechStack = () => {
                                         04 — Tech Stack
                                     </span>
                                     <h2 className={homeStyles.title}>
-                                        All the Tech <br />
-                                        <span className={homeStyles.gradientText}>You Need to Build</span>
+                                        {title}
                                     </h2>
                                     <p className={homeStyles.description}>
-                                        Techfleek uses a premium stack to connect users with seamless experiences. Choose from modern frameworks, robust backends, and scalable cloud solutions.
+                                        {description}
                                     </p>
                                 </div>
                             </div>

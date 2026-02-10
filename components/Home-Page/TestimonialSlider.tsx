@@ -33,7 +33,27 @@ const testimonials = [
     }
 ];
 
-const TestimonialSlider: React.FC = () => {
+export interface Testimonial {
+    id: number;
+    name: string;
+    rating: number;
+    date: string;
+    userImage: string;
+    text: string;
+}
+
+interface TestimonialSliderProps {
+    title?: string;
+    subtitle?: string;
+    data?: Testimonial[];
+}
+
+const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
+    title = "Customer",
+    subtitle = "Reviews",
+    data = testimonials
+}) => {
+    const activeTestimonials = data;
     const [currentIndex, setCurrentIndex] = useState(1);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -51,7 +71,7 @@ const TestimonialSlider: React.FC = () => {
     // Calculate position index relative to current index for the carousel
     // 0 = Top, 1 = Middle (Active), 2 = Bottom
     const getPositionIndex = (itemIndex: number) => {
-        const diff = (itemIndex - currentIndex + testimonials.length) % testimonials.length;
+        const diff = (itemIndex - currentIndex + activeTestimonials.length) % activeTestimonials.length;
         // Map standard diff to our visual slots:
         // diff 0 -> Middle (Active) -> Visual Index 1
         // diff 1 -> Bottom (Next) -> Visual Index 2
@@ -82,7 +102,7 @@ const TestimonialSlider: React.FC = () => {
                             Testimonials
                         </span>
                         <h2 className={`${homeStyles.title} mt-2`}>
-                            Customer <span className={homeStyles.gradientText}>Reviews</span>
+                            {title} <span className={homeStyles.gradientText}>{subtitle}</span>
                         </h2>
                     </div>
 
@@ -97,29 +117,29 @@ const TestimonialSlider: React.FC = () => {
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="relative w-12 h-12 rounded-full overflow-hidden border border-blue-100 shrink-0">
                                     <Image
-                                        src={testimonials[currentIndex].userImage}
-                                        alt={testimonials[currentIndex].name}
+                                        src={activeTestimonials[currentIndex].userImage}
+                                        alt={activeTestimonials[currentIndex].name}
                                         fill
                                         className="object-cover"
                                     />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-slate-900 leading-tight">{testimonials[currentIndex].name}</h4>
+                                    <h4 className="font-bold text-slate-900 leading-tight">{activeTestimonials[currentIndex].name}</h4>
                                     <div className="flex items-center gap-1.5 mt-1">
                                         <Star className="w-3 h-3 fill-current text-[#3C8ECB]" />
-                                        <span className="text-xs font-bold text-blue-700">{testimonials[currentIndex].rating}</span>
-                                        <span className="text-[10px] text-slate-400">on {testimonials[currentIndex].date}</span>
+                                        <span className="text-xs font-bold text-blue-700">{activeTestimonials[currentIndex].rating}</span>
+                                        <span className="text-[10px] text-slate-400">on {activeTestimonials[currentIndex].date}</span>
                                     </div>
                                 </div>
                             </div>
                             <p className="text-slate-600 italic leading-snug font-serif text-sm">
-                                "{testimonials[currentIndex].text}"
+                                "{activeTestimonials[currentIndex].text}"
                             </p>
                         </motion.div>
                     </AnimatePresence>
 
                     <div className="flex justify-center gap-1.5 mt-6">
-                        {testimonials.map((_, i) => (
+                        {activeTestimonials.map((_, i) => (
                             <button
                                 key={i}
                                 onClick={() => setCurrentIndex(i)}
@@ -148,7 +168,7 @@ const TestimonialSlider: React.FC = () => {
                         Testimonials
                     </span>
                     <h2 className={homeStyles.title}>
-                        Customer <span className={homeStyles.gradientText}>Reviews</span>
+                        {title} <span className={homeStyles.gradientText}>{subtitle}</span>
                     </h2>
                 </div>
 
@@ -170,7 +190,7 @@ const TestimonialSlider: React.FC = () => {
                             />
                         </svg>
 
-                        {testimonials.map((item, index) => {
+                        {activeTestimonials.map((item, index) => {
                             const posIndex = getPositionIndex(index);
                             const isSelected = posIndex === 1;
 
@@ -257,7 +277,7 @@ const TestimonialSlider: React.FC = () => {
                             >
                                 <p className="text-[20px] lg:text-[24px] leading-[1.8] text-slate-700 font-serif italic tracking-wide">
                                     <span className="text-[72px] float-left mr-4 mt-[-18px] leading-[0.8] font-serif italic text-blue-800/80">O</span>
-                                    {testimonials[currentIndex].text.substring(1)}
+                                    {activeTestimonials[currentIndex].text.substring(1)}
                                 </p>
 
                                 {/* Small signature line */}

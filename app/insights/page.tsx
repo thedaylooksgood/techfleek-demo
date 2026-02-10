@@ -103,11 +103,6 @@ export default function InsightsPage() {
                     { label: "Home", href: "/" },
                     { label: "Insights" }
                 ]}
-                showCTA={true}
-                ctaPrimaryText="Subscribe"
-                ctaPrimaryHref="/enquiry"
-                ctaSecondaryText="Contact Us"
-                ctaSecondaryHref="/enquiry"
             />
 
             {/* Featured Insights Section */}

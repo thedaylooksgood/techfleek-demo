@@ -119,7 +119,7 @@ export default function Footer() {
                             { name: 'Home', href: '/' },
                             { name: 'About Us', href: '/about-us' },
                             { name: 'Services', href: '/services' },
-                            { name: 'Careers', href: '/careers' }
+                            { name: 'Careers', href: '/job-posting' }
                         ]} />
 
                         <FooterColumn title="Services" links={[

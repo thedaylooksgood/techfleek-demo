@@ -110,11 +110,6 @@ export default function CaseStudyPage() {
                     { label: "Home", href: "/" },
                     { label: "Case Studies" }
                 ]}
-                showCTA={true}
-                ctaPrimaryText="Start Your Project"
-                ctaPrimaryHref="/enquiry"
-                ctaSecondaryText="View Services"
-                ctaSecondaryHref="/services"
             />
 
             {/* Featured Case Studies Section */}
