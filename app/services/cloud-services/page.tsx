@@ -173,7 +173,7 @@ export default function CloudServicesPage() {
                             alt="Cloud Services"
                             width={600}
                             height={400}
-                            className="w-full h-auto object-cover"
+                            className="w-full h-[250px] object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                         <div className="absolute bottom-6 left-6 text-white p-4">
