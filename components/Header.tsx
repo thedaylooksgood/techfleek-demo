@@ -117,14 +117,14 @@ const BLOG_POSTS = [
     excerpt: "How we're integrating intelligence into every product.",
     date: "Oct 2025",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80",
-    href: "#", // blogs folder missing in app directory
+    href: "/insights",
   },
   {
     title: "Design Systems at Scale",
     excerpt: "Lessons from building component libraries.",
     date: "Nov 2025",
     image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=400&q=80",
-    href: "#", // blogs folder missing in app directory
+    href: "/insights",
   },
 ];
 
@@ -169,8 +169,8 @@ export default function Header() {
       {/* ========== HEADER BAR ========== */}
       <header
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${scrolled || activeMenu
-          ? "bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.08)] border-b border-gray-100"
-          : "bg-white/70 backdrop-blur-md border-b border-transparent"
+          ? "bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08)] border-b border-gray-100"
+          : "bg-white border-b border-transparent"
           }`}
       >
         <div className={homeStyles.container}>
@@ -219,10 +219,10 @@ export default function Header() {
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.97 }}
-                  className="relative overflow-hidden group px-7 py-3 rounded-full bg-gradient-to-r from-[#3C8ECB] to-[#6366f1] text-white text-sm font-bold shadow-lg shadow-[#3C8ECB]/25 hover:shadow-xl hover:shadow-[#3C8ECB]/30 transition-all duration-300"
+                  className="relative overflow-hidden group px-7 py-3 rounded-full bg-gradient-to-r from-[#3C8ECB] to-[#6366f1] text-white text-sm font-bold shadow-lg shadow-[#3C8ECB]/25 hover:shadow-xl hover:shadow-[#3C8ECB]/30 transition-all duration-300 cursor-pointer"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    Let's Talk <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    Contact Us <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#3C8ECB] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.button>
@@ -383,8 +383,8 @@ export default function Header() {
                         {["Engineering", "Design", "Product", "Company News", "Careers"].map((topic, i) => (
                           <li key={i}>
                             <Link
-                              href="#"
-                              className="group flex items-center justify-between py-2 text-base font-medium text-gray-700 hover:text-[#3C8ECB] transition-colors"
+                              href="/insights"
+                              className="group flex items-center justify-between py-2 text-base font-medium text-gray-700 hover:text-[#3C8ECB] transition-colors cursor-pointer"
                             >
                               {topic}
                               <ChevronRight
@@ -452,7 +452,7 @@ export default function Header() {
                 </div>
 
                 <MobileLink href="/case-study" label="Case Studies" onClick={() => setIsMobileOpen(false)} />
-                <MobileLink href="#" label="Insights" onClick={() => setIsMobileOpen(false)} />
+                <MobileLink href="/insights" label="Insights" onClick={() => setIsMobileOpen(false)} />
                 <MobileLink href="/job-posting" label="Careers" onClick={() => setIsMobileOpen(false)} />
               </nav>
             </div>

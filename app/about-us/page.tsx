@@ -42,6 +42,11 @@ const services = [
         category: "UI/UX Design",
         icon: Palette,
         items: ["Interface Design", "UX Strategy", "Prototyping", "Design Systems"]
+    },
+    {
+        category: "Cloud & DevOps",
+        icon: Cloud,
+        items: ["AWS & Azure", "Docker & Kubernetes", "CI/CD Pipelines", "Serverless Solutions"]
     }
 ];
 
@@ -115,6 +120,40 @@ const director = {
         "Cloud-native architecture specialist"
     ]
 };
+
+// Team Members Data
+const teamMembers = [
+    {
+        name: "Sarah Jenkins",
+        role: "Head of Design",
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        name: "Michael Chen",
+        role: "Senior Developer",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        name: "Emily Davis",
+        role: "Project Manager",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        name: "David Wilson",
+        role: "Backend Architect",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        name: "Jessica Lee",
+        role: "UI/UX Designer",
+        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        name: "James Taylor",
+        role: "DevOps Engineer",
+        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80"
+    }
+];
 
 // Floating animation variants
 const floatVariants = {
@@ -245,6 +284,57 @@ export default function AboutUsPage() {
                                 Founded in 2024, we are a professional software development company delivering high-quality web, mobile, and blockchain solutions for startups, enterprises, and growing businesses worldwide.
                             </p>
                         </motion.div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Team Section */}
+            <div className="w-full bg-slate-50 relative font-[family-name:var(--font-red-hat)] py-12 md:py-16">
+                <div className="w-full max-w-[1250px] mx-auto relative z-10 px-4 sm:px-6 md:px-8">
+                    <div className="mb-16 text-center">
+                        <span className="inline-block text-[#3C8ECB] font-bold tracking-widest uppercase text-xs mb-2">
+                            OUR TEAM
+                        </span>
+                        <h2 className="font-black text-slate-900 text-2xl md:text-3xl lg:text-[36px] leading-[1.1]">
+                            Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3C8ECB] to-indigo-500">Exceptional Minds</span>
+                        </h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12 pb-12">
+                        {teamMembers.map((member, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.15, duration: 0.6 }}
+                                viewport={{ once: true }}
+                                className={`group relative w-full max-w-[280px] mx-auto ${
+                                    /* Desktop stagger effect: Middle column stays high, sides push down */
+                                    index % 3 !== 1 ? 'lg:translate-y-12' : ''
+                                    }`}
+                            >
+                                <div className="aspect-[3/4] overflow-hidden rounded-[2rem] bg-white relative shadow-sm group-hover:shadow-2xl transition-all duration-500">
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    {/* Gradient Overlay for better pill contrast if needed */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-60" />
+                                </div>
+
+                                {/* Floating Pill Label */}
+                                <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full overflow-hidden transition-transform duration-300 hover:scale-105">
+                                    <div className="bg-[#0f172a] text-white px-4 h-9 flex items-center justify-center font-bold text-[10px] tracking-wide whitespace-nowrap min-w-[80px]">
+                                        {member.name}
+                                    </div>
+                                    <div className="bg-white text-slate-900 px-4 h-9 flex items-center justify-center font-bold text-[10px] tracking-wide whitespace-nowrap min-w-[100px]">
+                                        {member.role}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -428,7 +518,7 @@ export default function AboutUsPage() {
                         </h2>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
                         {services.map((service, index) => (
                             <motion.div
                                 key={index}

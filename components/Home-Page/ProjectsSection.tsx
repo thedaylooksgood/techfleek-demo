@@ -99,7 +99,7 @@ const ProjectsSection = () => {
                     </div>
 
                     <Link href="/projects" passHref>
-                        <button className="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-[#3C8ECB] transition-colors group mt-4 md:mt-0">
+                        <button className="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-[#3C8ECB] transition-colors group mt-4 md:mt-0 cursor-pointer">
                             See more Projects
                             <span className="bg-[#3C8ECB] p-1.5 rounded-full group-hover:scale-110 transition-transform duration-300 ml-2">
                                 <ArrowRight className="w-3 h-3 text-white" />
@@ -192,49 +192,51 @@ const Card = ({ project, cardX, cardWidth, cardGap }: CardProps) => {
     const opacity = useTransform(cardX, inputRange, [0.5, 1, 0.5]);
 
     return (
-        <motion.div
-            className="absolute"
-            style={{
-                width: cardWidth,
-                height: cardWidth * 1.3,
-                x: cardX,
-                y,
-                z,
-                rotateY,
-                scale,
-                opacity,
-                zIndex: useTransform(cardX, (curr: number) => 100 - Math.abs(curr / 10)),
-                transformStyle: 'preserve-3d',
-            }}
-        >
-            <div className="w-full h-full rounded-[2rem] overflow-hidden shadow-2xl relative bg-white group border border-white/50 ring-1 ring-slate-100 transition-all duration-500">
-                {/* Fallback pattern if image is missing/loading */}
-                <div className="absolute inset-0 bg-gray-200 animate-pulse -z-20" />
+        <Link href="/projects" scroll={true} onClick={() => window.scrollTo(0, 0)}>
+            <motion.div
+                className="absolute"
+                style={{
+                    width: cardWidth,
+                    height: cardWidth * 1.3,
+                    x: cardX,
+                    y,
+                    z,
+                    rotateY,
+                    scale,
+                    opacity,
+                    zIndex: useTransform(cardX, (curr: number) => 100 - Math.abs(curr / 10)),
+                    transformStyle: 'preserve-3d',
+                }}
+            >
+                <div className="w-full h-full rounded-[2rem] overflow-hidden shadow-2xl relative bg-white group border border-white/50 ring-1 ring-slate-100 transition-all duration-500 cursor-pointer">
+                    {/* Fallback pattern if image is missing/loading */}
+                    <div className="absolute inset-0 bg-gray-200 animate-pulse -z-20" />
 
-                {/* Main Image with fallback handler */}
-                <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes={`${cardWidth}px`}
-                    priority={project.id <= 4}
-                />
+                    {/* Main Image with fallback handler */}
+                    <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes={`${cardWidth}px`}
+                        priority={project.id <= 4}
+                    />
 
-                {/* Visual Overlay - Refined for better text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
+                    {/* Visual Overlay - Refined for better text contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
 
-                {/* Glassmorphism Badge for Text */}
-                <div className="absolute bottom-6 left-6 right-6">
-                    <div className="overflow-hidden relative">
-                        <h3 className="text-white font-bold text-xl drop-shadow-md transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                            {project.title}
-                        </h3>
-                        <div className="h-1 w-12 bg-[#3C8ECB] mt-3 rounded-full transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 delay-100" />
+                    {/* Glassmorphism Badge for Text */}
+                    <div className="absolute bottom-6 left-6 right-6">
+                        <div className="overflow-hidden relative">
+                            <h3 className="text-white font-bold text-xl drop-shadow-md transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                {project.title}
+                            </h3>
+                            <div className="h-1 w-12 bg-[#3C8ECB] mt-3 rounded-full transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 delay-100" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </motion.div>
+            </motion.div>
+        </Link>
     );
 };
 

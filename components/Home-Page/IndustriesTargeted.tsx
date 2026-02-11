@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Link from 'next/link';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { homeStyles } from './styles';
 
@@ -10,15 +11,15 @@ const industries = [
         id: 1,
         title: 'Healthcare & Medical',
         description: 'HIPAA-compliant telemedicine, patient management, and health monitoring solutions.',
-        color: '#3b82f6',
-        gradient: 'from-blue-500 to-cyan-400',
+        color: '#0ea5e9',
+        gradient: 'from-sky-500 to-blue-400',
     },
     {
         id: 2,
         title: 'E-Commerce & Retail',
         description: 'Multi-vendor marketplaces, D2C platforms with seamless checkout and inventory.',
-        color: '#f97316',
-        gradient: 'from-orange-500 to-amber-400',
+        color: '#0ea5e9',
+        gradient: 'from-sky-500 to-blue-400',
     },
     {
         id: 3,
@@ -31,36 +32,36 @@ const industries = [
         id: 4,
         title: 'Real Estate & Property',
         description: 'Listing portals, virtual tours, and rental management systems.',
-        color: '#8b5cf6',
-        gradient: 'from-violet-500 to-purple-400',
+        color: '#0ea5e9',
+        gradient: 'from-sky-500 to-blue-400',
     },
     {
         id: 5,
         title: 'Education & E-Learning',
         description: 'LMS platforms, virtual classrooms with progress tracking and certifications.',
-        color: '#ec4899',
-        gradient: 'from-pink-500 to-rose-400',
+        color: '#0ea5e9',
+        gradient: 'from-sky-500 to-blue-400',
     },
     {
         id: 6,
         title: 'Logistics & Supply Chain',
         description: 'Fleet management, warehouse automation, and real-time tracking solutions.',
-        color: '#f59e0b',
-        gradient: 'from-amber-500 to-yellow-400',
+        color: '#0ea5e9',
+        gradient: 'from-sky-500 to-blue-400',
     },
     {
         id: 7,
         title: 'SaaS & Cloud',
         description: 'Cloud-native software with multi-tenancy, subscriptions, and enterprise security.',
-        color: '#06b6d4',
-        gradient: 'from-cyan-500 to-sky-400',
+        color: '#0ea5e9',
+        gradient: 'from-sky-500 to-blue-400',
     },
     {
         id: 8,
         title: 'Travel & Hospitality',
         description: 'Booking platforms, hotel management, and travel experience applications.',
-        color: '#6366f1',
-        gradient: 'from-indigo-500 to-blue-400',
+        color: '#0ea5e9',
+        gradient: 'from-sky-500 to-blue-400',
     },
 ];
 
@@ -157,63 +158,67 @@ export default function IndustriesTargeted() {
 
                     {/* CTA Buttons */}
                     <div className="flex items-center gap-3 flex-wrap shrink-0 mt-4 lg:mt-0">
-                        <motion.button
-                            className="font-semibold text-white rounded-full relative overflow-hidden group"
-                            style={{
-                                padding: isMobile ? '12px 20px' : '12px 28px',
-                                fontSize: isMobile ? '13px' : '14px',
-                                background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)',
-                                boxShadow: '0 4px 20px rgba(60, 142, 203, 0.35)'
-                            }}
-                            whileHover={{
-                                scale: 1.05,
-                                y: -2,
-                                boxShadow: '0 12px 35px rgba(60, 142, 203, 0.45)'
-                            }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        >
-                            <span className="relative z-10 flex items-center gap-2">
-                                Become a Client
+                        <Link href="/enquiry" scroll={true} onClick={() => window.scrollTo(0, 0)}>
+                            <motion.button
+                                className="font-semibold text-white rounded-full relative overflow-hidden group cursor-pointer"
+                                style={{
+                                    padding: isMobile ? '12px 20px' : '12px 28px',
+                                    fontSize: isMobile ? '13px' : '14px',
+                                    background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)',
+                                    boxShadow: '0 4px 20px rgba(60, 142, 203, 0.35)'
+                                }}
+                                whileHover={{
+                                    scale: 1.05,
+                                    y: -2,
+                                    boxShadow: '0 12px 35px rgba(60, 142, 203, 0.45)'
+                                }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            >
+                                <span className="relative z-10 flex items-center gap-2">
+                                    Become a Client
+                                    <motion.div
+                                        whileHover={{ x: 3 }}
+                                        transition={{ type: "spring", stiffness: 400 }}
+                                    >
+                                        <ArrowRight className="w-4 h-4" />
+                                    </motion.div>
+                                </span>
                                 <motion.div
-                                    whileHover={{ x: 3 }}
-                                    transition={{ type: "spring", stiffness: 400 }}
-                                >
-                                    <ArrowRight className="w-4 h-4" />
-                                </motion.div>
-                            </span>
-                            <motion.div
-                                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                style={{ background: 'linear-gradient(135deg, #2563EB 0%, #3C8ECB 100%)' }}
-                            />
-                        </motion.button>
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                    style={{ background: 'linear-gradient(135deg, #2563EB 0%, #3C8ECB 100%)' }}
+                                />
+                            </motion.button>
+                        </Link>
 
-                        <motion.button
-                            className="font-semibold rounded-full border-2 border-[#3C8ECB]/30 bg-white/90 backdrop-blur-sm hover:border-[#3C8ECB]/60 hover:bg-[#3C8ECB]/5 transition-all duration-300"
-                            style={{
-                                padding: isMobile ? '12px 20px' : '12px 28px',
-                                fontSize: isMobile ? '13px' : '14px',
-                                color: '#3C8ECB'
-                            }}
-                            whileHover={{
-                                scale: 1.05,
-                                y: -2,
-                                boxShadow: '0 8px 25px rgba(60, 142, 203, 0.15)'
-                            }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        >
-                            <span className="flex items-center gap-2">
-                                View Case Studies
-                                <motion.span
-                                    className="inline-block"
-                                    whileHover={{ x: 3 }}
-                                    transition={{ type: "spring", stiffness: 400 }}
-                                >
-                                    →
-                                </motion.span>
-                            </span>
-                        </motion.button>
+                        <Link href="/case-study" scroll={true} onClick={() => window.scrollTo(0, 0)}>
+                            <motion.button
+                                className="font-semibold rounded-full border-2 border-[#3C8ECB]/30 bg-white/90 backdrop-blur-sm hover:border-[#3C8ECB]/60 hover:bg-[#3C8ECB]/5 transition-all duration-300 cursor-pointer"
+                                style={{
+                                    padding: isMobile ? '12px 20px' : '12px 28px',
+                                    fontSize: isMobile ? '13px' : '14px',
+                                    color: '#3C8ECB'
+                                }}
+                                whileHover={{
+                                    scale: 1.05,
+                                    y: -2,
+                                    boxShadow: '0 8px 25px rgba(60, 142, 203, 0.15)'
+                                }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            >
+                                <span className="flex items-center gap-2">
+                                    View Case Studies
+                                    <motion.span
+                                        className="inline-block"
+                                        whileHover={{ x: 3 }}
+                                        transition={{ type: "spring", stiffness: 400 }}
+                                    >
+                                        →
+                                    </motion.span>
+                                </span>
+                            </motion.button>
+                        </Link>
                     </div>
                 </div>
 
@@ -232,120 +237,121 @@ export default function IndustriesTargeted() {
                         const isHovered = hoveredCard === index;
 
                         return (
-                            <motion.div
-                                key={industry.id}
-                                className="relative cursor-pointer overflow-hidden group"
-                                style={{
-                                    borderRadius: isMobile ? '14px' : '16px',
-                                    background: isHovered ? industry.color : 'white',
-                                    padding: isMobile ? '14px' : isTablet ? '18px' : 'clamp(18px, 1.5vw, 24px)',
-                                    minHeight: isMobile ? '130px' : '150px',
-                                    border: isHovered ? 'none' : '1px solid rgba(229, 231, 235, 0.8)',
-                                    boxShadow: isHovered
-                                        ? `0 25px 50px ${industry.color}50`
-                                        : '0 4px 20px rgba(0, 0, 0, 0.04)',
-                                    transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                                }}
-                                variants={cardVariants}
-                                onMouseEnter={() => setHoveredCard(index)}
-                                onMouseLeave={() => setHoveredCard(null)}
-                                whileHover={{
-                                    y: -8,
-                                    scale: 1.02
-                                }}
-                                whileTap={{ scale: 0.98 }}
-                            >
-                                {/* Gradient overlay on hover (white cards) */}
-                                {!isHovered && (
-                                    <div
-                                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-                                        style={{
-                                            background: `linear-gradient(135deg, ${industry.color}08 0%, ${industry.color}15 100%)`
-                                        }}
-                                    />
-                                )}
-
-                                {/* Decorative flower shape on hover */}
+                            <Link href="/services" passHref key={industry.id}>
                                 <motion.div
-                                    className="absolute pointer-events-none"
+                                    className="relative cursor-pointer overflow-hidden group h-full"
                                     style={{
-                                        right: '-35px',
-                                        bottom: '-35px',
-                                        width: '150px',
-                                        height: '150px',
-                                        opacity: isHovered ? 0.35 : 0,
-                                        transition: 'opacity 0.4s ease'
+                                        borderRadius: isMobile ? '14px' : '16px',
+                                        background: isHovered ? industry.color : 'white',
+                                        padding: isMobile ? '14px' : isTablet ? '18px' : 'clamp(18px, 1.5vw, 24px)',
+                                        minHeight: isMobile ? '130px' : '150px',
+                                        border: isHovered ? 'none' : '1px solid rgba(229, 231, 235, 0.8)',
+                                        boxShadow: isHovered
+                                            ? `0 25px 50px ${industry.color}50`
+                                            : '0 4px 20px rgba(0, 0, 0, 0.04)',
+                                        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                                     }}
-                                    animate={isHovered ? {
-                                        rotate: [0, 10, 0],
-                                        scale: [0.9, 1, 0.9]
-                                    } : {}}
-                                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                    variants={cardVariants}
+                                    onMouseEnter={() => setHoveredCard(index)}
+                                    onMouseLeave={() => setHoveredCard(null)}
+                                    whileHover={{
+                                        y: -8,
+                                        scale: 1.02
+                                    }}
+                                    whileTap={{ scale: 0.98 }}
                                 >
-                                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="50" cy="30" r="25" fill="white" />
-                                        <circle cx="30" cy="55" r="25" fill="white" />
-                                        <circle cx="70" cy="55" r="25" fill="white" />
-                                        <circle cx="50" cy="70" r="25" fill="white" />
-                                        <circle cx="50" cy="50" r="20" fill="white" />
-                                    </svg>
-                                </motion.div>
-
-                                {/* Content */}
-                                <div className="relative z-10 h-full flex flex-col justify-between">
-                                    {/* Number badge */}
-                                    <motion.span
-                                        className="font-bold mb-1"
-                                        style={{
-                                            fontSize: isMobile ? '11px' : 'clamp(11px, 1vw, 13px)',
-                                            color: isHovered ? 'rgba(255,255,255,0.7)' : industry.color,
-                                            transition: 'color 0.3s ease'
-                                        }}
-                                    >
-                                        0{index + 1}
-                                    </motion.span>
-
-                                    {/* Title */}
-                                    <h3
-                                        className="font-bold mb-2 transition-colors duration-300"
-                                        style={{
-                                            fontSize: cardTitleSize,
-                                            color: isHovered ? 'white' : '#1a1a2e',
-                                            lineHeight: '1.25'
-                                        }}
-                                    >
-                                        {industry.title}
-                                    </h3>
-
-                                    {/* Description */}
-                                    <p
-                                        className="transition-colors duration-300"
-                                        style={{
-                                            fontSize: cardDescSize,
-                                            color: isHovered ? 'rgba(255,255,255,0.9)' : '#6b7280',
-                                            lineHeight: '1.5'
-                                        }}
-                                    >
-                                        {industry.description}
-                                    </p>
-
-                                    {/* Arrow indicator on hover */}
-                                    <motion.div
-                                        className="mt-3"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{
-                                            opacity: isHovered ? 1 : 0,
-                                            x: isHovered ? 0 : -10
-                                        }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <ArrowRight
-                                            className="w-5 h-5"
-                                            style={{ color: 'white' }}
+                                    {/* Gradient overlay on hover (white cards) */}
+                                    {!isHovered && (
+                                        <div
+                                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
+                                            style={{
+                                                background: `linear-gradient(135deg, ${industry.color}08 0%, ${industry.color}15 100%)`
+                                            }}
                                         />
+                                    )}
+
+                                    {/* Decorative flower shape on hover */}
+                                    <motion.div
+                                        className="absolute pointer-events-none"
+                                        style={{
+                                            right: '-35px',
+                                            bottom: '-35px',
+                                            width: '150px',
+                                            height: '150px',
+                                            opacity: isHovered ? 0.35 : 0,
+                                            transition: 'opacity 0.4s ease'
+                                        }}
+                                        animate={isHovered ? {
+                                            rotate: [0, 10, 0],
+                                            scale: [0.9, 1, 0.9]
+                                        } : {}}
+                                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                    >
+                                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="50" cy="30" r="25" fill="white" />
+                                            <circle cx="30" cy="55" r="25" fill="white" />
+                                            <circle cx="70" cy="55" r="25" fill="white" />
+                                            <circle cx="50" cy="70" r="25" fill="white" />
+                                            <circle cx="50" cy="50" r="20" fill="white" />
+                                        </svg>
                                     </motion.div>
-                                </div>
-                            </motion.div>
+
+                                    {/* Content */}
+                                    <div className="relative z-10 h-full flex flex-col justify-between">
+                                        {/* Number badge */}
+                                        <motion.span
+                                            className="font-bold mb-1"
+                                            style={{
+                                                fontSize: isMobile ? '11px' : 'clamp(11px, 1vw, 13px)',
+                                                color: isHovered ? 'rgba(255,255,255,0.7)' : industry.color,
+                                                transition: 'color 0.3s ease'
+                                            }}
+                                        >
+                                            0{index + 1}
+                                        </motion.span>
+
+                                        {/* Title */}
+                                        <h3
+                                            className="font-bold mb-2 transition-colors duration-300"
+                                            style={{
+                                                fontSize: cardTitleSize,
+                                                color: isHovered ? 'white' : '#1a1a2e',
+                                                lineHeight: '1.25'
+                                            }}
+                                        >
+                                            {industry.title}
+                                        </h3>
+
+                                        {/* Description */}
+                                        <p
+                                            className="transition-colors duration-300"
+                                            style={{
+                                                fontSize: cardDescSize,
+                                                color: isHovered ? 'rgba(255,255,255,0.9)' : '#6b7280',
+                                                lineHeight: '1.5'
+                                            }}
+                                        >
+                                            {industry.description}
+                                        </p>
+
+                                        {/* Arrow indicator on hover */}
+                                        <motion.div
+                                            className="mt-3"
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{
+                                                opacity: isHovered ? 1 : 0,
+                                                x: isHovered ? 0 : -10
+                                            }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <ArrowRight
+                                                className="w-5 h-5"
+                                                style={{ color: 'white' }}
+                                            />
+                                        </motion.div>
+                                    </div>
+                                </motion.div>
+                            </Link>
                         );
                     })}
                 </motion.div>

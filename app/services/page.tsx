@@ -160,7 +160,7 @@ function IndustrySolutionsTabs({ categories }: { categories: typeof serviceCateg
                     <button
                         key={index}
                         onClick={() => setActiveIndex(index)}
-                        className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${activeIndex === index
+                        className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer ${activeIndex === index
                             ? 'text-white shadow-lg'
                             : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                             }`}
@@ -197,7 +197,7 @@ function IndustrySolutionsTabs({ categories }: { categories: typeof serviceCateg
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: svcIndex * 0.05, duration: 0.3 }}
                             whileHover={{ y: -4 }}
-                            className="group bg-white hover:bg-white rounded-xl p-4 border border-slate-100 hover:border-[#3C8ECB]/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                            className="group bg-white hover:bg-white rounded-xl p-4 border border-slate-100 hover:border-[#3C8ECB]/30 hover:shadow-lg transition-all duration-300"
                         >
                             <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-colors"
                                 style={{ backgroundColor: `${activeCategory.color}15` }}>
@@ -349,7 +349,7 @@ export default function ServicesPage() {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#3C8ECB] hover:bg-[#3C8ECB]/90 text-white rounded-full font-bold text-sm transition-colors"
+                                className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#3C8ECB] hover:bg-[#3C8ECB]/90 text-white rounded-full font-bold text-sm transition-colors cursor-pointer"
                             >
                                 Get a Free Quote
                                 <ArrowRight size={16} />

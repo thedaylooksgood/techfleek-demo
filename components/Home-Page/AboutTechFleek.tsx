@@ -102,7 +102,7 @@ const AboutTechFleek = () => {
                 boxShadow: "0 20px 40px rgba(99, 102, 241, 0.15)"
             }}
             whileTap={{ scale: 0.98 }}
-            className="relative bg-white rounded-2xl lg:rounded-3xl overflow-hidden cursor-pointer group"
+            className="relative bg-white rounded-2xl lg:rounded-3xl overflow-hidden group h-full"
             style={{
                 padding: isMobile ? '16px' : isTablet ? '18px' : 'clamp(18px, 2vw, 28px)',
                 border: '1px solid rgba(229, 231, 235, 0.8)',
@@ -132,7 +132,7 @@ const AboutTechFleek = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <Icon
-                        className="text-indigo-600 relative z-10"
+                        className="text-blue-400 relative z-10"
                         style={{
                             width: isMobile ? '20px' : isTablet ? '22px' : 'clamp(22px, 2vw, 28px)',
                             height: isMobile ? '20px' : isTablet ? '22px' : 'clamp(22px, 2vw, 28px)'
@@ -143,7 +143,7 @@ const AboutTechFleek = () => {
                 <div className="flex-1">
                     {/* Number badge */}
                     <span
-                        className="font-bold bg-gradient-to-r from-indigo-200 to-purple-200 bg-clip-text text-transparent"
+                        className="font-bold bg-gradient-to-r from-blue-400 to-blue-400 bg-clip-text text-transparent"
                         style={{ fontSize: isMobile ? '11px' : 'clamp(11px, 1vw, 13px)' }}
                     >
                         {number}
@@ -151,7 +151,7 @@ const AboutTechFleek = () => {
 
                     {/* Title with gradient on hover */}
                     <h3
-                        className="font-bold text-gray-900 group-hover:text-indigo-700 transition-colors duration-300"
+                        className="font-bold text-gray-900 group-hover:text-blue-400 transition-colors duration-300"
                         style={{
                             fontSize: isMobile ? '14px' : isTablet ? '15px' : 'clamp(14px, 1.3vw, 18px)',
                             lineHeight: '1.3',
@@ -221,9 +221,9 @@ const AboutTechFleek = () => {
                             paddingBottom: isMobile ? '0' : '4px' // align with text baseline roughly or just padding
                         }}
                     >
-                        <Link href="/enquiry">
+                        <Link href="/about-us">
                             <motion.button
-                                className="font-semibold text-white rounded-full relative overflow-hidden group"
+                                className="font-semibold text-white rounded-full relative overflow-hidden group cursor-pointer"
                                 style={{
                                     padding: isMobile ? '12px 24px' : 'clamp(12px, 1.2vh, 16px) clamp(24px, 2.5vw, 36px)',
                                     fontSize: isMobile ? '13px' : 'clamp(13px, 1vw, 15px)',
@@ -239,7 +239,7 @@ const AboutTechFleek = () => {
                                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
                             >
                                 <span className="relative z-10 flex items-center gap-2">
-                                    Get Quotes
+                                    Know More About Us
                                     <motion.span
                                         className="inline-block"
                                         whileHover={{ x: 3 }}
@@ -252,34 +252,6 @@ const AboutTechFleek = () => {
                                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                     style={{ background: 'linear-gradient(135deg, #2563EB 0%, #3C8ECB 100%)' }}
                                 />
-                            </motion.button>
-                        </Link>
-                        <Link href="/enquiry">
-                            <motion.button
-                                className="font-semibold rounded-full border-2 border-[#3C8ECB]/30 bg-white/90 backdrop-blur-sm hover:border-[#3C8ECB]/60 hover:bg-[#3C8ECB]/5 transition-all duration-300"
-                                style={{
-                                    padding: isMobile ? '12px 24px' : 'clamp(12px, 1.2vh, 16px) clamp(24px, 2.5vw, 36px)',
-                                    fontSize: isMobile ? '13px' : 'clamp(13px, 1vw, 15px)',
-                                    color: '#3C8ECB'
-                                }}
-                                whileHover={{
-                                    scale: 1.05,
-                                    y: -2,
-                                    boxShadow: '0 8px 25px rgba(60, 142, 203, 0.15)'
-                                }}
-                                whileTap={{ scale: 0.95 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                            >
-                                <span className="flex items-center gap-2">
-                                    Connect Us
-                                    <motion.span
-                                        className="inline-block"
-                                        whileHover={{ rotate: 45 }}
-                                        transition={{ type: "spring", stiffness: 400 }}
-                                    >
-                                        ↗
-                                    </motion.span>
-                                </span>
                             </motion.button>
                         </Link>
                     </motion.div>
@@ -333,7 +305,7 @@ const AboutTechFleek = () => {
                             transition={floatTransition}
                         >
                             <img
-                                src="/Home-Page/about-techfleek-illustration.svg"
+                                src="/Home-Page/about-us.png"
                                 alt="Professional Team"
                                 className="w-full h-auto object-contain drop-shadow-2xl"
                                 style={{ maxHeight: '100%' }}

@@ -26,7 +26,7 @@ import { homeStyles } from "./styles";
 export default function Hero() {
 
     return (
-        <section className="relative w-full h-[100dvh] max-h-[900px] bg-[#F8F9FB] flex items-center justify-center font-sans overflow-hidden">
+        <section className="relative w-full min-h-[650px] lg:h-[85vh] lg:max-h-[850px] bg-[#F8F9FB] flex items-center justify-center font-sans overflow-hidden py-12 lg:py-0">
 
             {/* Background Grid Pattern */}
             <div className="absolute inset-0 z-0 opacity-50"
@@ -41,7 +41,7 @@ export default function Hero() {
             <div className="relative z-10 w-full max-w-7xl px-6 lg:px-12 h-full flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-20">
 
                 {/* --- LEFT COLUMN: CONTENT --- */}
-                <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left z-20 pt-16 lg:pt-0">
+                <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left z-20">
 
                     {/* Badge */}
                     <motion.div
@@ -64,9 +64,9 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-3xl sm:text-4xl lg:text-[40px] font-black tracking-tight text-slate-900 leading-[1.1] mb-6"
+                        className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-[1.1] mb-6"
                     >
-                        Think, Build, Scale with{' '}
+                        Think, Design, Build, and Scale Your Vision with{' '}
                         <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#3C8ECB] to-[#2563EB] animate-text-shimmer bg-[length:200%_auto]">
                             TechFleek
                         </span>
@@ -77,24 +77,55 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-lg font-medium mb-8"
+                        className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg font-medium mb-10"
                     >
-                        Next-Gen Digital Transformation utilizing SOTA Technologies.
-                        We craft secure, scalable, and stunning solutions that drive real business growth.
+                        Empowering businesses with cutting-edge technology and stunning design. We craft scalable, premium solutions to help you dominate your digital market.
                     </motion.p>
+
+                    {/* Features/Pillars List */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-4 mb-10"
+                    >
+                        {[
+                            { icon: <Zap size={16} className="text-[#3C8ECB]" />, text: "SOTA Tech" },
+                            { icon: <ShieldCheck size={16} className="text-[#3C8ECB]" />, text: "Secure Core" },
+                            { icon: <TrendingUp size={16} className="text-[#3C8ECB]" />, text: "Scale Fast" }
+                        ].map((feature, idx) => (
+                            <div key={idx} className="flex items-center gap-2">
+                                <div className="p-1.5 rounded-lg bg-blue-50">
+                                    {feature.icon}
+                                </div>
+                                <span className="text-slate-700 text-xs sm:text-sm font-bold tracking-tight">{feature.text}</span>
+                            </div>
+                        ))}
+                    </motion.div>
 
                     {/* CTA Button */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex flex-col sm:flex-row items-center gap-4"
                     >
                         <Link href="/enquiry" scroll={true} onClick={() => window.scrollTo(0, 0)}>
-                            <button className="group relative overflow-hidden flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-full font-semibold transition-all duration-300 hover:bg-slate-800 hover:shadow-xl hover:-translate-y-1">
-                                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer-slide" />
+                            <button className="group relative overflow-hidden flex items-center justify-center gap-3 px-10 py-4 text-white rounded-full font-bold text-sm sm:text-base transition-all duration-300 shadow-[0_8px_30px_rgba(60,142,203,0.3)] hover:shadow-[0_12px_40px_rgba(60,142,203,0.4)] hover:-translate-y-1 w-full sm:w-auto cursor-pointer"
+                                style={{ background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)' }}>
+                                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer-slide" />
                                 Start Your Project
-                                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                                <ArrowRight size={20} className="transition-transform group-hover:translate-x-1.5" />
                             </button>
+                        </Link>
+
+                        <Link
+                            href="/services"
+                            scroll={true}
+                            onClick={() => window.scrollTo(0, 0)}
+                            className="text-slate-500 font-bold text-sm sm:text-base hover:text-slate-900 transition-colors px-6 py-2 cursor-pointer"
+                        >
+                            Explore Services
                         </Link>
                     </motion.div>
 
@@ -103,19 +134,19 @@ export default function Hero() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 0.5 }}
-                        className="mt-10 flex items-center gap-4 text-xs font-medium text-slate-400 hidden lg:flex"
+                        className="mt-12 flex items-center gap-5 text-xs font-bold text-slate-400"
                     >
-                        <div className="flex -space-x-3">
+                        <div className="flex -space-x-2.5">
                             {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center overflow-hidden">
-                                    <User size={14} className="text-slate-400" />
+                                <div key={i} className="w-9 h-9 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm">
+                                    <User size={16} className="text-slate-300" />
                                 </div>
                             ))}
-                            <div className="w-8 h-8 rounded-full border-2 border-white bg-slate-900 text-white flex items-center justify-center text-[10px]">
+                            <div className="w-9 h-9 rounded-full border-2 border-white bg-[#3C8ECB] text-white flex items-center justify-center text-[10px] font-black shadow-sm">
                                 +50
                             </div>
                         </div>
-                        <p>Trusted by innovative founders</p>
+                        <p className="tracking-wide">Trusted by 50+ founders worldwide</p>
                     </motion.div>
                 </div>
 
@@ -137,7 +168,7 @@ function NetworkDiagram() {
 
             {/* Iso Container */}
             <motion.div
-                className="relative w-full h-full scale-90 sm:scale-100 transition-transform duration-500"
+                className="relative w-full h-full scale-[0.7] sm:scale-[0.85] lg:scale-100 transition-transform duration-500"
                 style={{
                     transformStyle: "preserve-3d",
                     transform: "rotateX(20deg) rotateY(-20deg) rotateZ(5deg)" // Isometric Tilt matching the reference
@@ -194,9 +225,13 @@ function NetworkDiagram() {
                         className="relative w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-3xl shadow-[0_20px_50px_rgba(60,142,203,0.3)] flex items-center justify-center p-2.5 z-20"
                         style={{ transformStyle: "preserve-3d" }}
                     >
-                        <div className="w-full h-full bg-gradient-to-br from-[#3C8ECB] to-[#2563EB] rounded-2xl flex items-center justify-center shadow-inner relative overflow-hidden group border border-white/20">
-                            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent translate-x-[-150%] transition-transform duration-1000 group-hover:translate-x-[150%]" />
-                            <Zap className="text-white w-8 h-8 sm:w-12 sm:h-12 relative z-10 drop-shadow-lg" fill="currentColor" />
+                        <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center relative overflow-hidden group border border-slate-100 shadow-inner">
+                            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-[#3C8ECB]/5 to-transparent translate-x-[-150%] transition-transform duration-1000 group-hover:translate-x-[150%]" />
+                            <img
+                                src="/small-logo.png"
+                                alt="TechFleek Core"
+                                className="w-16 h-16 sm:w-20 sm:h-20 relative z-10 object-contain drop-shadow-md"
+                            />
                         </div>
 
                         {/* Billboard Badge */}
@@ -326,7 +361,7 @@ function FloatingTechIcon({ top, left, color, icon, delay }: any) {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
         >
             <div
-                className={`w-9 h-9 sm:w-12 sm:h-12 rounded-full border border-white/60 backdrop-blur-md shadow-lg ${color} flex items-center justify-center cursor-pointer hover:scale-110 transition-transform`}
+                className={`w-9 h-9 sm:w-12 sm:h-12 rounded-full border border-white/60 backdrop-blur-md shadow-lg ${color} flex items-center justify-center hover:scale-110 transition-transform`}
                 style={{ transform: "rotateX(-20deg) rotateY(20deg) rotateZ(-5deg)" }}
             >
                 {icon}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { homeStyles } from './styles';
 
@@ -14,7 +15,6 @@ const clientLogos = [
     { src: '/Home-Page/clients/5.png', name: 'Skybound', color: '#0ea5e9' }, // Sky Blue
     { src: '/Home-Page/clients/8.png', name: 'DYGO', color: '#8b5cf6' }, // Purple
     { src: '/Home-Page/clients/div.png', name: 'Bolko', color: '#ef4444' }, // Red
-    { src: '/Home-Page/clients/logo-white.png', name: 'Hoblix', color: '#6366f1' }, // Indigo
     { src: '/Home-Page/clients/Rectangle 4239.svg', name: 'Partner', color: '#6b7280' }, // Gray
 ];
 
@@ -53,7 +53,7 @@ export default function ClientSectionAnimated() {
 
         return (
             <motion.div
-                className="relative flex items-center justify-center shrink-0 cursor-pointer overflow-hidden backdrop-blur-md"
+                className="relative flex items-center justify-center shrink-0 overflow-hidden backdrop-blur-md"
                 style={{
                     width: `${cardWidth}px`,
                     height: `${cardHeight}px`,
@@ -201,22 +201,24 @@ export default function ClientSectionAnimated() {
                             TechFleek is the preferred development partner for many, from startups and SMEs across the globe to Fortune 500 companies.
                         </p>
 
-                        <motion.button
-                            className="font-semibold text-white rounded-full flex items-center gap-2 overflow-hidden group relative"
-                            style={{
-                                padding: isMobile ? '12px 24px' : 'clamp(12px, 1.4vh, 16px) clamp(24px, 3vw, 34px)',
-                                fontSize: contentSize,
-                                background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%)',
-                                boxShadow: '0 6px 25px rgba(26, 26, 46, 0.3)',
-                                margin: isMobile ? '0 auto' : '0'
-                            }}
-                            whileHover={{ scale: 1.04, boxShadow: '0 10px 35px rgba(26, 26, 46, 0.4)' }}
-                            whileTap={{ scale: 0.97 }}
-                        >
-                            <span className="relative z-10">Become a Client</span>
-                            <ArrowRight className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1" />
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)' }} />
-                        </motion.button>
+                        <Link href="/enquiry" scroll={true} onClick={() => window.scrollTo(0, 0)} className="block mx-auto sm:mx-0">
+                            <motion.button
+                                className="font-semibold text-white rounded-full flex items-center gap-2 overflow-hidden group relative"
+                                style={{
+                                    padding: isMobile ? '12px 24px' : 'clamp(12px, 1.4vh, 16px) clamp(24px, 3vw, 34px)',
+                                    fontSize: contentSize,
+                                    background: 'linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%)',
+                                    boxShadow: '0 6px 25px rgba(26, 26, 46, 0.3)',
+                                    margin: '0' // Link handles margins
+                                }}
+                                whileHover={{ scale: 1.04, boxShadow: '0 10px 35px rgba(26, 26, 46, 0.4)' }}
+                                whileTap={{ scale: 0.97 }}
+                            >
+                                <span className="relative z-10">Become a Client</span>
+                                <ArrowRight className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1" />
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)' }} />
+                            </motion.button>
+                        </Link>
                     </div>
 
                     {/* Right Side: Marquee Rows */}

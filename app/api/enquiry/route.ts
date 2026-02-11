@@ -6,27 +6,32 @@ export async function POST(request: Request) {
         const body = await request.json();
 
         const {
-            firstName,
-            lastName,
-            email,
+            name,
             phone,
-            company,
-            eventType,
-            eventTheme,
-            preferredDate,
-            budgetRange,
-            location,
-            description,
             services,
+            budget,
+            timeline,
+            projectDetails
         } = body;
 
         // Simple validation
-        if (!firstName || !lastName || !email || !phone) {
+        if (!name || !phone) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
                 { status: 400 }
             );
         }
+
+        // Split name into first and last for existing schema compatibility
+        const nameParts = (name || '').trim().split(' ');
+        const firstName = nameParts[0] || 'Unknown';
+        const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '-';
+
+        // Use placeholder email since it was removed from form
+        const email = 'no-email@provided.com';
+
+        // Combine project details and timeline into description
+        const descriptionValue = `TIMELINE: ${timeline}\n\nDETAILS:\n${projectDetails || 'No details provided'}`;
 
         // Save to MySQL using Prisma
         const data = await prisma.enquiry.create({
@@ -35,14 +40,14 @@ export async function POST(request: Request) {
                 lastName,
                 email,
                 phone,
-                company: company || null,
-                eventType: eventType || null,
-                eventTheme: eventTheme || null,
-                preferredDate: preferredDate ? new Date(preferredDate) : null,
-                budgetRange: budgetRange || null,
-                location: location || null,
-                description: description || null,
-                services: services || null, // Stored as JSON in MySQL
+                budgetRange: budget || null,
+                description: descriptionValue,
+                services: services || null,
+                company: null,
+                eventType: null,
+                eventTheme: null,
+                preferredDate: null,
+                location: null,
                 status: 'new'
             }
         });

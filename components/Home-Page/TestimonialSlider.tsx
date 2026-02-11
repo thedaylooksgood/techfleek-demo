@@ -9,27 +9,51 @@ import { homeStyles } from './styles';
 const testimonials = [
     {
         id: 1,
-        name: 'Edward Alexander',
-        rating: 4.9,
-        date: '29 Aug, 2017',
-        userImage: '/About-Us/person1.png',
-        text: 'Overall pleasurable experience. Pay a little first and Pay a little during the development of the app as milestones are achieved, which made me feel very confident and comfortable. Seamless and Easy process.'
+        name: 'Rajesh Iyer',
+        rating: 5.0,
+        date: '12 Jan, 2024',
+        userImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop',
+        text: "TechFleek transformed our legacy banking system into a modern, high-performance platform. Their understanding of the Indian fintech landscape is exceptional. The transparency in their milestone-based payments gave us immense confidence throughout the journey."
     },
     {
         id: 2,
-        name: 'Diana Johnston',
+        name: 'Priya Sharma',
         rating: 4.9,
-        date: '29 Aug, 2017',
-        userImage: '/About-Us/person1.png',
-        text: 'Overall pleasurable experience. Pay a little first and Pay a little during the development of the app as milestones are achieved, which made me feel very confident and comfortable. Seamless and Easy process.'
+        date: '24 Nov, 2023',
+        userImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
+        text: "The UI/UX work for our educational app was top-notch. They didn't just design screens; they crafted an entire learning experience. Since our launch in Delhi and Bangalore, we've seen a 40% increase in student engagement, thanks to their intuitive design."
     },
     {
         id: 3,
-        name: 'Lauren Contreras',
+        name: 'Ankit Mehta',
+        rating: 4.8,
+        date: '05 Feb, 2024',
+        userImage: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400&h=400&fit=crop',
+        text: "As a startup founder, I needed a team that could iterate fast without compromising on quality. TechFleek delivered our MVP in record time. Their post-launch support and consulting on scaling our infra have been invaluable as we grew to 10k daily users."
+    },
+    {
+        id: 4,
+        name: 'Vikram Singh',
+        rating: 5.0,
+        date: '18 Dec, 2023',
+        userImage: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=400&h=400&fit=crop',
+        text: "Highly professional and reliable. We've worked with many agencies in India, but the level of technical depth at TechFleek is unmatched. They optimized our logistics dashboard for real-time tracking, and it significantly improved our operational efficiency."
+    },
+    {
+        id: 5,
+        name: 'Sneha Reddy',
         rating: 4.9,
-        date: '29 Aug, 2017',
-        userImage: '/About-Us/person1.png',
-        text: 'Overall pleasurable experience. Pay a little first and Pay a little during the development of the app as milestones are achieved, which made me feel very confident and comfortable. Seamless and Easy process.'
+        date: '10 Jan, 2024',
+        userImage: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop',
+        text: "Our digital growth strategy was struggling until TechFleek took over. Their data-driven approach to SEO and PPC helped us dominate a very competitive retail market. They really understand how to reach the Indian consumer effectively."
+    },
+    {
+        id: 6,
+        name: 'Rahul Verma',
+        rating: 4.7,
+        date: '02 Feb, 2024',
+        userImage: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop',
+        text: "The engineering team at TechFleek is a pleasure to work with. Clean code, documentation, and a deep understanding of React and Node.js. They integrated complex payment gateways and KYC modules for us with zero downtime."
     }
 ];
 
@@ -72,19 +96,17 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
     // 0 = Top, 1 = Middle (Active), 2 = Bottom
     const getPositionIndex = (itemIndex: number) => {
         const diff = (itemIndex - currentIndex + activeTestimonials.length) % activeTestimonials.length;
-        // Map standard diff to our visual slots:
-        // diff 0 -> Middle (Active) -> Visual Index 1
-        // diff 1 -> Bottom (Next) -> Visual Index 2
-        // diff 2 (or -1) -> Top (Prev) -> Visual Index 0
-        if (diff === 0) return 1;
-        if (diff === 1) return 2;
-        return 0;
+        if (diff === 0) return 'active';
+        if (diff === 1) return 'next';
+        if (diff === activeTestimonials.length - 1) return 'prev';
+        return 'hidden';
     };
 
     const variants = {
-        0: { top: 20, left: 20, scale: 0.85, opacity: 0.6, zIndex: 10 },
-        1: { top: 120, left: 70, scale: 1.1, opacity: 1, zIndex: 30 },
-        2: { top: 220, left: 20, scale: 0.85, opacity: 0.6, zIndex: 10 }
+        prev: { top: 20, left: 20, scale: 0.85, opacity: 0.6, zIndex: 10, pointerEvents: 'auto' as const },
+        active: { top: 120, left: 70, scale: 1.1, opacity: 1, zIndex: 30, pointerEvents: 'auto' as const },
+        next: { top: 220, left: 20, scale: 0.85, opacity: 0.6, zIndex: 10, pointerEvents: 'auto' as const },
+        hidden: { top: 120, left: -40, scale: 0.5, opacity: 0, zIndex: 0, pointerEvents: 'none' as const }
     };
 
     // --- MOBILE RENDER ---
@@ -143,7 +165,7 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
                             <button
                                 key={i}
                                 onClick={() => setCurrentIndex(i)}
-                                className={`h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-6 bg-[#3C8ECB]' : 'w-1.5 bg-slate-200'
+                                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${i === currentIndex ? 'w-6 bg-[#3C8ECB]' : 'w-1.5 bg-slate-200'
                                     }`}
                             />
                         ))}
@@ -192,7 +214,7 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
 
                         {activeTestimonials.map((item, index) => {
                             const posIndex = getPositionIndex(index);
-                            const isSelected = posIndex === 1;
+                            const isSelected = posIndex === 'active';
 
                             return (
                                 <motion.div
@@ -226,7 +248,7 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
                                     <motion.div
                                         className="origin-left"
                                         animate={{
-                                            opacity: isSelected ? 1 : 0.6,
+                                            opacity: isSelected ? 1 : (posIndex !== 'hidden' ? 0.6 : 0),
                                             scale: isSelected ? 1 : 0.9,
                                             x: isSelected ? 0 : -10
                                         }}

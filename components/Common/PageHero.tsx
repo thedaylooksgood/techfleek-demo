@@ -191,7 +191,7 @@ export default function PageHero({
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="px-6 py-2.5 sm:px-8 sm:py-3 bg-[#3C8ECB] hover:bg-[#3C8ECB]/90 text-white rounded-full font-bold text-xs sm:text-sm transition-all shadow-md shadow-blue-200 flex items-center gap-2"
+                                    className="px-6 py-2.5 sm:px-8 sm:py-3 bg-[#3C8ECB] hover:bg-[#3C8ECB]/90 text-white rounded-full font-bold text-xs sm:text-sm transition-all shadow-md shadow-blue-200 flex items-center gap-2 cursor-pointer"
                                 >
                                     {ctaPrimaryText}
                                     <ArrowRight size={16} />
@@ -203,7 +203,7 @@ export default function PageHero({
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="px-6 py-2.5 sm:px-8 sm:py-3 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 rounded-full font-bold text-xs sm:text-sm transition-all shadow-sm"
+                                    className="px-6 py-2.5 sm:px-8 sm:py-3 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 rounded-full font-bold text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
                                 >
                                     {ctaSecondaryText}
                                 </motion.button>

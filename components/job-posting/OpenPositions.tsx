@@ -185,7 +185,7 @@ export default function OpenPositions() {
                         <button
                             key={category}
                             onClick={() => setActiveCategory(category)}
-                            className={`flex-shrink-0 snap-start whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${activeCategory === category
+                            className={`flex-shrink-0 snap-start whitespace-nowrap px-6 py-2.5 rounded-full text-xs font-bold transition-all duration-300 cursor-pointer ${activeCategory === category
                                 ? 'bg-[#3C8ECB] text-white shadow-md transform scale-105'
                                 : 'bg-white text-slate-600 border border-slate-200 hover:border-[#3C8ECB] hover:text-[#3C8ECB]'
                                 }`}
@@ -240,7 +240,7 @@ export default function OpenPositions() {
                                         <p className="text-sm text-slate-600 mb-4">{job.overview}</p>
                                         <button
                                             onClick={(e) => { e.stopPropagation(); setIsModalOpen(true); }}
-                                            className="w-full bg-[#3C8ECB] text-white py-2.5 rounded-lg font-semibold text-sm hover:bg-[#3C8ECB]/90 transition-colors"
+                                            className="w-full bg-[#3C8ECB] text-white py-2.5 rounded-lg font-semibold text-sm hover:bg-[#3C8ECB]/90 transition-colors cursor-pointer"
                                         >
                                             Apply Now
                                         </button>
@@ -330,14 +330,14 @@ export default function OpenPositions() {
                                 <div className="p-6 border-t border-slate-100 flex items-center justify-between bg-slate-50">
                                     <button
                                         onClick={() => setIsExpanded(!isExpanded)}
-                                        className="flex items-center gap-1 text-[#3C8ECB] font-semibold text-sm hover:underline"
+                                        className="flex items-center gap-1 text-[#3C8ECB] font-semibold text-sm hover:underline cursor-pointer"
                                     >
                                         {isExpanded ? 'Read Less' : 'Read More'}
                                         {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                                     </button>
                                     <button
                                         onClick={() => setIsModalOpen(true)}
-                                        className="px-6 py-2.5 bg-[#3C8ECB] text-white rounded-lg font-semibold text-sm hover:bg-[#3C8ECB]/90 transition-colors"
+                                        className="px-6 py-2.5 bg-[#3C8ECB] text-white rounded-lg font-semibold text-sm hover:bg-[#3C8ECB]/90 transition-colors cursor-pointer"
                                     >
                                         Apply Now
                                     </button>

@@ -74,7 +74,7 @@ const CTASection = () => {
                         {/* Primary Button: Start Your Project */}
                         <Link href="/enquiry" scroll={true} onClick={() => window.scrollTo(0, 0)} className="w-full sm:w-auto">
                             <button
-                                className="w-full sm:w-[180px] md:w-[192px] h-[48px] md:h-[52px] flex items-center justify-center bg-[#3C8ECB] text-white rounded-full transition-transform hover:scale-105 active:scale-95 text-[14px] md:text-[16px] font-normal"
+                                className="w-full sm:w-[180px] md:w-[192px] h-[48px] md:h-[52px] flex items-center justify-center bg-[#3C8ECB] text-white rounded-full transition-transform hover:scale-105 active:scale-95 text-[14px] md:text-[16px] font-normal cursor-pointer"
                                 style={{ boxShadow: '0px 2px 19.9px rgba(255, 255, 255, 0.52)' }}
                             >
                                 Start Your Project
@@ -84,7 +84,7 @@ const CTASection = () => {
                         {/* Secondary Button: Schedule a Call */}
                         <Link href="/enquiry" scroll={true} onClick={() => window.scrollTo(0, 0)} className="w-full sm:w-auto">
                             <button
-                                className="w-full sm:w-[160px] md:w-[177px] h-[48px] md:h-[52px] flex items-center justify-center border-2 border-white text-white rounded-full hover:bg-white/10 transition-colors text-[14px] md:text-[16px] font-normal"
+                                className="w-full sm:w-[160px] md:w-[177px] h-[48px] md:h-[52px] flex items-center justify-center border-2 border-white text-white rounded-full hover:bg-white/10 transition-colors text-[14px] md:text-[16px] font-normal cursor-pointer"
                             >
                                 Schedule a Call
                             </button>

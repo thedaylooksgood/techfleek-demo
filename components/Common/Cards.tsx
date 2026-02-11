@@ -35,7 +35,7 @@ export function FeatureCard({ number, icon: Icon, title, description, delay = 0 
                 boxShadow: "0 20px 40px rgba(60, 142, 203, 0.15)"
             }}
             whileTap={{ scale: 0.98 }}
-            className="relative bg-white rounded-2xl lg:rounded-3xl overflow-hidden cursor-pointer group p-5 lg:p-6 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-400"
+            className="relative bg-white rounded-2xl lg:rounded-3xl overflow-hidden group p-5 lg:p-6 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-400"
         >
             {/* Gradient overlay on hover */}
             <div
@@ -177,7 +177,7 @@ export function ImageCard({ src, alt, title, description, href, delay = 0 }: Ima
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay }}
             whileHover={{ y: -8 }}
-            className="relative group rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+            className={`relative group rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 ${href ? 'cursor-pointer' : ''}`}
         >
             <div className="aspect-[16/10] overflow-hidden">
                 <img

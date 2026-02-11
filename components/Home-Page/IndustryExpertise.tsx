@@ -300,7 +300,7 @@ export default function IndustryExpertise() {
                                 return (
                                     <motion.div
                                         key={item.number}
-                                        className="cursor-pointer group"
+                                        className="group"
                                         onMouseEnter={() => setActiveIndex(index)}
                                         initial={{ opacity: 0, y: 40 }}
                                         whileInView={{ opacity: 1, y: 0 }}

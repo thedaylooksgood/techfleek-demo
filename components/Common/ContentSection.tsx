@@ -108,7 +108,7 @@ export default function ContentSection({
                         >
                             <Link href={primaryActionHref}>
                                 <motion.button
-                                    className="font-semibold text-white rounded-full relative overflow-hidden group"
+                                    className="font-semibold text-white rounded-full relative overflow-hidden group cursor-pointer"
                                     style={{
                                         padding: 'clamp(12px, 1.2vh, 16px) clamp(24px, 2.5vw, 36px)',
                                         fontSize: 'clamp(13px, 1vw, 15px)',
@@ -141,7 +141,7 @@ export default function ContentSection({
                             </Link>
                             <Link href={secondaryActionHref}>
                                 <motion.button
-                                    className="font-semibold rounded-full border-2 border-[#3C8ECB]/30 bg-white/90 backdrop-blur-sm hover:border-[#3C8ECB]/60 hover:bg-[#3C8ECB]/5 transition-all duration-300"
+                                    className="font-semibold rounded-full border-2 border-[#3C8ECB]/30 bg-white/90 backdrop-blur-sm hover:border-[#3C8ECB]/60 hover:bg-[#3C8ECB]/5 transition-all duration-300 cursor-pointer"
                                     style={{
                                         padding: 'clamp(12px, 1.2vh, 16px) clamp(24px, 2.5vw, 36px)',
                                         fontSize: 'clamp(13px, 1vw, 15px)',

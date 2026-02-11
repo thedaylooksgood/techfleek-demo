@@ -42,19 +42,13 @@ const timelineOptions = [
 
 export default function EnquiryPage() {
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
+        name: '',
         phone: '',
-        company: '',
-        website: '',
         services: [] as string[],
         budget: '',
         timeline: '',
         projectDetails: '',
-        hearAboutUs: '',
-        privacyAgreed: false,
-        marketingAgreed: false
+        privacyAgreed: false
     });
 
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -111,9 +105,9 @@ export default function EnquiryPage() {
     const resetForm = () => {
         setStatus('idle');
         setFormData({
-            firstName: '', lastName: '', email: '', phone: '', company: '', website: '',
-            services: [], budget: '', timeline: '', projectDetails: '', hearAboutUs: '',
-            privacyAgreed: false, marketingAgreed: false
+            name: '', phone: '',
+            services: [], budget: '', timeline: '', projectDetails: '',
+            privacyAgreed: false
         });
     };
 
@@ -247,22 +241,10 @@ export default function EnquiryPage() {
                                                 </h4>
                                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                     <div>
-                                                        <label className="block text-xs font-semibold text-slate-700 mb-1">First Name *</label>
-                                                        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required
+                                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Name *</label>
+                                                        <input type="text" name="name" value={formData.name} onChange={handleChange} required
                                                             className="w-full h-10 px-3 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#3C8ECB] focus:ring-2 focus:ring-[#3C8ECB]/10 transition-all"
-                                                            placeholder="John" disabled={status === 'loading'} />
-                                                    </div>
-                                                    <div>
-                                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Last Name *</label>
-                                                        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required
-                                                            className="w-full h-10 px-3 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#3C8ECB] focus:ring-2 focus:ring-[#3C8ECB]/10 transition-all"
-                                                            placeholder="Doe" disabled={status === 'loading'} />
-                                                    </div>
-                                                    <div>
-                                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Email Address *</label>
-                                                        <input type="email" name="email" value={formData.email} onChange={handleChange} required
-                                                            className="w-full h-10 px-3 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#3C8ECB] focus:ring-2 focus:ring-[#3C8ECB]/10 transition-all"
-                                                            placeholder="john@company.com" disabled={status === 'loading'} />
+                                                            placeholder="John Doe" disabled={status === 'loading'} />
                                                     </div>
                                                     <div>
                                                         <label className="block text-xs font-semibold text-slate-700 mb-1">Phone Number *</label>
@@ -273,27 +255,7 @@ export default function EnquiryPage() {
                                                 </div>
                                             </div>
 
-                                            {/* Company Info */}
-                                            <div>
-                                                <h4 className="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
-                                                    <Building2 className="w-4 h-4 text-[#3C8ECB]" />
-                                                    Company Details
-                                                </h4>
-                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                    <div>
-                                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Company Name</label>
-                                                        <input type="text" name="company" value={formData.company} onChange={handleChange}
-                                                            className="w-full h-10 px-3 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#3C8ECB] focus:ring-2 focus:ring-[#3C8ECB]/10 transition-all"
-                                                            placeholder="Your Company" disabled={status === 'loading'} />
-                                                    </div>
-                                                    <div>
-                                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Website</label>
-                                                        <input type="url" name="website" value={formData.website} onChange={handleChange}
-                                                            className="w-full h-10 px-3 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#3C8ECB] focus:ring-2 focus:ring-[#3C8ECB]/10 transition-all"
-                                                            placeholder="https://yourcompany.com" disabled={status === 'loading'} />
-                                                    </div>
-                                                </div>
-                                            </div>
+
 
                                             {/* Services */}
                                             <div>
@@ -326,36 +288,13 @@ export default function EnquiryPage() {
                                             </div>
 
                                             {/* Budget & Timeline */}
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                <div>
-                                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Estimated Budget *</label>
-                                                    <select name="budget" value={formData.budget} onChange={handleChange} required
-                                                        className="w-full h-10 px-3 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:border-[#3C8ECB] focus:ring-2 focus:ring-[#3C8ECB]/10 transition-all bg-white"
-                                                        disabled={status === 'loading'}>
-                                                        <option value="">Select budget range</option>
-                                                        {budgetOptions.map((opt, idx) => (
-                                                            <option key={idx} value={opt}>{opt}</option>
-                                                        ))}
-                                                    </select>
-                                                </div>
-                                                <div>
-                                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Project Timeline *</label>
-                                                    <select name="timeline" value={formData.timeline} onChange={handleChange} required
-                                                        className="w-full h-10 px-3 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:border-[#3C8ECB] focus:ring-2 focus:ring-[#3C8ECB]/10 transition-all bg-white"
-                                                        disabled={status === 'loading'}>
-                                                        <option value="">Select timeline</option>
-                                                        {timelineOptions.map((opt, idx) => (
-                                                            <option key={idx} value={opt}>{opt}</option>
-                                                        ))}
-                                                    </select>
-                                                </div>
-                                            </div>
+
 
                                             {/* Project Details */}
                                             <div>
                                                 <h4 className="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
                                                     <MessageSquare className="w-4 h-4 text-[#3C8ECB]" />
-                                                    Project Details
+                                                    Leave a Comment
                                                 </h4>
                                                 <textarea name="projectDetails" value={formData.projectDetails} onChange={handleChange}
                                                     className="w-full h-28 p-3 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#3C8ECB] focus:ring-2 focus:ring-[#3C8ECB]/10 transition-all resize-none"
@@ -363,20 +302,7 @@ export default function EnquiryPage() {
                                                     disabled={status === 'loading'} />
                                             </div>
 
-                                            {/* How did you hear */}
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-700 mb-1">How did you hear about us?</label>
-                                                <select name="hearAboutUs" value={formData.hearAboutUs} onChange={handleChange}
-                                                    className="w-full h-10 px-3 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:border-[#3C8ECB] focus:ring-2 focus:ring-[#3C8ECB]/10 transition-all bg-white"
-                                                    disabled={status === 'loading'}>
-                                                    <option value="">Select an option</option>
-                                                    <option value="Google Search">Google Search</option>
-                                                    <option value="Social Media">Social Media</option>
-                                                    <option value="Referral">Referral</option>
-                                                    <option value="LinkedIn">LinkedIn</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
+
 
                                             {/* Agreements */}
                                             <div className="space-y-3 pt-2 border-t border-slate-100">
@@ -388,14 +314,7 @@ export default function EnquiryPage() {
                                                         I agree to the <Link href="/privacy" className="text-[#3C8ECB] hover:underline">Privacy Policy</Link> and consent to processing of my data. *
                                                     </span>
                                                 </label>
-                                                <label className="flex items-start gap-3 cursor-pointer">
-                                                    <input type="checkbox" name="marketingAgreed" checked={formData.marketingAgreed} onChange={handleCheckboxChange}
-                                                        className="mt-0.5 w-4 h-4 rounded border-slate-300 text-[#3C8ECB] focus:ring-[#3C8ECB]/20"
-                                                        disabled={status === 'loading'} />
-                                                    <span className="text-xs text-slate-600 leading-relaxed">
-                                                        I'd like to receive updates about TechFleek services and insights.
-                                                    </span>
-                                                </label>
+
                                             </div>
 
                                             {/* Error Message */}
@@ -410,7 +329,7 @@ export default function EnquiryPage() {
 
                                             {/* Submit Button */}
                                             <button type="submit" disabled={status === 'loading'}
-                                                className="w-full h-12 bg-slate-900 hover:bg-[#3C8ECB] text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-50">
+                                                className="w-full h-12 bg-slate-900 hover:bg-[#3C8ECB] text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-50 cursor-pointer">
                                                 {status === 'loading' ? (
                                                     <>
                                                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

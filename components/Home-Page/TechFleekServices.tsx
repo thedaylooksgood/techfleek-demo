@@ -97,7 +97,7 @@ function ServicesShowcase({ categories }: { categories: typeof serviceCategories
           <button
             key={index}
             onClick={() => setActiveIndex(index)}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 border flex-shrink-0 whitespace-nowrap ${activeIndex === index
+            className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 border flex-shrink-0 whitespace-nowrap cursor-pointer ${activeIndex === index
               ? 'text-white border-transparent'
               : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
               }`}
@@ -154,7 +154,7 @@ function ServicesShowcase({ categories }: { categories: typeof serviceCategories
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-black text-slate-900 text-xl lg:text-2xl leading-tight mb-1">
+                  <h3 className="font-black text-slate-900 text-xl lg:text-1xl leading-tight mb-1">
                     {activeCategory.category}
                   </h3>
                   <p className="text-slate-500 text-sm">
@@ -253,7 +253,7 @@ function ServicesShowcase({ categories }: { categories: typeof serviceCategories
               <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between z-10">
                 <button
                   onClick={prevImage}
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer"
                   style={{
                     backgroundColor: activeCategory.color,
                     boxShadow: `0 4px 16px ${activeCategory.color}50`
@@ -263,7 +263,7 @@ function ServicesShowcase({ categories }: { categories: typeof serviceCategories
                 </button>
                 <button
                   onClick={nextImage}
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer"
                   style={{
                     backgroundColor: activeCategory.color,
                     boxShadow: `0 4px 16px ${activeCategory.color}50`
@@ -286,7 +286,7 @@ function ServicesShowcase({ categories }: { categories: typeof serviceCategories
                       <button
                         key={idx}
                         onClick={() => setImageIndex(idx)}
-                        className={`rounded-full transition-all duration-300 ${idx === imageIndex
+                        className={`rounded-full transition-all duration-300 cursor-pointer ${idx === imageIndex
                           ? 'bg-white w-8 h-2'
                           : 'bg-white/50 hover:bg-white/80 w-2 h-2'
                           }`}
@@ -320,12 +320,12 @@ const TechFleekServices = ({ showButton = true }: { showButton?: boolean }) => {
           <span className={homeStyles.label}>
             OUR SERVICES
           </span>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-3">
             <div>
-              <h2 className={`${homeStyles.title} !text-2xl md:!text-3xl !mb-1`}>
+              <h2 className={`${homeStyles.title} mb-5`}>
                 What We <span className={homeStyles.gradientText}>Do Best</span>
               </h2>
-              <p className={`${homeStyles.description} !text-sm`} style={{ maxWidth: '450px' }}>
+              <p className={homeStyles.description} style={{ maxWidth: '450px' }}>
                 Comprehensive digital services designed to transform your ideas into exceptional experiences.
               </p>
             </div>

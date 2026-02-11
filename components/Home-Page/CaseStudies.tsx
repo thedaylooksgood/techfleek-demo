@@ -83,11 +83,13 @@ export default function CaseStudies() {
                             Selected <span className={homeStyles.gradientText}>Work</span>
                         </h2>
                     </div>
-                    <Link href="/case-study" className="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-[#3C8ECB] transition-colors group">
+                    <Link
+                        href="/case-study"
+                        className="inline-flex items-center gap-2 px-4 py-2 text-white font-semibold text-sm rounded-full transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
+                        style={{ background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)' }}
+                    >
                         View All
-                        <span className="bg-[#3C8ECB] p-1.5 rounded-full group-hover:scale-110 transition-transform duration-300 ml-1">
-                            <ArrowRight className="w-3 h-3 text-white" />
-                        </span>
+                        <ArrowRight className="w-4 h-4" />
                     </Link>
                 </div>
 

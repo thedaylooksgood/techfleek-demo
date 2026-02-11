@@ -199,12 +199,11 @@ export default function WebDevelopmentPage() {
                             alt="Web Development Team"
                             width={600}
                             height={400}
-                            className="w-full h-auto object-cover"
+                            className="w-full h-auto lg:h-[250px] object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                         <div className="absolute bottom-6 left-6 text-white p-4">
-                            <div className="text-sm font-bold bg-[#3C8ECB] px-3 py-1 rounded-full inline-block mb-2">TechFleek Studio</div>
-                            <h3 className="text-2xl font-bold">Crafting Digital Masterpieces</h3>
+                            <h3 className="text-lg font-bold">Crafting Digital Masterpieces</h3>
                         </div>
                     </motion.div>
 

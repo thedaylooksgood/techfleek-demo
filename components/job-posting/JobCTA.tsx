@@ -25,7 +25,7 @@ export default function JobCTA() {
                         onClick={() => setIsModalOpen(true)}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#3C8ECB] text-white rounded-full font-bold text-sm shadow-lg shadow-[#3C8ECB]/30 hover:shadow-[#3C8ECB]/50 transition-shadow"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#3C8ECB] text-white rounded-full font-bold text-sm shadow-lg shadow-[#3C8ECB]/30 hover:shadow-[#3C8ECB]/50 transition-shadow cursor-pointer"
                     >
                         <Send className="w-4 h-4" />
                         Send Your Resume
@@ -39,7 +39,7 @@ export default function JobCTA() {
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-transparent text-[#3C8ECB] rounded-full font-bold text-sm border-2 border-[#3C8ECB] hover:bg-[#3C8ECB]/5 transition-colors"
+                            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-transparent text-[#3C8ECB] rounded-full font-bold text-sm border-2 border-[#3C8ECB] hover:bg-[#3C8ECB]/5 transition-colors cursor-pointer"
                         >
                             <PhoneCall className="w-4 h-4" />
                             Get a Call Back
@@ -54,7 +54,7 @@ export default function JobCTA() {
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-500 text-white rounded-full font-bold text-sm hover:bg-green-600 transition-colors shadow-lg shadow-green-500/30"
+                            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-500 text-white rounded-full font-bold text-sm hover:bg-green-600 transition-colors shadow-lg shadow-green-500/30 cursor-pointer"
                         >
                             <MessageCircle className="w-4 h-4" />
                             WhatsApp Us

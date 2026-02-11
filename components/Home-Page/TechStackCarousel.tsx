@@ -122,12 +122,13 @@ export default function BlogsSection() {
           </div>
 
           <div className={isMobile ? 'w-full mt-4' : 'w-auto'}>
-            <Link href="/blogs">
-              <button
-                className="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-slate-500 hover:text-[#3C8ECB] transition-colors group"
-              >
-                View All <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </button>
+            <Link
+              href="/blogs"
+              className="inline-flex items-center gap-2 px-4 py-2 text-white font-semibold text-sm rounded-full transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
+              style={{ background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)' }}
+            >
+              View All
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

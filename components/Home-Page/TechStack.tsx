@@ -155,6 +155,27 @@ const TechStack: React.FC<TechStackProps> = ({
                                     <p className={homeStyles.description}>
                                         {description}
                                     </p>
+
+                                    {/* Benefits List */}
+                                    <div className="flex flex-col gap-3 mt-2">
+                                        {[
+                                            "Scalable Architecture for Future Growth",
+                                            "High-Performance & Speed Optimization",
+                                            "Enterprise-Grade Security Standards",
+                                            "Cloud-Native & Serverless Solutions"
+                                        ].map((benefit, index) => (
+                                            <div key={index} className="flex items-center gap-3">
+                                                <div className="w-6 h-6 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0">
+                                                    <svg className="w-3.5 h-3.5 text-[#3C8ECB]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
+                                                <span className="text-slate-700 font-medium text-base">{benefit}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>

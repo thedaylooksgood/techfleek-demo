@@ -131,7 +131,7 @@ export default function Footer() {
 
                         <FooterColumn title="Resources" links={[
                             { name: 'Case Studies', href: '/case-study' },
-                            { name: 'Blog', href: '#' },
+                            { name: 'Blog', href: '/insights' },
                             { name: 'Terms of Service', href: '#' },
                             { name: 'Privacy Policy', href: '#' }
                         ]} />
@@ -169,7 +169,10 @@ export default function Footer() {
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                             Operational
                         </span>
-                        <button onClick={scrollToTop} className="flex items-center gap-1 hover:text-[#3C8ECB] transition-colors">
+                        <button
+                            onClick={scrollToTop}
+                            className="flex items-center gap-1 hover:text-[#3C8ECB] transition-colors cursor-pointer"
+                        >
                             Back to Top <ArrowUp className="w-3 h-3" />
                         </button>
                     </div>
