@@ -15,7 +15,7 @@ export const homeStyles = {
     },
 
     // Header Components
-    headerWrapper: "w-full mb-8 border-b border-slate-100 pb-4 flex flex-col gap-2 text-left",
+    headerWrapper: "w-full mb-4 border-b border-slate-100 pb-4 flex flex-col gap-2 text-left",
 
     // The small top label (e.g. "ABOUT US")
     label: "inline-block text-[#3C8ECB] font-bold tracking-widest uppercase text-[10px] sm:text-xs shrink-0 select-none",

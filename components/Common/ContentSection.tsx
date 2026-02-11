@@ -174,7 +174,7 @@ export default function ContentSection({
                 {/* Content Area */}
                 <motion.div
                     variants={headerVariants}
-                    className="mt-8"
+                    className="mt-2"
                 >
                     {children}
                 </motion.div>

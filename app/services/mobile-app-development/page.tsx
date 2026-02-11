@@ -153,26 +153,24 @@ export default function MobileAppDevelopmentPage() {
                 secondaryActionText="View Case Studies"
                 secondaryActionHref="/case-study"
             >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100"
+                        className="relative flex items-center justify-center p-0"
                     >
+                        {/* Glow Effect */}
+                        <div className="absolute w-[80%] h-[80%] bg-[#3C8ECB]/20 blur-[100px] rounded-full -z-10 animate-pulse" />
+
                         <Image
-                            src="/About-Us/why-choose-us-illustration.png"
+                            src="/services/mobile-app-development-mobile-first.png"
                             alt="Mobile App Development"
                             width={600}
                             height={400}
-                            className="w-full h-[250px] object-cover"
+                            className="max-w-[380px] max-h-[320px] w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(60,142,203,0.3)]"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                        <div className="absolute bottom-6 left-6 text-white p-4">
-                            <div className="text-sm font-bold bg-[#3C8ECB] px-3 py-1 rounded-full inline-block mb-2">TechFleek Mobile</div>
-                            <h3 className="text-2xl font-bold">Innovation in Your Pocket</h3>
-                        </div>
                     </motion.div>
 
                     <div className="space-y-6">
@@ -289,12 +287,7 @@ export default function MobileAppDevelopmentPage() {
             </ContentSection>
 
             {/* Tech Stack */}
-            <TechStack
-                items={techStack}
-                title={<>Mobile <span className={homeStyles.gradientText}>Tech Stack</span></>}
-                description="We use the best tools in the industry to build robust applications."
-            />
-
+            <TechStack />
             {/* Testimonials */}
             <TestimonialSlider
                 title="Client"

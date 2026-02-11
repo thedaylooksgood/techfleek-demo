@@ -194,12 +194,12 @@ const TechStack: React.FC<TechStackProps> = ({
                                 <div className="grid grid-cols-2 gap-6 md:gap-8">
                                     {/* Column 1 - Down */}
                                     <div className="-mt-12">
-                                        <VerticalMarquee items={col1Items} direction="down" speed={45} />
+                                        <VerticalMarquee items={col1Items} direction="down" speed={40} />
                                     </div>
 
                                     {/* Column 2 - Up */}
                                     <div className="">
-                                        <VerticalMarquee items={col2Items} direction="up" speed={50} />
+                                        <VerticalMarquee items={col2Items} direction="up" speed={40} />
                                     </div>
                                 </div>
                             </div>

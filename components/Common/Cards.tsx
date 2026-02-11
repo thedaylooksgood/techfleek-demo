@@ -179,7 +179,7 @@ export function ImageCard({ src, alt, title, description, href, delay = 0 }: Ima
             whileHover={{ y: -8 }}
             className={`relative group rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 ${href ? 'cursor-pointer' : ''}`}
         >
-            <div className="aspect-[16/10] overflow-hidden">
+            <div className="aspect-[16/10] overflow-hidden bg-slate-900">
                 <img
                     src={src}
                     alt={alt}

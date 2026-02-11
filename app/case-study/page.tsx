@@ -13,45 +13,45 @@ import Link from "next/link";
 // Featured case studies
 const caseStudies = [
     {
-        title: "E-Commerce Revolution",
+        title: "Greysell Advertising",
         description: "Transformed a traditional retailer into a digital-first e-commerce powerhouse with 300% revenue growth.",
-        image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop",
-        category: "E-Commerce",
+        image: "/case-study/Creative agency.png",
+        category: "Advertising",
         href: "/case-study/greysell"
     },
     {
-        title: "Healthcare Platform",
+        title: "Dygo Diagnostics",
         description: "Built a HIPAA-compliant telemedicine platform serving 50,000+ patients monthly.",
-        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=500&fit=crop",
+        image: "/case-study/healthcare.png",
         category: "Healthcare",
         href: "/case-study/dygo-diagnostics"
     },
     {
-        title: "FinTech Innovation",
-        description: "Developed a secure payment processing system handling $10M+ in daily transactions.",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-        category: "Finance",
+        title: "MergerDomo",
+        description: "Developed a secure investment and deal-making system handling multi-million dollar transactions.",
+        image: "/case-study/FinTech Innovation.png",
+        category: "FinTech",
         href: "/case-study/mergerdomo"
     },
     {
-        title: "EdTech Platform",
+        title: "Bollco",
         description: "Created an interactive learning platform used by 100,000+ students worldwide.",
-        image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=500&fit=crop",
-        category: "Education",
+        image: "/case-study/Edtech.png",
+        category: "EduTech",
         href: "/case-study/bollco"
     },
     {
-        title: "Entertainment Hub",
+        title: "Ucom Entertainment",
         description: "Built a streaming platform with real-time features serving millions of users.",
-        image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&h=500&fit=crop",
+        image: "/case-study/entertainment Hub.png",
         category: "Entertainment",
         href: "/case-study/ucom-entertainment"
     },
     {
-        title: "Creative Agency Portfolio",
+        title: "Fotoart Production",
         description: "Designed a stunning portfolio platform showcasing visual artistry and creative works.",
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop",
-        category: "Creative",
+        image: "/case-study/Custom Software Development.png",
+        category: "Production",
         href: "/case-study/fotoart"
     }
 ];
