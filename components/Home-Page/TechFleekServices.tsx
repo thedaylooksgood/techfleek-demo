@@ -154,7 +154,7 @@ function ServicesShowcase({ categories }: { categories: typeof serviceCategories
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-black text-slate-900 text-xl lg:text-1xl leading-tight mb-1">
+                  <h3 className="font-bold text-slate-900 text-lg leading-tight mb-1">
                     {activeCategory.category}
                   </h3>
                   <p className="text-slate-500 text-sm">
