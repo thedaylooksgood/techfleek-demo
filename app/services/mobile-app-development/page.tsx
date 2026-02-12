@@ -13,7 +13,7 @@ import ContentSection from '@/components/Common/ContentSection';
 import { FeatureCard, StatsCard } from '@/components/Common/Cards';
 import ServicePagination from '@/components/Home-Page/service-cards/shared/ServicePagination';
 import TechStack from '@/components/Home-Page/TechStack';
-import TestimonialSlider, { Testimonial } from '@/components/Home-Page/TestimonialSlider';
+import TestimonialSlider from '@/components/Home-Page/TestimonialSlider';
 import { homeStyles } from '@/components/Home-Page/styles';
 
 // --- Data Definitions ---
@@ -100,32 +100,7 @@ const whyChooseUs = [
     "Market-Ready Delivery"
 ];
 
-const clientTestimonials: Testimonial[] = [
-    {
-        id: 1,
-        name: 'Michael Chen',
-        rating: 5,
-        date: '10 Nov, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "TechFleek delivered our mobile app ahead of schedule. The cross-platform performance is indistinguishable from native, and our users love it."
-    },
-    {
-        id: 2,
-        name: 'Sarah Johnson',
-        rating: 4.9,
-        date: '15 Dec, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "We needed a complex Android app for our logistics team. TechFleek's solution is robust, offline-capable, and has streamlined our operations significantly."
-    },
-    {
-        id: 3,
-        name: 'David Lee',
-        rating: 5,
-        date: '05 Jan, 2025',
-        userImage: '/About-Us/person1.png',
-        text: "The iOS app design is stunning. They really understood our brand and translated it perfectly to the mobile experience."
-    }
-];
+
 
 export default function MobileAppDevelopmentPage() {
     return (
@@ -292,7 +267,6 @@ export default function MobileAppDevelopmentPage() {
             <TestimonialSlider
                 title="Client"
                 subtitle="Stories"
-                data={clientTestimonials}
             />
 
             <ServicePagination currentServiceSlug="mobile-app-development" />

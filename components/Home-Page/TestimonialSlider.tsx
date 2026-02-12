@@ -9,51 +9,51 @@ import { homeStyles } from './styles';
 const testimonials = [
     {
         id: 1,
-        name: 'Rajesh Iyer',
+        name: 'Dygo Diagnostics',
         rating: 5.0,
         date: '12 Jan, 2024',
-        userImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop',
-        text: "TechFleek transformed our legacy banking system into a modern, high-performance platform. Their understanding of the Indian fintech landscape is exceptional. The transparency in their milestone-based payments gave us immense confidence throughout the journey."
+        userImage: '/Home-Page/clients/8.png',
+        text: "TechFleek transformed our diagnostic reporting system into a secure, cloud-based platform. Their understanding of healthcare compliance and data security is exceptional."
     },
     {
         id: 2,
-        name: 'Priya Sharma',
+        name: 'MergerDomo',
         rating: 4.9,
         date: '24 Nov, 2023',
-        userImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
-        text: "The UI/UX work for our educational app was top-notch. They didn't just design screens; they crafted an entire learning experience. Since our launch in Delhi and Bangalore, we've seen a 40% increase in student engagement, thanks to their intuitive design."
+        userImage: '/Home-Page/clients/3.png',
+        text: "The investment banking platform they built for us is world-class. It handles complex deal flows seamlessly, and the UI is intuitive for our high-profile clients."
     },
     {
         id: 3,
-        name: 'Ankit Mehta',
+        name: 'Greysell',
         rating: 4.8,
         date: '05 Feb, 2024',
-        userImage: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400&h=400&fit=crop',
-        text: "As a startup founder, I needed a team that could iterate fast without compromising on quality. TechFleek delivered our MVP in record time. Their post-launch support and consulting on scaling our infra have been invaluable as we grew to 10k daily users."
+        userImage: '/Home-Page/clients/2.png',
+        text: "We needed a creative digital partner, and TechFleek delivered. Their approach to our digital branding and marketing strategy has significantly boosted our market presence."
     },
     {
         id: 4,
-        name: 'Vikram Singh',
+        name: 'Avataar',
         rating: 5.0,
         date: '18 Dec, 2023',
-        userImage: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=400&h=400&fit=crop',
-        text: "Highly professional and reliable. We've worked with many agencies in India, but the level of technical depth at TechFleek is unmatched. They optimized our logistics dashboard for real-time tracking, and it significantly improved our operational efficiency."
+        userImage: '/Home-Page/clients/4.png',
+        text: "TechFleek's expertise in 3D and AI integration helped us scale our interactive product displays. The performance optimization they achieved is remarkable."
     },
     {
         id: 5,
-        name: 'Sneha Reddy',
+        name: 'FotoArt',
         rating: 4.9,
         date: '10 Jan, 2024',
-        userImage: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop',
-        text: "Our digital growth strategy was struggling until TechFleek took over. Their data-driven approach to SEO and PPC helped us dominate a very competitive retail market. They really understand how to reach the Indian consumer effectively."
+        userImage: '/Home-Page/clients/5.png',
+        text: "Our photography portfolio site is now blazing fast and SEO optimized. We've seen a 40% increase in inquiries since the relaunch."
     },
     {
         id: 6,
-        name: 'Rahul Verma',
+        name: 'Bollco',
         rating: 4.7,
         date: '02 Feb, 2024',
-        userImage: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop',
-        text: "The engineering team at TechFleek is a pleasure to work with. Clean code, documentation, and a deep understanding of React and Node.js. They integrated complex payment gateways and KYC modules for us with zero downtime."
+        userImage: '/Home-Page/clients/div.png',
+        text: "The custom manufacturing ERP TechFleek developed has streamlined our production line. Real-time tracking and automated reporting have saved us countless hours."
     }
 ];
 

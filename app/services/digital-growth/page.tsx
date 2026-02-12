@@ -14,7 +14,7 @@ import ContentSection from '@/components/Common/ContentSection';
 import { FeatureCard, StatsCard, TestimonialCard } from '@/components/Common/Cards';
 import ServicePagination from '@/components/Home-Page/service-cards/shared/ServicePagination';
 import TechStack from '@/components/Home-Page/TechStack';
-import TestimonialSlider, { Testimonial } from '@/components/Home-Page/TestimonialSlider';
+import TestimonialSlider from '@/components/Home-Page/TestimonialSlider';
 import { homeStyles } from '@/components/Home-Page/styles';
 
 const services = [
@@ -98,32 +98,7 @@ const tools = [
     { name: 'Hotjar', icon: '/Home-Page/icons/react.png', color: '#FD385B' },
 ];
 
-const clientTestimonials: Testimonial[] = [
-    {
-        id: 1,
-        name: 'David Wilson',
-        rating: 5,
-        date: '15 Jan, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Our organic traffic doubled in just 3 months thanks to TechFleek's SEO strategy. The ROI has been incredible and the reporting is crystal clear."
-    },
-    {
-        id: 2,
-        name: 'Sarah Connor',
-        rating: 5,
-        date: '02 Feb, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "The PPC campaigns they run for us have consistently outperformed our previous agency by a wide margin. Highly effective targeting."
-    },
-    {
-        id: 3,
-        name: 'Michael Ross',
-        rating: 4.8,
-        date: '20 Mar, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Email automation setup was seamless. We are now nurturing leads automatically and seeing a higher conversion rate from our newsletter."
-    }
-];
+
 
 export default function DigitalGrowthPage() {
     return (
@@ -270,7 +245,6 @@ export default function DigitalGrowthPage() {
             <TestimonialSlider
                 title="Success"
                 subtitle="Stories"
-                data={clientTestimonials}
             />
 
             <ServicePagination currentServiceSlug="digital-growth" />

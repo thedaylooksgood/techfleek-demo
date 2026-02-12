@@ -13,7 +13,7 @@ import ContentSection from '@/components/Common/ContentSection';
 import { FeatureCard, StatsCard } from '@/components/Common/Cards';
 import ServicePagination from '@/components/Home-Page/service-cards/shared/ServicePagination';
 import TechStack from '@/components/Home-Page/TechStack';
-import TestimonialSlider, { Testimonial } from '@/components/Home-Page/TestimonialSlider';
+import TestimonialSlider from '@/components/Home-Page/TestimonialSlider';
 import { homeStyles } from '@/components/Home-Page/styles';
 
 // --- Data Definitions ---
@@ -133,32 +133,7 @@ const faqs = [
     }
 ];
 
-const clientTestimonials: Testimonial[] = [
-    {
-        id: 1,
-        name: 'Michael Chen',
-        rating: 5,
-        date: '10 Nov, 2023',
-        userImage: '/About-Us/person1.png',
-        text: "TechFleek delivered our website ahead of schedule and exceeded all expectations. The site is fast, beautiful, and has significantly improved our conversion rates."
-    },
-    {
-        id: 2,
-        name: 'Sarah Johnson',
-        rating: 5,
-        date: '15 Dec, 2023',
-        userImage: '/About-Us/person1.png',
-        text: "Their team was professional, responsive, and a joy to work with. They took the time to understand our business and built a custom solution that fits us perfectly."
-    },
-    {
-        id: 3,
-        name: 'David Lee',
-        rating: 4.9,
-        date: '05 Jan, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "We've seen a 40% increase in mobile traffic since launching our new PWA. The offline capabilities are a game-changer for our field agents."
-    }
-];
+
 
 export default function WebDevelopmentPage() {
     return (
@@ -342,7 +317,6 @@ export default function WebDevelopmentPage() {
             <TestimonialSlider
                 title="What Our Clients"
                 subtitle="Say"
-                data={clientTestimonials}
             />
 
             <ServicePagination currentServiceSlug="web-development" />

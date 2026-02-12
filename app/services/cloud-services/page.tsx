@@ -14,7 +14,7 @@ import ContentSection from '@/components/Common/ContentSection';
 import { FeatureCard, StatsCard, TestimonialCard } from '@/components/Common/Cards';
 import ServicePagination from '@/components/Home-Page/service-cards/shared/ServicePagination';
 import TechStack from '@/components/Home-Page/TechStack';
-import TestimonialSlider, { Testimonial } from '@/components/Home-Page/TestimonialSlider';
+import TestimonialSlider from '@/components/Home-Page/TestimonialSlider';
 import { homeStyles } from '@/components/Home-Page/styles';
 
 // --- Data Definitions ---
@@ -107,32 +107,7 @@ const whyChooseUs = [
     "24/7 Monitoring & Support"
 ];
 
-const clientTestimonials: Testimonial[] = [
-    {
-        id: 1,
-        name: 'James Wilson',
-        rating: 5,
-        date: '22 Feb, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Moving to AWS with TechFleek was the best decision we made. We reduced our hosting costs by 40% and haven't had a single minute of downtime since."
-    },
-    {
-        id: 2,
-        name: 'Elena Rodriguez',
-        rating: 4.9,
-        date: '10 Mar, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Their DevOps team automated our entire deployment pipeline. What used to take days now takes minutes. Highly recommended."
-    },
-    {
-        id: 3,
-        name: 'Robert Chen',
-        rating: 5,
-        date: '05 Apr, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Security was our top concern. TechFleek's experts implemented robust security measures that helped us achieve SOC 2 compliance."
-    }
-];
+
 
 export default function CloudServicesPage() {
     return (
@@ -299,7 +274,6 @@ export default function CloudServicesPage() {
             <TestimonialSlider
                 title="Client"
                 subtitle="Success"
-                data={clientTestimonials}
             />
 
             <ServicePagination currentServiceSlug="cloud-services" />

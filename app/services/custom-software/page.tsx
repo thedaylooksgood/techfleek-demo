@@ -14,7 +14,7 @@ import ContentSection from '@/components/Common/ContentSection';
 import { FeatureCard, StatsCard, TestimonialCard } from '@/components/Common/Cards';
 import ServicePagination from '@/components/Home-Page/service-cards/shared/ServicePagination';
 import TechStack from '@/components/Home-Page/TechStack';
-import TestimonialSlider, { Testimonial } from '@/components/Home-Page/TestimonialSlider';
+import TestimonialSlider from '@/components/Home-Page/TestimonialSlider';
 import { homeStyles } from '@/components/Home-Page/styles';
 
 // --- Data Definitions ---
@@ -107,32 +107,7 @@ const whyChooseUs = [
     "Technology Agnostic"
 ];
 
-const clientTestimonials: Testimonial[] = [
-    {
-        id: 1,
-        name: 'Alexander White',
-        rating: 5,
-        date: '30 Jan, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "The diverse functionality of the custom CRM they built for us is amazing. It's completely transformed how our sales team operates."
-    },
-    {
-        id: 2,
-        name: 'Maria Garcia',
-        rating: 4.8,
-        date: '14 Feb, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "We had a very specific inventory problem that off-the-shelf software couldn't solve. TechFleek built a custom solution that fit us perfectly."
-    },
-    {
-        id: 3,
-        name: 'Kevin O\'Connell',
-        rating: 5,
-        date: '28 Mar, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Reliable, professional, and code quality is top-notch. Our internal efficiency increased by 30% within the first month of launch."
-    }
-];
+
 
 export default function CustomSoftwarePage() {
     return (
@@ -300,7 +275,6 @@ export default function CustomSoftwarePage() {
             <TestimonialSlider
                 title="Client"
                 subtitle="Stories"
-                data={clientTestimonials}
             />
 
             <ServicePagination currentServiceSlug="custom-software" />

@@ -14,7 +14,7 @@ import ContentSection from '@/components/Common/ContentSection';
 import { FeatureCard, StatsCard } from '@/components/Common/Cards';
 import ServicePagination from '@/components/Home-Page/service-cards/shared/ServicePagination';
 import TechStack from '@/components/Home-Page/TechStack';
-import TestimonialSlider, { Testimonial } from '@/components/Home-Page/TestimonialSlider';
+import TestimonialSlider from '@/components/Home-Page/TestimonialSlider';
 import { homeStyles } from '@/components/Home-Page/styles';
 
 // --- Data Definitions ---
@@ -121,32 +121,7 @@ const deliverables = [
     { icon: Users, title: 'Usability Report', description: 'Findings and recommendations from testing.' },
 ];
 
-const clientTestimonials: Testimonial[] = [
-    {
-        id: 1,
-        name: 'Lisa Thompson',
-        rating: 5,
-        date: '12 Jan, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "TechFleek's design team completely reimagined our UX. User engagement increased by 60% and app store ratings went from 3.2 to 4.8 stars!"
-    },
-    {
-        id: 2,
-        name: 'Mark Davis',
-        rating: 4.8,
-        date: '05 Feb, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "The attention to detail in the UI design was phenomenal. They successfully translated our complex requirements into a clean, intuitive interface."
-    },
-    {
-        id: 3,
-        name: 'Sarah Jenkins',
-        rating: 4.9,
-        date: '20 Mar, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Working with them was a breeze. The design system they built has saved our dev team hundreds of hours in implementation time."
-    }
-];
+
 
 export default function UIUXDesignPage() {
     return (
@@ -314,7 +289,6 @@ export default function UIUXDesignPage() {
             <TestimonialSlider
                 title="Client"
                 subtitle="Feedback"
-                data={clientTestimonials}
             />
 
             <ServicePagination currentServiceSlug="ui-ux-design" />

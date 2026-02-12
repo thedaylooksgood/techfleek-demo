@@ -14,7 +14,7 @@ import ContentSection from '@/components/Common/ContentSection';
 import { FeatureCard, StatsCard, TestimonialCard } from '@/components/Common/Cards';
 import ServicePagination from '@/components/Home-Page/service-cards/shared/ServicePagination';
 import TechStack from '@/components/Home-Page/TechStack';
-import TestimonialSlider, { Testimonial } from '@/components/Home-Page/TestimonialSlider';
+import TestimonialSlider from '@/components/Home-Page/TestimonialSlider';
 import { homeStyles } from '@/components/Home-Page/styles';
 
 const services = [
@@ -97,32 +97,7 @@ const tools = [
     { name: 'Pinecone', icon: '/Home-Page/icons/firebase.png', color: '#2C3E50' },
 ];
 
-const clientTestimonials: Testimonial[] = [
-    {
-        id: 1,
-        name: 'Emily Chen',
-        rating: 5,
-        date: '12 Jan, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Implementing TechFleek's AI automation reduced our customer support response times by 80% while significantly improving satisfaction scores."
-    },
-    {
-        id: 2,
-        name: 'Robert Stark',
-        rating: 4.9,
-        date: '28 Feb, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Their predictive analytics model has helped us forecast inventory needs with 95% accuracy, saving us thousands in storage costs."
-    },
-    {
-        id: 3,
-        name: 'Sophia Chang',
-        rating: 5,
-        date: '10 Mar, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "The custom generative AI solution they built for our content team has tripled our output without compromising on quality."
-    }
-];
+
 
 export default function AIIntegrationPage() {
     return (
@@ -269,7 +244,6 @@ export default function AIIntegrationPage() {
             <TestimonialSlider
                 title="Client"
                 subtitle="Success"
-                data={clientTestimonials}
             />
 
             <ServicePagination currentServiceSlug="ai-integration" />

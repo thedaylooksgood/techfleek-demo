@@ -14,7 +14,7 @@ import ContentSection from '@/components/Common/ContentSection';
 import { FeatureCard, StatsCard, TestimonialCard } from '@/components/Common/Cards';
 import ServicePagination from '@/components/Home-Page/service-cards/shared/ServicePagination';
 import TechStack from '@/components/Home-Page/TechStack';
-import TestimonialSlider, { Testimonial } from '@/components/Home-Page/TestimonialSlider';
+import TestimonialSlider from '@/components/Home-Page/TestimonialSlider';
 import { homeStyles } from '@/components/Home-Page/styles';
 
 const services = [
@@ -97,32 +97,7 @@ const tools = [
     { name: 'CorelDRAW', icon: '/Home-Page/icons/firebase.png', color: '#00AC47' },
 ];
 
-const clientTestimonials: Testimonial[] = [
-    {
-        id: 1,
-        name: 'Sarah Jenkins',
-        rating: 5,
-        date: '10 Jan, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "The rebranding exceeded our expectations. TechFleek captured our essence perfectly and gave us a visual identity we're proud of."
-    },
-    {
-        id: 2,
-        name: 'David Mills',
-        rating: 4.9,
-        date: '22 Feb, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "A truly collaborative process. They listened to our vision and translated it into a design system that works across all our marketing channels."
-    },
-    {
-        id: 3,
-        name: 'Emily Carter',
-        rating: 5,
-        date: '15 Mar, 2024',
-        userImage: '/About-Us/person1.png',
-        text: "Professional, creative, and timely. The new logo has already helped us attract more premium clients."
-    }
-];
+
 
 export default function BrandIdentityPage() {
     return (
@@ -264,7 +239,6 @@ export default function BrandIdentityPage() {
             <TestimonialSlider
                 title="Client"
                 subtitle="Love"
-                data={clientTestimonials}
             />
 
             <ServicePagination currentServiceSlug="brand-identity" />
