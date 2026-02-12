@@ -11,7 +11,7 @@ import {
     MdArrowForward
 } from 'react-icons/md';
 import { BiCalendar } from 'react-icons/bi';
-import { FaWhatsapp, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaWhatsapp, FaLinkedin, FaTwitter, FaBehance, FaFacebook } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const EnquirySection = () => {
@@ -129,7 +129,7 @@ const EnquirySection = () => {
                                     animate={{ scale: 1, y: 0 }}
                                     transition={{ type: "spring", stiffness: 300, damping: 15, delay: 0.1 }}
                                     className="w-20 h-20 rounded-full flex items-center justify-center relative z-10"
-                                    style={{ 
+                                    style={{
                                         background: 'linear-gradient(135deg, #3C8ECB 0%, #000000 70.71%)',
                                         boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1), 0px 10px 15px rgba(0, 0, 0, 0.1)'
                                     }}
@@ -209,9 +209,10 @@ const EnquirySection = () => {
                             <p className="text-[12px] font-medium text-[#4B5563] tracking-wide">Follow us for updates</p>
                             <div className="flex gap-4">
                                 {[
-                                    { Icon: FaLinkedin, bg: "#1E3A8A", href: "https://linkedin.com" },
+                                    { Icon: FaLinkedin, bg: "#1E3A8A", href: "https://www.linkedin.com/company/techfleek/" },
+                                    { Icon: FaFacebook, bg: "#1877F2", href: "https://www.facebook.com/p/Techfleek-61566903430555/" },
                                     { Icon: FaTwitter, bg: "#0D9488", href: "https://twitter.com" },
-                                    { Icon: FaInstagram, bg: "#1F2937", href: "https://instagram.com" }
+                                    { Icon: FaBehance, bg: "#1769FF", href: "https://behance.net" }
                                 ].map(({ Icon, bg, href }, idx) => (
                                     <a key={idx} href={href} target="_blank" rel="noopener noreferrer"
                                         className="w-10 h-10 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all"

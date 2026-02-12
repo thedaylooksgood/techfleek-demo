@@ -62,6 +62,8 @@ const TechCard = ({ item }: { item: { name: string; icon: string; color: string 
                 src={item.icon}
                 alt={item.name}
                 className="w-8 h-8 object-contain"
+                loading="lazy"
+                decoding="async"
             />
         </div>
 

@@ -1,7 +1,14 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { X, Upload, ChevronDown, Linkedin, Github, User, Mail, Phone, Briefcase, FileText, Loader2, CheckCircle } from 'lucide-react';
+import { X, Upload, ChevronDown, Linkedin, Facebook, User, Mail, Phone, Briefcase, FileText, Loader2, CheckCircle } from 'lucide-react';
+
+// Behance SVG icon
+const BehanceIcon = ({ className }: { className?: string }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.5 11C8.88 11 10 9.88 10 8.5S8.88 6 7.5 6H3v5h4.5zm0 2H3v5h4.5C8.88 18 10 16.88 10 15.5S8.88 13 7.5 13zm9-1.5c-1.38 0-2.5 1.12-2.5 2.5h5c0-1.38-1.12-2.5-2.5-2.5zM1 4h6.5C9.98 4 12 6.02 12 8.5c0 1.12-.41 2.15-1.09 2.94C12.14 12.27 13 13.77 13 15.5 13 17.98 11.02 20 8.5 20H1V4zm13 1h8v2h-8V5zm3.5 4C14.47 9 12 11.47 12 14.5S14.47 20 17.5 20c1.93 0 3.63-1 4.6-2.5l-2.1-1.2c-.55.85-1.48 1.2-2.5 1.2-1.38 0-2.5-1.12-2.5-2.5h7.5c.03-.17.05-.33.05-.5C22.55 11.47 20.03 9 17.5 9z" />
+    </svg>
+);
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface JobApplicationModalProps {
@@ -381,12 +388,15 @@ const JobApplicationModal: React.FC<JobApplicationModalProps> = ({ isOpen, onClo
                                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Follow us for updates</p>
                                 <div className="flex gap-4">
                                     {[
-                                        { Icon: Linkedin, color: "#0077b5" },
-                                        { Icon: Github, color: "#24292e" }
-                                    ].map(({ Icon, color }, idx) => (
+                                        { Icon: Linkedin, color: "#0077b5", href: "https://www.linkedin.com/company/techfleek/" },
+                                        { Icon: Facebook, color: "#1877F2", href: "https://www.facebook.com/p/Techfleek-61566903430555/" },
+                                        { Icon: BehanceIcon, color: "#1769FF", href: "#" }
+                                    ].map(({ Icon, color, href }, idx) => (
                                         <a
                                             key={idx}
-                                            href="#"
+                                            href={href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 transition-all hover:scale-110 hover:shadow-md"
                                             onMouseEnter={(e) => {
                                                 e.currentTarget.style.backgroundColor = color;

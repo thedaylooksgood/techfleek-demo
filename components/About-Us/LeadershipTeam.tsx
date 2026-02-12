@@ -168,13 +168,15 @@ const LeadershipTeam: React.FC = () => {
                             }}
                         >
                             {[
-                                { src: '/About-Us/linkedin.png', alt: 'LinkedIn' },
-                                { src: '/About-Us/facebook.png', alt: 'Facebook' },
-                                { src: '/About-Us/github.png', alt: 'GitHub' },
-                                { src: '/About-Us/gmail.png', alt: 'Email' }
+                                { src: '/About-Us/linkedin.png', alt: 'LinkedIn', href: 'https://www.linkedin.com/company/techfleek/' },
+                                { src: '/About-Us/facebook.png', alt: 'Facebook', href: 'https://www.facebook.com/p/Techfleek-61566903430555/' },
+                                { src: '/About-Us/gmail.png', alt: 'Email', href: 'mailto:hello@techfleek.com' }
                             ].map((icon, i) => (
-                                <div
+                                <a
                                     key={i}
+                                    href={icon.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform bg-white relative"
                                     style={{
                                         width: 'clamp(28px, 2vw, 32px)',
@@ -189,7 +191,7 @@ const LeadershipTeam: React.FC = () => {
                                         height={100}
                                         className="w-full h-full object-contain"
                                     />
-                                </div>
+                                </a>
                             ))}
                         </div>
                     </motion.div>

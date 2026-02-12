@@ -6,12 +6,12 @@ import ContentSection from "@/components/Common/ContentSection";
 import {
     Building2, Users, Target, Award, Lightbulb, Shield,
     CheckCircle, Globe, Zap, Heart, Sparkles, Code,
-    Smartphone, Cpu, Palette, Cloud, Settings,
+    Smartphone, Cpu, Palette, Cloud, Settings, Link2,
     ArrowRight, MapPin, Briefcase, Calendar
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+// Image import removed — team section no longer uses photos
 
 // Core values data
 const coreValues = [
@@ -110,7 +110,7 @@ const missionPoints = [
 
 // Director data
 const director = {
-    name: "Justdeepoo",
+    name: "Deepoo Gupta",
     role: "Founder & Director",
     linkedin: "https://www.linkedin.com/in/justdeepoo/",
     experience: [
@@ -121,37 +121,49 @@ const director = {
     ]
 };
 
-// Team Members Data
-const teamMembers = [
+// Team Roles Data — Private: No names, no images, just designations
+const teamRoles = [
     {
-        name: "Sarah Jenkins",
-        role: "Head of Design",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80"
+        designation: "Frontend Engineer",
+        icon: Code,
+        tagline: "Crafting pixel-perfect interfaces",
+        experience: "4+ Years Experience",
+        skills: ["React", "Next.js", "TypeScript", "Tailwind"]
     },
     {
-        name: "Michael Chen",
-        role: "Senior Developer",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+        designation: "Backend Architect",
+        icon: Cpu,
+        tagline: "Designing scalable server systems",
+        experience: "6+ Years Experience",
+        skills: ["Node.js", "Laravel", "PostgreSQL", "Redis"]
     },
     {
-        name: "Emily Davis",
-        role: "Project Manager",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
+        designation: "UI/UX Designer",
+        icon: Palette,
+        tagline: "Shaping intuitive user experiences",
+        experience: "5+ Years Experience",
+        skills: ["Figma", "Prototyping", "Design Systems", "Motion"]
     },
     {
-        name: "David Wilson",
-        role: "Backend Architect",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80"
+        designation: "Mobile App Developer",
+        icon: Smartphone,
+        tagline: "Building native & cross-platform apps",
+        experience: "5+ Years Experience",
+        skills: ["React Native", "Flutter", "iOS", "Android"]
     },
     {
-        name: "Jessica Lee",
-        role: "UI/UX Designer",
-        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80"
+        designation: "Blockchain Engineer",
+        icon: Link2,
+        tagline: "Building decentralized solutions",
+        experience: "6+ Years Experience",
+        skills: ["Solidity", "Web3", "Smart Contracts", "DeFi"]
     },
     {
-        name: "James Taylor",
-        role: "DevOps Engineer",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80"
+        designation: "DevOps Engineer",
+        icon: Cloud,
+        tagline: "Automating deployment pipelines",
+        experience: "4+ Years Experience",
+        skills: ["AWS", "Docker", "CI/CD", "Kubernetes"]
     }
 ];
 
@@ -288,49 +300,91 @@ export default function AboutUsPage() {
                 </div>
             </div>
 
-            {/* Team Section */}
-            <div className="w-full bg-slate-50 relative font-[family-name:var(--font-red-hat)] py-12 md:py-16">
+            {/* Team Section — Private: Designation-Only Cards */}
+            <div className="w-full bg-slate-50 relative font-[family-name:var(--font-red-hat)] py-16 md:py-20 overflow-hidden">
+                {/* Animated background orbs */}
+                <motion.div
+                    variants={pulseVariants}
+                    animate="animate"
+                    className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-[#3C8ECB]/8 to-blue-500/5 rounded-full blur-3xl"
+                />
+                <motion.div
+                    variants={pulseVariants}
+                    animate="animate"
+                    className="absolute bottom-10 right-10 w-96 h-96 bg-gradient-to-br from-[#3C8ECB]/8 to-blue-400/5 rounded-full blur-3xl"
+                />
+
                 <div className="w-full max-w-[1250px] mx-auto relative z-10 px-4 sm:px-6 md:px-8">
-                    <div className="mb-16 text-center">
+                    <div className="mb-12 text-center">
                         <span className="inline-block text-[#3C8ECB] font-bold tracking-widest uppercase text-xs mb-2">
                             OUR TEAM
                         </span>
-                        <h2 className="font-black text-slate-900 text-2xl md:text-3xl lg:text-[36px] leading-[1.1]">
-                            Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3C8ECB] to-indigo-500">Exceptional Minds</span>
+                        <h2 className="font-black text-slate-900 text-2xl md:text-3xl lg:text-[36px] leading-[1.1] mb-3">
+                            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3C8ECB] to-indigo-500">Experts</span> Behind the Code
                         </h2>
+                        <p className="text-slate-500 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+                            A dedicated team of specialists driving innovation across every layer of the stack.
+                        </p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12 pb-12">
-                        {teamMembers.map((member, index) => (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                        {teamRoles.map((role, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.15, duration: 0.6 }}
+                                transition={{ delay: index * 0.1, duration: 0.5 }}
                                 viewport={{ once: true }}
-                                className={`group relative w-full max-w-[280px] mx-auto ${
-                                    /* Desktop stagger effect: Middle column stays high, sides push down */
-                                    index % 3 !== 1 ? 'lg:translate-y-12' : ''
-                                    }`}
+                                whileHover={{ y: -6, scale: 1.02 }}
+                                className="group relative bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
                             >
-                                <div className="aspect-[3/4] overflow-hidden rounded-[2rem] bg-white relative shadow-sm group-hover:shadow-2xl transition-all duration-500">
-                                    <Image
-                                        src={member.image}
-                                        alt={member.name}
-                                        fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                    {/* Gradient Overlay for better pill contrast if needed */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-60" />
-                                </div>
+                                {/* Top gradient accent bar — unified blue */}
+                                <div className="h-1 w-full bg-gradient-to-r from-[#3C8ECB] to-[#2563EB]" />
 
-                                {/* Floating Pill Label */}
-                                <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full overflow-hidden transition-transform duration-300 hover:scale-105">
-                                    <div className="bg-[#0f172a] text-white px-4 h-9 flex items-center justify-center font-bold text-[10px] tracking-wide whitespace-nowrap min-w-[80px]">
-                                        {member.name}
+                                {/* Hover glow background */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#3C8ECB]/10 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                                <div className="relative z-10 p-6 md:p-7">
+                                    {/* Icon + Designation */}
+                                    <div className="flex items-center gap-4 mb-3">
+                                        <motion.div
+                                            className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#3C8ECB] to-[#2563EB] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300"
+                                            whileHover={{ rotate: [0, -8, 8, 0] }}
+                                            transition={{ duration: 0.5 }}
+                                        >
+                                            <role.icon className="w-7 h-7 text-white" />
+                                        </motion.div>
+                                        <div>
+                                            <h3 className="font-bold text-slate-900 text-lg leading-tight group-hover:text-slate-800 transition-colors">
+                                                {role.designation}
+                                            </h3>
+                                            <p className="text-slate-400 text-xs mt-0.5 font-medium">
+                                                {role.tagline}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="bg-white text-slate-900 px-4 h-9 flex items-center justify-center font-bold text-[10px] tracking-wide whitespace-nowrap min-w-[100px]">
-                                        {member.role}
+
+                                    {/* Experience badge */}
+                                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#3C8ECB]/10 mb-4">
+                                        <Briefcase className="w-3.5 h-3.5 text-[#3C8ECB]" />
+                                        <span className="text-[11px] font-bold text-[#3C8ECB] tracking-wide">
+                                            {role.experience}
+                                        </span>
+                                    </div>
+
+                                    {/* Divider */}
+                                    <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent mb-4" />
+
+                                    {/* Skills pills */}
+                                    <div className="flex flex-wrap gap-2">
+                                        {role.skills.map((skill, idx) => (
+                                            <span
+                                                key={idx}
+                                                className="px-3 py-1.5 text-[11px] font-semibold rounded-full bg-slate-50 text-slate-600 border border-slate-100 group-hover:border-[#3C8ECB]/20 group-hover:bg-white transition-all duration-300"
+                                            >
+                                                {skill}
+                                            </span>
+                                        ))}
                                     </div>
                                 </div>
                             </motion.div>

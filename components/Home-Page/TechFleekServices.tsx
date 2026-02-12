@@ -220,7 +220,7 @@ function ServicesShowcase({ categories }: { categories: typeof serviceCategories
             </div>
 
             {/* Right Side - Image Showcase */}
-            <div className="relative overflow-hidden min-h-[320px] lg:min-h-[380px] group">
+            <div className="hidden lg:block relative overflow-hidden min-h-[320px] lg:min-h-[380px] group">
               {/* Main Image */}
               <AnimatePresence mode="wait">
                 <motion.div

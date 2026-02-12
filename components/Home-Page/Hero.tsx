@@ -151,7 +151,7 @@ export default function Hero() {
                 </div>
 
                 {/* --- RIGHT COLUMN: INTERACTIVE DIAGRAM --- */}
-                <div className="w-full lg:w-1/2 h-[50vh] lg:h-full flex items-center justify-center relative pointer-events-none lg:pointer-events-auto">
+                <div className="hidden lg:flex w-full lg:w-1/2 h-[50vh] lg:h-full items-center justify-center relative pointer-events-none lg:pointer-events-auto">
                     <NetworkDiagram />
                 </div>
 

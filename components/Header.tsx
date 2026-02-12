@@ -135,6 +135,7 @@ const BLOG_POSTS = [
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [mobileSubMenu, setMobileSubMenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -151,6 +152,19 @@ export default function Header() {
     setActiveMenu(null);
     setIsMobileOpen(false);
   }, [pathname]);
+
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileOpen]);
+
 
   const isActive = (path: string) => pathname === path || pathname.startsWith(path + "/");
 
@@ -182,7 +196,7 @@ export default function Header() {
 
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center h-full">
-              <NavItem href="/about-us" label="About" isActive={isActive("/about-us")} />
+              <NavItem href="/about-us" label="About Us" isActive={isActive("/about-us")} />
 
               <NavDropdown
                 id="services"
@@ -429,30 +443,117 @@ export default function Header() {
             </div>
 
             {/* Nav Links */}
-            <div className="flex-1 overflow-y-auto p-6">
-              <nav className="flex flex-col gap-6">
+            <div className="flex-1 overflow-y-auto px-6 py-4">
+              <nav className="flex flex-col">
                 <MobileLink href="/" label="Home" onClick={() => setIsMobileOpen(false)} />
                 <MobileLink href="/about-us" label="About Us" onClick={() => setIsMobileOpen(false)} />
 
                 {/* Services Section */}
-                <div className="space-y-4">
-                  <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">Services</div>
-                  <div className="pl-4 border-l-2 border-gray-100 space-y-3">
-                    {[...SERVICES.design, ...SERVICES.engineering, ...SERVICES.strategy].map((item, i) => (
+                <MobileAccordion
+                  title="Services"
+                  isOpen={mobileSubMenu === "services"}
+                  onToggle={() => setMobileSubMenu(mobileSubMenu === "services" ? null : "services")}
+                >
+                  <div className="space-y-6">
+                    {/* Design */}
+                    <div>
+                      <h5 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Design</h5>
+                      <div className="space-y-2 pl-4 border-l-2 border-gray-100">
+                        {SERVICES.design.map((item, i) => (
+                          <Link
+                            key={i}
+                            href={item.href}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="block py-1 text-gray-600 font-medium hover:text-[#3C8ECB] transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                    {/* Engineering */}
+                    <div>
+                      <h5 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Engineering</h5>
+                      <div className="space-y-2 pl-4 border-l-2 border-gray-100">
+                        {SERVICES.engineering.map((item, i) => (
+                          <Link
+                            key={i}
+                            href={item.href}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="block py-1 text-gray-600 font-medium hover:text-[#3C8ECB] transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                    {/* Strategy */}
+                    <div>
+                      <h5 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Strategy</h5>
+                      <div className="space-y-2 pl-4 border-l-2 border-gray-100">
+                        {SERVICES.strategy.map((item, i) => (
+                          <Link
+                            key={i}
+                            href={item.href}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="block py-1 text-gray-600 font-medium hover:text-[#3C8ECB] transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </MobileAccordion>
+
+                <MobileAccordion
+                  title="Case Studies"
+                  isOpen={mobileSubMenu === "case-studies"}
+                  onToggle={() => setMobileSubMenu(mobileSubMenu === "case-studies" ? null : "case-studies")}
+                >
+                  <div className="space-y-4">
+                    {CASE_STUDIES.map((study, i) => (
                       <Link
                         key={i}
-                        href={item.href}
+                        href={study.href}
                         onClick={() => setIsMobileOpen(false)}
-                        className="block text-lg font-medium text-gray-700"
+                        className="block py-1 text-gray-600 font-medium hover:text-[#3C8ECB] transition-colors"
                       >
-                        {item.name}
+                        {study.title}
                       </Link>
                     ))}
+                    <Link
+                      href="/case-study"
+                      onClick={() => setIsMobileOpen(false)}
+                      className="block mt-4 text-sm font-bold text-[#3C8ECB] uppercase tracking-wide"
+                    >
+                      View All Projects →
+                    </Link>
                   </div>
-                </div>
+                </MobileAccordion>
 
-                <MobileLink href="/case-study" label="Case Studies" onClick={() => setIsMobileOpen(false)} />
-                <MobileLink href="/insights" label="Insights" onClick={() => setIsMobileOpen(false)} />
+                <MobileAccordion
+                  title="Insights"
+                  isOpen={mobileSubMenu === "insights"}
+                  onToggle={() => setMobileSubMenu(mobileSubMenu === "insights" ? null : "insights")}
+                >
+                  <div className="space-y-4">
+                    <div className="pl-4 border-l-2 border-gray-100 space-y-2">
+                      <Link href="/insights" onClick={() => setIsMobileOpen(false)} className="block py-1 text-gray-600 font-medium hover:text-[#3C8ECB] transition-colors">Latest Articles</Link>
+                      <Link href="/insights" onClick={() => setIsMobileOpen(false)} className="block py-1 text-gray-600 font-medium hover:text-[#3C8ECB] transition-colors">Engineering</Link>
+                      <Link href="/insights" onClick={() => setIsMobileOpen(false)} className="block py-1 text-gray-600 font-medium hover:text-[#3C8ECB] transition-colors">Design</Link>
+                      <Link href="/insights" onClick={() => setIsMobileOpen(false)} className="block py-1 text-gray-600 font-medium hover:text-[#3C8ECB] transition-colors">Product</Link>
+                      <Link
+                        href="/insights"
+                        onClick={() => setIsMobileOpen(false)}
+                        className="block mt-4 text-sm font-bold text-[#3C8ECB] uppercase tracking-wide"
+                      >
+                        View All Insights →
+                      </Link>
+                    </div>
+                  </div>
+                </MobileAccordion>
+
                 <MobileLink href="/job-posting" label="Careers" onClick={() => setIsMobileOpen(false)} />
               </nav>
             </div>
@@ -565,8 +666,56 @@ function ServiceItem({ item }: { item: (typeof SERVICES.design)[0] }) {
 
 function MobileLink({ href, label, onClick }: { href: string; label: string; onClick: () => void }) {
   return (
-    <Link href={href} scroll={true} onClick={() => { onClick(); window.scrollTo(0, 0); }} className="text-2xl font-bold text-gray-900 tracking-tight">
+    <Link
+      href={href}
+      scroll={true}
+      onClick={() => { onClick(); window.scrollTo(0, 0); }}
+      className="block py-4 text-xl font-bold text-gray-900 border-b border-gray-100 hover:text-[#3C8ECB] transition-colors"
+    >
       {label}
     </Link>
+  );
+}
+
+function MobileAccordion({
+  title,
+  isOpen,
+  onToggle,
+  children
+}: {
+  title: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="border-b border-gray-100">
+      <button
+        onClick={onToggle}
+        className={`w-full flex items-center justify-between py-4 text-xl font-bold transition-colors ${isOpen ? "text-[#3C8ECB]" : "text-gray-900"
+          }`}
+      >
+        {title}
+        <ChevronDown
+          size={20}
+          className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="pb-6 pt-2 space-y-6">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

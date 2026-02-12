@@ -157,15 +157,17 @@ export default function IndustriesTargeted() {
                     </div>
 
                     {/* CTA Buttons */}
-                    <div className="flex items-center gap-3 flex-wrap shrink-0 mt-4 lg:mt-0">
-                        <Link href="/enquiry" scroll={true} onClick={() => window.scrollTo(0, 0)}>
+                    <div className="flex items-center gap-2 sm:gap-3 shrink-0 mt-4 lg:mt-0 w-full lg:w-auto">
+                        <Link href="/enquiry" scroll={true} onClick={() => window.scrollTo(0, 0)} className="flex-1 lg:flex-none">
                             <motion.button
-                                className="font-semibold text-white rounded-full relative overflow-hidden group cursor-pointer"
+                                className="font-semibold text-white rounded-full relative overflow-hidden group cursor-pointer flex items-center justify-center w-full"
                                 style={{
-                                    padding: isMobile ? '12px 20px' : '12px 28px',
-                                    fontSize: isMobile ? '13px' : '14px',
+                                    padding: isMobile ? '12px 0' : '12px 28px',
+                                    fontSize: isMobile ? '12px' : '14px',
                                     background: 'linear-gradient(135deg, #3C8ECB 0%, #2563EB 100%)',
-                                    boxShadow: '0 4px 20px rgba(60, 142, 203, 0.35)'
+                                    boxShadow: '0 4px 20px rgba(60, 142, 203, 0.35)',
+                                    border: '2px solid transparent',
+                                    minWidth: isMobile ? '0' : '210px',
                                 }}
                                 whileHover={{
                                     scale: 1.05,
@@ -175,13 +177,13 @@ export default function IndustriesTargeted() {
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
                             >
-                                <span className="relative z-10 flex items-center gap-2">
-                                    Become a Client
+                                <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-2">
+                                    {isMobile ? 'Become a Client' : 'Become a Client'}
                                     <motion.div
                                         whileHover={{ x: 3 }}
                                         transition={{ type: "spring", stiffness: 400 }}
                                     >
-                                        <ArrowRight className="w-4 h-4" />
+                                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                     </motion.div>
                                 </span>
                                 <motion.div
@@ -191,13 +193,14 @@ export default function IndustriesTargeted() {
                             </motion.button>
                         </Link>
 
-                        <Link href="/case-study" scroll={true} onClick={() => window.scrollTo(0, 0)}>
+                        <Link href="/case-study" scroll={true} onClick={() => window.scrollTo(0, 0)} className="flex-1 lg:flex-none">
                             <motion.button
-                                className="font-semibold rounded-full border-2 border-[#3C8ECB]/30 bg-white/90 backdrop-blur-sm hover:border-[#3C8ECB]/60 hover:bg-[#3C8ECB]/5 transition-all duration-300 cursor-pointer"
+                                className="font-semibold rounded-full border-2 border-[#3C8ECB]/30 bg-white/90 backdrop-blur-sm hover:border-[#3C8ECB]/60 hover:bg-[#3C8ECB]/5 transition-all duration-300 cursor-pointer flex items-center justify-center w-full"
                                 style={{
-                                    padding: isMobile ? '12px 20px' : '12px 28px',
-                                    fontSize: isMobile ? '13px' : '14px',
-                                    color: '#3C8ECB'
+                                    padding: isMobile ? '12px 0' : '12px 28px',
+                                    fontSize: isMobile ? '12px' : '14px',
+                                    color: '#3C8ECB',
+                                    minWidth: isMobile ? '0' : '210px',
                                 }}
                                 whileHover={{
                                     scale: 1.05,
@@ -207,8 +210,8 @@ export default function IndustriesTargeted() {
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
                             >
-                                <span className="flex items-center gap-2">
-                                    View Case Studies
+                                <span className="flex items-center justify-center gap-1.5 sm:gap-2">
+                                    {isMobile ? 'Case Studies' : 'View Case Studies'}
                                     <motion.span
                                         className="inline-block"
                                         whileHover={{ x: 3 }}
